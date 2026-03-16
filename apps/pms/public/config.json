@@ -1,0 +1,7 @@
+{
+  "msal": {
+    "clientId": "e9511697-6d16-4cab-9b58-0433958fdb71",
+    "authority": "https://login.microsoftonline.com/common",
+    "redirectUri": "http://localhost:4200"
+  }
+}
