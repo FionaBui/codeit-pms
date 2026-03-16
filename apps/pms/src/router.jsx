@@ -1,10 +1,27 @@
 import { useState } from 'react';
 import { MainLayout } from '@codeit/ui';
-import { createBrowserRouter, useNavigate } from 'react-router-dom';
+import { createBrowserRouter, useNavigate, Navigate } from 'react-router-dom';
 import { Drawer, Segmented } from 'antd';
 import { RequireAuth, useAuth } from '@codeit/auth';
-import { Home } from './pages/Home';
-import { HomeOutlined, DashboardOutlined, SettingOutlined } from '@ant-design/icons';
+import ProjectCountStatusPage from './pages/dashboard/ProjectCountStatusPage';
+import ProjectsGanttPage from './pages/dashboard/ProjectsGanttPage';
+import ResourcesAllocationsPage from './pages/dashboard/ResourcesAllocationsPage';
+import HeadcountPage from './pages/dashboard/HeadcountPage';
+import RawDataPage from './pages/dashboard/RawDataPage';
+import ProjectManagementPage from './pages/management/ProjectManagementPage';
+import Settings from './pages/Settings';
+
+import {
+  HomeOutlined,
+  DashboardOutlined,
+  ProjectOutlined,
+  SettingOutlined,
+  ScheduleOutlined,
+  BarChartOutlined,
+  TeamOutlined,
+  ContactsOutlined,
+  DatabaseOutlined,
+} from '@ant-design/icons';
 
 function PmsLayout() {
   const { logout } = useAuth();
@@ -13,12 +30,41 @@ function PmsLayout() {
   const [settingsOpen, setSettingsOpen] = useState(false);
 
   const menuItems = [
-    { key: 'home', label: 'Home', icon: <HomeOutlined />, onClick: () => navigate('/') },
     {
-      key: 'dashboard',
-      label: 'Dashboard',
+      key: 'project-count-status',
+      label: 'Project Count & Status',
       icon: <DashboardOutlined />,
-      onClick: () => navigate('/dashboard'),
+      onClick: () => navigate('/project-count-status'),
+    },
+    {
+      key: 'projects-gantt',
+      label: 'Projects Gantt',
+      icon: <ProjectOutlined />,
+      onClick: () => navigate('/projects-gantt'),
+    },
+    {
+      key: 'resources-allocations',
+      label: 'Resources Allocations',
+      icon: <TeamOutlined />,
+      onClick: () => navigate('/resources-allocations'),
+    },
+    {
+      key: 'headcount',
+      label: 'Headcount',
+      icon: <ContactsOutlined />,
+      onClick: () => navigate('/headcount'),
+    },
+    {
+      key: 'raw-data',
+      label: 'Raw Data Table',
+      icon: <DatabaseOutlined />,
+      onClick: () => navigate('/raw-data'),
+    },
+    {
+      key: 'project-management',
+      label: 'Project Management',
+      icon: <ScheduleOutlined />,
+      onClick: () => navigate('/project-management'),
     },
     {
       key: 'settings',
@@ -68,14 +114,6 @@ function PmsLayout() {
   );
 }
 
-function PlaceholderPage({ name }) {
-  return (
-    <div style={{ padding: 24 }}>
-      Welcome to {name}. (Example page for menu test.)
-    </div>
-  );
-}
-
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -85,9 +123,14 @@ export const router = createBrowserRouter([
       </RequireAuth>
     ),
     children: [
-      { index: true, element: <Home /> },
-      { path: 'dashboard', element: <PlaceholderPage name="Dashboard" /> },
-      { path: 'settings', element: <PlaceholderPage name="Settings" /> },
+      { index: true, element: <Navigate to="/project-count-status" replace /> },
+      { path: 'project-count-status', element: <ProjectCountStatusPage /> },
+      { path: 'projects-gantt', element: <ProjectsGanttPage /> },
+      { path: 'resources-allocations', element: <ResourcesAllocationsPage /> },
+      { path: 'headcount', element: <HeadcountPage /> },
+      { path: 'raw-data', element: <RawDataPage /> },
+      { path: 'project-management', element: <ProjectManagementPage /> },
+      { path: 'settings', element: <Settings /> },
     ],
   },
 ]);
