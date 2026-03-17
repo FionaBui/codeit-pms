@@ -54,7 +54,9 @@ export const MainLayout = ({
     onClick,
   }));
 
-  const headerRight = (onSettingsClick != null || dropdownItems.length > 0 || userTrigger) && (
+  const headerRight = (onSettingsClick != null ||
+    dropdownItems.length > 0 ||
+    userTrigger) && (
     <div className="flex gap-x-2 ml-auto items-center justify-end">
       {onSettingsClick != null && (
         <SettingOutlined
@@ -96,10 +98,7 @@ export const MainLayout = ({
       if (!collapsed) {
         return item;
       }
-      const text =
-        typeof item.label === 'string'
-          ? item.label
-          : undefined;
+      const text = typeof item.label === 'string' ? item.label : undefined;
 
       return {
         ...item,
@@ -122,7 +121,7 @@ export const MainLayout = ({
         <Layout>
           <Layout.Sider
             collapsible
-            width={220}
+            width={250}
             collapsedWidth={64}
             collapsed={collapsed}
             onCollapse={setCollapsed}
@@ -158,7 +157,13 @@ export const MainLayout = ({
           <Menu
             mode="horizontal"
             items={menuItemConfig}
-            style={{ flex: 1, minWidth: 0, height: '100%', backgroundColor: 'inherit', alignItems: 'center' }}
+            style={{
+              flex: 1,
+              minWidth: 0,
+              height: '100%',
+              backgroundColor: 'inherit',
+              alignItems: 'center',
+            }}
             className="main-layout-header-menu h-full grow justify-center items-center border-none"
             triggerSubMenuAction="click"
           />
