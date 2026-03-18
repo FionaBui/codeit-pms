@@ -14,10 +14,19 @@ export function getProjectCountByType(projects) {
   return Object.entries(result).map(([name, value]) => ({ name, value }));
 }
 
-export function buildProjectTypePieOption(projects) {
-  const chartData = getProjectCountByType(projects);
+// Total manhours by type
+export function getTotalApprovalManhoursByType(projects) {
+  const result = {};
+  projects.forEach((p) => {
+    result[p.projectType] =
+      (result[p.projectType] ?? 0) + (p.plannedManhours ?? 0);
+  });
+  return Object.entries(result).map(([name, value]) => ({ name, value }));
+}
+
+function buildBasePieChart({ labelFormatter, chartData }) {
   return {
-    tooltip: { trigger: 'item', formatter: '{b}: {c} ({d}%)' },
+    tooltip: { trigger: 'item' },
     legend: {
       orient: 'vertical',
 
@@ -28,7 +37,6 @@ export function buildProjectTypePieOption(projects) {
     },
     series: [
       {
-        name: 'Project type',
         type: 'pie',
         radius: '65%',
         center: ['50%', '40%'],
@@ -38,7 +46,7 @@ export function buildProjectTypePieOption(projects) {
         label: {
           show: true,
           position: 'outside',
-          formatter: '{c} ({d}%)',
+          formatter: labelFormatter,
           fontSize: 12,
         },
 
@@ -50,4 +58,19 @@ export function buildProjectTypePieOption(projects) {
       },
     ],
   };
+}
+export function buildProjectTypePieOption(projects) {
+  const chartData = getProjectCountByType(projects);
+  return buildBasePieChart({
+    chartData,
+    labelFormatter: '{b}: {c} ({d}%)',
+  });
+}
+
+export function buildApprovalManhoursPieOption(projects) {
+  const chartData = getTotalApprovalManhoursByType(projects);
+  return buildBasePieChart({
+    chartData,
+    labelFormatter: '{b}: {c} h',
+  });
 }

@@ -1,13 +1,18 @@
 import { Card, Col, Row, Space, Typography } from 'antd';
 import { mockProjects } from '../../mocks/mockProjects';
-import { buildProjectTypePieOption } from '../../helper/projectCountStatus';
+import {
+  buildProjectTypePieOption,
+  buildApprovalManhoursPieOption,
+} from '../../helper/projectCountStatus';
 import { BaseChart, ChartCard } from '@codeit/ui';
 
 const { Title } = Typography;
 
 export default function ProjectCountStatusPage() {
   const projectTypePieOption = buildProjectTypePieOption(mockProjects);
-  console.log(buildProjectTypePieOption(mockProjects));
+  const approvalManhoursPieOption =
+    buildApprovalManhoursPieOption(mockProjects);
+  console.log(buildApprovalManhoursPieOption(mockProjects));
   return (
     <Space orientation="vertical" size={24} style={{ width: '100%' }}>
       {/* Page Header */}
@@ -26,9 +31,9 @@ export default function ProjectCountStatusPage() {
         </Col>
 
         <Col xs={24} lg={12}>
-          <Card title="Approved Manhours by Type">
-            <div style={{ height: 450 }}>Chart 2</div>
-          </Card>
+          <ChartCard title="Approved Manhours by Type">
+            <BaseChart option={approvalManhoursPieOption} />
+          </ChartCard>
         </Col>
 
         <Col xs={24} lg={12}>
