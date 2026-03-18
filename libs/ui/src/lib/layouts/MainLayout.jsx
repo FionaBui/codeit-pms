@@ -27,7 +27,7 @@ export const MainLayout = ({
   userTrigger,
   onSettingsClick,
   menuMode = 'vertical',
-  contentStyle = { padding: '0 48px' },
+  contentStyle = { padding: '12px 36px' },
 }) => {
   const defaultLogo = (
     <a href="/" className="shrink-0 flex gap-x-2 items-center leading-normal">
