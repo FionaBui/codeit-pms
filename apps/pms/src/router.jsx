@@ -3,6 +3,7 @@ import { MainLayout } from '@codeit/ui';
 import { createBrowserRouter, useNavigate, Navigate } from 'react-router-dom';
 import { Drawer, Segmented } from 'antd';
 import { RequireAuth, useAuth } from '@codeit/auth';
+import { ApiClientInit } from './api/ApiClientInit';
 import ProjectCountStatusPage from './pages/dashboard/ProjectCountStatusPage';
 import ProjectsGanttPage from './pages/dashboard/ProjectsGanttPage';
 import ResourcesAllocationsPage from './pages/dashboard/ResourcesAllocationsPage';
@@ -119,7 +120,9 @@ export const router = createBrowserRouter([
     path: '/',
     element: (
       <RequireAuth loginPath="/login">
-        <PmsLayout />
+        <ApiClientInit>
+          <PmsLayout />
+        </ApiClientInit>
       </RequireAuth>
     ),
     children: [
