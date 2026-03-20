@@ -1,19 +1,22 @@
 {
-  "name": "@codeit/utils",
+  "name": "@codeit/api",
   "version": "0.0.1",
   "type": "module",
   "main": "./src/index.js",
-  "types": "./src/index.ts",
   "exports": {
     ".": {
-      "types": "./src/index.ts",
       "import": "./src/index.js",
       "default": "./src/index.js"
     },
-    "./helper": {
-      "import": "./src/helper.js",
-      "default": "./src/helper.js"
-    },
     "./package.json": "./package.json"
+  },
+  "peerDependencies": {
+    "axios": ">=1.0.0",
+    "@azure/msal-browser": ">=2.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@azure/msal-browser": {
+      "optional": true
+    }
   }
 }

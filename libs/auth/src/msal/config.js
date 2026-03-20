@@ -4,6 +4,7 @@
  */
 
 import { LogLevel, PublicClientApplication } from '@azure/msal-browser';
+import { loadRuntimeConfig } from '@codeit/api';
 
 export const defaultMsalConfig = {
   auth: {
@@ -68,11 +69,10 @@ export async function createMsalInstance(overrides = {}) {
 
 /**
  * Create MSAL instance with config loaded from /config.json (msal key).
+ * Uses shared loadRuntimeConfig from @codeit/api (single fetch, cached).
  * @returns {Promise<PublicClientApplication>}
  */
 export async function createMsalInstanceFromConfig() {
-  const config = await fetch('/config.json')
-    .then((res) => res.json())
-    .catch(() => ({}));
-  return createMsalInstance(config.msal || {});
+  const config = await loadRuntimeConfig().catch(() => ({}));
+  return createMsalInstance(config?.msal || {});
 }
