@@ -1,4 +1,7 @@
 import { Card, Col, Row, Space, Typography } from 'antd';
+import { useAuth } from '@codeit/auth';
+import { useEffect } from 'react';
+import { listProjects } from '../../api/projectApi';
 import { mockProjects } from '../../mocks/mockProjects';
 import {
   buildProjectTypePieOption,
@@ -9,6 +12,11 @@ import { BaseChart, ChartCard } from '@codeit/ui';
 const { Title } = Typography;
 
 export default function ProjectCountStatusPage() {
+  useEffect(() => {
+    listProjects().then((projects) => {
+      console.log(projects);
+    });
+  }, []);
   const projectTypePieOption = buildProjectTypePieOption(mockProjects);
   const approvalManhoursPieOption =
     buildApprovalManhoursPieOption(mockProjects);
