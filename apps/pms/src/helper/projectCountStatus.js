@@ -1,76 +1,54 @@
-const TYPE_4 = 'Type 4: Bug fixes and Daily tech support';
-export function filterProjectTypes(projects) {
-  return projects.filter((p) => p.projectType !== TYPE_4);
-}
+const ALL_TYPES = [
+  'Type 1: new development outside Core Services',
+  'Type 2: development / improvements inside Core Services',
+  'Type 3: Customizations & Change requests',
+  'Type 4: Daily support & Continuous improvements',
+];
+const ALL_STATUSES = ['plan', 'execution', 'closing', 'finished'];
 
 // Count type
 export function getProjectCountByType(projects) {
-  const visibleProjectType = filterProjectTypes(projects);
+  if (!Array.isArray(projects)) return [];
   const result = {};
-  visibleProjectType.forEach((p) => {
-    if (!p.projectType) return;
-    result[p.projectType] = (result[p.projectType] ?? 0) + 1;
+  projects.forEach((p) => {
+    if (!p.type) return;
+    result[p.type] = (result[p.type] ?? 0) + 1;
   });
-  return Object.entries(result).map(([name, value]) => ({ name, value }));
+  return ALL_TYPES.map((type) => ({
+    name: type,
+    value: result[type] ?? 0,
+  }));
 }
 
 // Total manhours by type
 export function getTotalApprovalManhoursByType(projects) {
   const result = {};
   projects.forEach((p) => {
-    result[p.projectType] =
-      (result[p.projectType] ?? 0) + (p.plannedManhours ?? 0);
+    result[p.type] = (result[p.type] ?? 0) + (p.plannedManhours ?? 0);
   });
-  return Object.entries(result).map(([name, value]) => ({ name, value }));
+  return ALL_TYPES.map((type) => ({
+    name: type,
+    value: result[type] ?? 0,
+  }));
 }
 
-function buildBasePieChart({ labelFormatter, chartData }) {
-  return {
-    tooltip: { trigger: 'item' },
-    legend: {
-      orient: 'vertical',
+// Count projects by Status
+export function getProjectCountByStatus(projects, selectedType) {
+  if (!Array.isArray(projects)) return [];
 
-      left: 'center',
-      textStyle: {
-        fontSize: 12,
-      },
-    },
-    series: [
-      {
-        type: 'pie',
-        radius: '65%',
-        center: ['50%', '40%'],
-        avoidLabelOverlap: true,
-        data: chartData,
+  return ALL_STATUSES.map((status) => {
+    const statusProjects = projects.filter((p) => p.status === status);
+    const total = statusProjects.length;
 
-        label: {
-          show: true,
-          position: 'outside',
-          formatter: labelFormatter,
-          fontSize: 12,
-        },
+    const highlighted = selectedType
+      ? statusProjects.filter((p) => p.type === selectedType).length
+      : total;
 
-        labelLine: {
-          show: true,
-          length: 10,
-          length2: 8,
-        },
-      },
-    ],
-  };
-}
-export function buildProjectTypePieOption(projects) {
-  const chartData = getProjectCountByType(projects);
-  return buildBasePieChart({
-    chartData,
-    labelFormatter: '{b}: {c} ({d}%)',
-  });
-}
-
-export function buildApprovalManhoursPieOption(projects) {
-  const chartData = getTotalApprovalManhoursByType(projects);
-  return buildBasePieChart({
-    chartData,
-    labelFormatter: '{b}: {c} h',
+    return {
+      name: status,
+      highlighted,
+      rest: total - highlighted,
+      total,
+    };
   });
 }

@@ -1,26 +1,46 @@
 import { Card, Col, Row, Space, Typography } from 'antd';
 import { useAuth } from '@codeit/auth';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { listProjects } from '../../api/projectApi';
-import { mockProjects } from '../../mocks/mockProjects';
-import {
-  buildProjectTypePieOption,
-  buildApprovalManhoursPieOption,
-} from '../../helper/projectCountStatus';
-import { BaseChart, ChartCard } from '@codeit/ui';
+// import { mockProjects } from '../../mocks/mockProjects';
+
+import { ProjectTypePieChart } from '../../components/dashboard/ProjectTypePieChart';
+import { ProjectCountStatusBarChart } from '../../components/dashboard/ProjectCountStatusBarChart';
+import { ApprovalManhoursPieChart } from '../../components/dashboard/ApprovalManhoursPieChart';
+const DEFAULT_LEGEND_SELECTED_TYPE = {
+  'Type 1: New Development outside Core Services': true,
+  'Type 2: Development/improvements inside Core Services': true,
+  'Type 3: Customizations & Change requests': true,
+  'Type 4: Daily support & Continuous improvements': false,
+};
 
 const { Title } = Typography;
 
 export default function ProjectCountStatusPage() {
+  const [projects, setProjects] = useState([]);
   useEffect(() => {
-    listProjects().then((projects) => {
-      console.log(projects);
+    listProjects().then((response) => {
+      console.log('listProjects result:', response);
+      console.log('is array:', Array.isArray(response.data));
+      setProjects(response.data);
     });
   }, []);
-  const projectTypePieOption = buildProjectTypePieOption(mockProjects);
-  const approvalManhoursPieOption =
-    buildApprovalManhoursPieOption(mockProjects);
-  console.log(buildApprovalManhoursPieOption(mockProjects));
+
+  const [selectedFilter, setSelectedFilter] = useState({
+    projectType: null,
+    status: null,
+  });
+
+  function handleTypeClick(typeName) {
+    console.log('clicked type:', typeName);
+
+    setSelectedFilter((prev) => ({
+      projectType: prev.projectType === typeName ? null : typeName,
+      status: null,
+    }));
+  }
+  console.log('selectedType', selectedFilter);
+
   return (
     <Space orientation="vertical" size={24} style={{ width: '100%' }}>
       {/* Page Header */}
@@ -33,21 +53,27 @@ export default function ProjectCountStatusPage() {
       {/* Chart Grid */}
       <Row gutter={[16, 16]}>
         <Col xs={24} lg={12}>
-          <ChartCard title="Projects by Type">
-            <BaseChart option={projectTypePieOption} />
-          </ChartCard>
+          <ProjectTypePieChart
+            projects={projects}
+            selectedType={selectedFilter.projectType}
+            onTypeClick={handleTypeClick}
+            legendSelected={DEFAULT_LEGEND_SELECTED_TYPE}
+          />
         </Col>
 
         <Col xs={24} lg={12}>
-          <ChartCard title="Approved Manhours by Type">
-            <BaseChart option={approvalManhoursPieOption} />
-          </ChartCard>
+          <ApprovalManhoursPieChart
+            projects={projects}
+            selectedType={selectedFilter.projectType}
+            onTypeClick={handleTypeClick}
+          />
         </Col>
 
         <Col xs={24} lg={12}>
-          <Card title="Project Count by Status">
-            <div style={{ height: 450 }}>Chart 3</div>
-          </Card>
+          <ProjectCountStatusBarChart
+            projects={projects}
+            selectedType={selectedFilter.projectType}
+          />
         </Col>
 
         <Col xs={24} lg={12}>
