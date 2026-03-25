@@ -135,6 +135,7 @@ export const MainLayout = ({
                 className="main-layout-sidebar-menu border-none h-full"
                 style={{ backgroundColor: 'inherit' }}
                 triggerSubMenuAction="click"
+                selectedKeys={location.pathname?.split("/")}
               />
             </ConfigProvider>
           </Layout.Sider>
@@ -166,6 +167,7 @@ export const MainLayout = ({
             }}
             className="main-layout-header-menu h-full grow justify-center items-center border-none"
             triggerSubMenuAction="click"
+            selectedKeys={location.pathname?.split("/")}
           />
         </ConfigProvider>
         {headerRight}

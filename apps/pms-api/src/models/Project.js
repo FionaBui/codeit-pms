@@ -1,9 +1,14 @@
 import mongoose from 'mongoose';
+import { slugify } from '@codeit/utils';
 
 const { Schema } = mongoose;
 
 const ProjectSchema = new Schema(
   {
+    _id: {
+      type: String,
+      required: true
+    },
     name: {
       type: String,
       required: true,
@@ -52,8 +57,15 @@ const ProjectSchema = new Schema(
     updatedBy: String,
     createdBy: String
   },
-  { timestamps: true },
+  { timestamps: true }
 );
+
+ProjectSchema.pre('save', function (next) {
+  if (this.isNew && !this._id && this.shortName) {
+    this._id = slugify(this.shortName);
+  }
+  next();
+});
 
 ProjectSchema.index({ name: 1 }, { unique: true });
 

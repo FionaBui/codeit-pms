@@ -18,13 +18,9 @@ export async function getMsalAccessToken({ instance, scopes }) {
   const normalizedScopes = Array.isArray(scopes) ? scopes.filter(Boolean) : [];
   if (normalizedScopes.length === 0) return null;
 
-  console.log("instance", instance);
-
   const account =
     instance.getActiveAccount?.() ??
     (Array.isArray(instance.getAllAccounts?.()) ? instance.getAllAccounts()[0] : null);
-
-  console.log("account", account);
 
   if (!account) return null;
 
@@ -32,8 +28,6 @@ export async function getMsalAccessToken({ instance, scopes }) {
     account,
     scopes: normalizedScopes,
   });
-
-  console.log("result", result);
 
   return typeof result?.accessToken === 'string' && result.accessToken.length > 0 ? result.accessToken : null;
 }

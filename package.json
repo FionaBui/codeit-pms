@@ -18,6 +18,8 @@
     "cors": "^2.8.6",
     "echarts": "^6.0.0",
     "echarts-for-react": "^3.0.6",
+    "dayjs": "^1.11.20",
+    "dayjs-plugin-utc": "^0.1.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "6.30.3"

@@ -1,0 +1,170 @@
+[
+  {
+    "_id": "khiem-le",
+    "name": "Khiem Le",
+    "title": "SW Dev Engineer",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "truyen-le",
+    "name": "Truyen Le",
+    "title": "SW Dev Engineer",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "khoa-nguyen",
+    "name": "Khoa Nguyen",
+    "title": "SW Dev Engineer",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "chau-nguyen",
+    "name": "Chau Nguyen",
+    "title": "SW Dev Engineer",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "phong-do",
+    "name": "Phong Do",
+    "title": "SW Dev Engineer",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "sy-nguyen",
+    "name": "Sy Nguyen",
+    "title": "SW Dev Engineer",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "phong-duong",
+    "name": "Phong Duong",
+    "title": "SW Dev Engineer",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "bang-huynh",
+    "name": "Bang Huynh",
+    "title": "SW Dev Engineer",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "dau-pham",
+    "name": "Dau Pham",
+    "title": "SW Dev Engineer",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "nam-hai",
+    "name": "Nam Hai",
+    "title": "SW Dev Engineer",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "nam-hoang",
+    "name": "Nam Hoang",
+    "title": "SW Dev Engineer",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "tien-nguyen",
+    "name": "Tien Nguyen",
+    "title": "QC Engineer",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "xoa-ho",
+    "name": "Xoa Ho",
+    "title": "QC Engineer",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "quynh-nguyen",
+    "name": "Quynh Nguyen",
+    "title": "QC Engineer",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "huyen-huynh",
+    "name": "Huyen Huynh",
+    "title": "QC Engineer",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "minh-dinh",
+    "name": "Minh Dinh",
+    "title": "DBA",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "vy-le",
+    "name": "Vy Le",
+    "title": "Field Engineer",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "quang-nguyen",
+    "name": "Quang Nguyen",
+    "title": "PM&ProjM",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "quang-t-nguyen",
+    "name": "Quang T Nguyen",
+    "title": "Data Specialist",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "quan-tran",
+    "name": "Quan Tran",
+    "title": "SW Dev Engineer",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "duong-dang",
+    "name": "Duong Dang",
+    "title": "Business Analyst",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "tan-le",
+    "name": "Tan Le",
+    "title": "TPO / ScrumMaster",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "duy-pham",
+    "name": "Duy Pham",
+    "title": "TPO / TeamLead",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "dat-nguyen",
+    "name": "Dat Nguyen",
+    "title": "QC Engineer",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  }
+]
