@@ -52,3 +52,22 @@ export function getProjectCountByStatus(projects, selectedType) {
     };
   });
 }
+
+// Planned vs Actual manhours
+export function getPlannedVsActualManhoursByProject(projects, selectedType) {
+  if (!Array.isArray(projects)) return [];
+
+  return projects.map((p) => {
+    const planned = Number(p.plannedManhours) || 0;
+    const actual = Number(p.actualManhours) || 0;
+    const isHighlighted = selectedType ? p.type === selectedType : true;
+
+    return {
+      name: p.shortName || p.name,
+      planned,
+      actual,
+      isOverrun: actual > planned,
+      isHighlighted,
+    };
+  });
+}

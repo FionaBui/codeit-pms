@@ -1,4 +1,4 @@
-export function barChart({ chartData, selectedType, selectedStatus }) {
+export function barChart({ chartData, selectedType }) {
   const hasSelectedType = Boolean(selectedType);
 
   return {

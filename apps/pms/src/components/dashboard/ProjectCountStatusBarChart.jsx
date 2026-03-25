@@ -8,7 +8,6 @@ export function ProjectCountStatusBarChart({
   onStatusClick,
 }) {
   const chartData = getProjectCountByStatus(projects, selectedType);
-  console.log('chartData:', chartData);
   const option = barChart({ chartData, selectedType });
   return (
     <ChartCard title="Projects Count by Status">

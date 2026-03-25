@@ -1,5 +1,5 @@
 import { BaseChart, ChartCard } from '@codeit/ui';
-import { pieChart } from '../../helper/pieChart.jsx';
+import { pieChart } from '../../helper/pieChart.js';
 import { getTotalApprovalManhoursByType } from '../../helper/projectCountStatus.js';
 
 export function ApprovalManhoursPieChart({

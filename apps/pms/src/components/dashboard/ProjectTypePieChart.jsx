@@ -1,5 +1,5 @@
 import { BaseChart, ChartCard } from '@codeit/ui';
-import { pieChart } from '../../helper/pieChart.jsx';
+import { pieChart } from '../../helper/pieChart';
 import { getProjectCountByType } from '../../helper/projectCountStatus';
 
 export function ProjectTypePieChart({
