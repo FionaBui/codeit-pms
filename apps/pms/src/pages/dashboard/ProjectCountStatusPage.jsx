@@ -5,7 +5,7 @@ import { listProjects } from '../../api/projectApi';
 export default function ProjectCountStatusPage() {
   useEffect(() => {
     listProjects().then((projects) => {
-      console.log(projects);
+      console.log("projects: ", projects);
     });
   }, []);
 

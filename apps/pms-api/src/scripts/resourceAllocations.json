@@ -1,0 +1,3450 @@
+[
+  {
+    "resource": "bang-huynh",
+    "project": "itds-ops",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.5
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "chau-nguyen",
+    "project": "mowi-asia-vap--mt",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.4
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "chau-nguyen",
+    "project": "ce-v4",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.5
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "chau-nguyen",
+    "project": "mowi-asia-tech-support",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.1
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "dat-nguyen",
+    "project": "ce-v4",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 1
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "dau-pham",
+    "project": "oee",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.2
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "dau-pham",
+    "project": "core-portal",
+    "allocation": [
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.8
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "duong-dang",
+    "project": "core-portal",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.5
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "duong-dang",
+    "project": "oee",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.1
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "duong-dang",
+    "project": "ai-research",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.3
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "duy-pham",
+    "project": "clp-20",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.2
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "duy-pham",
+    "project": "itds-ops",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.05
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "duy-pham",
+    "project": "hackathon",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.2
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "duy-pham",
+    "project": "core-portal",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.1
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "duy-pham",
+    "project": "ce-v4",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.6
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.6
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 1
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "huyen-huynh",
+    "project": "etag-elci",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.2
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "huyen-huynh",
+    "project": "oms-mowi",
+    "allocation": [
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.3
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "khiem-le",
+    "project": "emrb",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.05
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "khiem-le",
+    "project": "edoc",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.05
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "khiem-le",
+    "project": "etag-elci",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.15
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.15
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.15
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.15
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.15
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.15
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.15
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.15
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.15
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.15
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.15
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.15
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.15
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.15
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "khiem-le",
+    "project": "ce-v4",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.75
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.75
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.75
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.75
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.75
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.75
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.75
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.75
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.75
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.75
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.75
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.75
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.75
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.75
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "khoa-nguyen",
+    "project": "oms-mowi",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.2
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "khoa-nguyen",
+    "project": "ce-v4",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 1
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "minh-dinh",
+    "project": "dba-works",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.8
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "nam-hai",
+    "project": "clp-20",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.2
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "nam-hai",
+    "project": "hackathon",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.2
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "nam-hai",
+    "project": "core-portal",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.6
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 1
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "nam-hoang",
+    "project": "core-portal",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.1
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "nam-hoang",
+    "project": "mowi-asia-vap--mt",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "nam-hoang",
+    "project": "ce-v4",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.5
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "nam-hoang",
+    "project": "mowi-asia-tech-support",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.1
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "phong-do",
+    "project": "etag-elci",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.2
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "phong-do",
+    "project": "ce-v4",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 1
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "phong-duong",
+    "project": "oee",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "phong-duong",
+    "project": "go-live-oee-at-lmc",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "phong-duong",
+    "project": "hackathon",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "phong-duong",
+    "project": "core-portal",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 1
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "quan-tran",
+    "project": "etag-elci",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 1
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "quang-nguyen",
+    "project": "sales--admin-works",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.4
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "quang-nguyen",
+    "project": "core-portal",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.3
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "quang-nguyen",
+    "project": "mowi-asia-vap--mt",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "quang-nguyen",
+    "project": "oee",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.05
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.1
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "quang-t-nguyen",
+    "project": "itds-ops",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 1
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "quynh-nguyen",
+    "project": "oee",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.3
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "sy-nguyen",
+    "project": "hackathon",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.25
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "sy-nguyen",
+    "project": "ce-v4",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.25
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 1
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "tan-le",
+    "project": "etag-elci",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.2
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "tan-le",
+    "project": "core-portal",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.2
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "tan-le",
+    "project": "oee",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.1
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "tan-le",
+    "project": "ce-v4",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.7
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.7
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.7
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.8
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "tien-nguyen",
+    "project": "emrb",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.1
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "tien-nguyen",
+    "project": "etag-elci",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.1
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "tien-nguyen",
+    "project": "ce-3rd-line-support",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.2
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "tien-nguyen",
+    "project": "ce-v4",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.6
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.8
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.8
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "truyen-le",
+    "project": "mowi-asia-vap--mt",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.3
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "truyen-le",
+    "project": "mowi-asia-tech-support",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.1
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "truyen-le",
+    "project": "oee",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.2
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "truyen-le",
+    "project": "go-live-oee-at-lmc",
+    "allocation": [
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.1
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "truyen-le",
+    "project": "ce-v4",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.3
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "vy-le",
+    "project": "deneast-daily-support",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.4
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "vy-le",
+    "project": "mowi-asia-vap--mt",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.5
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "vy-le",
+    "project": "mowi-asia-tech-support",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.1
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "xoa-ho",
+    "project": "clp-20",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 1
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 1
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "huyen-huynh",
+    "project": "itds-ops",
+    "allocation": [
+      {
+        "month": "2025-12-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.3
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "chau-nguyen",
+    "project": "markem-5940g",
+    "allocation": [
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.3
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.2
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "sy-nguyen",
+    "project": "sato-rfid",
+    "allocation": [
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.5
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.5
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "duong-dang",
+    "project": "pda-for-salmon",
+    "allocation": [
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.2
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "quang-nguyen",
+    "project": "deneast-phase-2",
+    "allocation": [
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.2
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "duy-pham",
+    "project": "deneast-phase-2",
+    "allocation": [
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.2
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.2
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "vy-le",
+    "project": "deneast-phase-2",
+    "allocation": [
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-04-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-05-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-06-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-07-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-08-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-09-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-10-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-11-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2026-12-01T00:00:00.000Z",
+        "percent": 0.4
+      },
+      {
+        "month": "2027-01-01T00:00:00.000Z",
+        "percent": 0.4
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "duy-pham",
+    "project": "markem-5940g",
+    "allocation": [
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.1
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "chau-nguyen",
+    "project": "markem-5940g",
+    "allocation": [
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.1
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "tien-nguyen",
+    "project": "markem-5940g",
+    "allocation": [
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.1
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "resource": "khiem-le",
+    "project": "markem-5940g",
+    "allocation": [
+      {
+        "month": "2026-01-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-02-01T00:00:00.000Z",
+        "percent": 0.1
+      },
+      {
+        "month": "2026-03-01T00:00:00.000Z",
+        "percent": 0.1
+      }
+    ],
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  }
+]
