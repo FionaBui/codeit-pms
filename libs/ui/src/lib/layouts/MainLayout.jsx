@@ -109,7 +109,7 @@ export const MainLayout = ({
     });
 
     return (
-      <Layout style={{ minHeight: '100vh' }}>
+      <Layout className="h-screen overflow-hidden">
         <Layout.Header
           className="h-12 flex items-stretch px-2 md:px-5 leading-normal bg-brand z-10"
           style={{ boxShadow: '0px 4px 4px 0px #00000040' }}
@@ -118,7 +118,7 @@ export const MainLayout = ({
           <div style={{ flex: 1 }} />
           {headerRight}
         </Layout.Header>
-        <Layout>
+        <Layout className="flex-1 overflow-hidden">
           <Layout.Sider
             collapsible
             width={250}
@@ -139,7 +139,7 @@ export const MainLayout = ({
               />
             </ConfigProvider>
           </Layout.Sider>
-          <Layout.Content style={contentStyle}>
+          <Layout.Content className="flex-1 overflow-auto" style={contentStyle}>
             <Outlet />
           </Layout.Content>
         </Layout>
@@ -148,7 +148,7 @@ export const MainLayout = ({
   }
 
   return (
-    <Layout>
+    <Layout className="h-screen overflow-hidden">
       <Layout.Header
         className="h-12 flex items-stretch px-2 md:px-5 leading-normal bg-brand z-10"
         style={{ boxShadow: '0px 4px 4px 0px #00000040' }}
@@ -172,7 +172,7 @@ export const MainLayout = ({
         </ConfigProvider>
         {headerRight}
       </Layout.Header>
-      <Layout.Content style={contentStyle}>
+      <Layout.Content className="flex-1 overflow-auto" style={contentStyle}>
         <Outlet />
       </Layout.Content>
     </Layout>
