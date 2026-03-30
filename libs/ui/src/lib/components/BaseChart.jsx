@@ -1,9 +1,9 @@
 import EChartsReact from 'echarts-for-react';
-export default function BaseChart({ option, onEvents }) {
+export default function BaseChart({ option, onEvents, height = '100%' }) {
   return (
     <EChartsReact
       option={option}
-      style={{ height: 570, width: '100%' }}
+      style={{ height, width: '100%' }}
       onEvents={onEvents}
     ></EChartsReact>
   );

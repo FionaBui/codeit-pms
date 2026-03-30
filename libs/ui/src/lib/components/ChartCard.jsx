@@ -1,5 +1,5 @@
 import { Card } from 'antd';
-export default function ChartCard({ title, children }) {
+export default function ChartCard({ title, children, height = 380 }) {
   return (
     <Card
       title={title}
@@ -8,7 +8,7 @@ export default function ChartCard({ title, children }) {
         body: { padding: 0 }
       }}
     >
-      <div style={{ width: '100%', height: 600 }}>{children}</div>
+      <div style={{ width: '100%', height }}>{children}</div>
     </Card>
   );
 }
