@@ -3,75 +3,83 @@ export function plannedActualBarChart({ chartData, selectedType }) {
   return {
     tooltip: {
       trigger: 'axis',
-      axisPointer: { type: 'shadow' },
-      formatter: (params) => {
-        const planned = params.find((p) => p.seriesName === 'Planned manhours');
-        const actual = params.find((p) => p.seriesName === 'Actual manhours');
-
-        const name = planned?.axisValue || actual?.axisValue || '';
+      axisPointer: {
+        type: 'shadow'
+      },
+      formatter: params => {
+        const planned = params.find(p => p.seriesName === 'Planned manhours');
+        const actual = params.find(p => p.seriesName === 'Actual manhours');
+        console.log('params', params);
+        const fullName =
+          planned?.data?.fullName || actual?.data?.fullName || '';
+        console.log('planned', planned);
         const plannedValue = planned?.value ?? 0;
         const actualValue = actual?.value ?? 0;
 
         return `
-          ${name}<br/>
+          ${fullName}<br/>
           Planned: ${plannedValue} h<br/>
           Actual: ${actualValue} h<br/>
           Variance: ${actualValue - plannedValue} h
         `;
-      },
+      }
     },
-
     legend: {
-      top: 0,
-      data: ['Planned manhours', 'Actual manhours'],
+      data: ['Planned manhours', 'Actual manhours']
     },
-
     xAxis: {
-      type: 'category',
-      data: chartData.map((item) => item.name),
-      axisLabel: {
-        interval: 0,
-        rotate: 35,
-      },
-    },
-
-    yAxis: {
       type: 'value',
-      minInterval: 1,
-      name: 'Hours',
+      boundaryGap: [0, 0.01],
+      name: 'Hours'
     },
-
+    yAxis: {
+      type: 'category',
+      data: chartData.map(item => item.shortName),
+      axisLabel: {
+        width: 140,
+        overflow: 'break',
+        lineHeight: 14
+      }
+    },
+    grid: {
+      left: 10,
+      right: 60,
+      top: 20,
+      bottom: 50,
+      containLabel: true
+    },
     series: [
       {
         name: 'Planned manhours',
         type: 'bar',
-        barWidth: 8,
         itemStyle: {
-          color: '#6ca2df',
+          color: '#6ca2df'
         },
-        data: chartData.map((item) => ({
+        data: chartData.map(item => ({
           value: item.planned,
+          fullName: item.name,
           itemStyle: {
-            opacity: hasSelectedType && !item.isHighlighted ? 0.25 : 1,
-          },
-        })),
+            opacity: hasSelectedType && !item.isHighlighted ? 0.25 : 1
+          }
+        }))
       },
+
       {
         name: 'Actual manhours',
         type: 'bar',
-        barWidth: 8,
         itemStyle: {
-          color: '#1d39c4',
+          color: '#1d39c4'
         },
-        data: chartData.map((item) => ({
+        data: chartData.map(item => ({
           value: item.actual,
+          fullName: item.name,
           itemStyle: {
             opacity: hasSelectedType && !item.isHighlighted ? 0.25 : 1,
             borderColor: item.isOverrun ? '#F63A1D' : undefined,
-            borderWidth: item.isOverrun ? 2 : 0,
-          },
-        })),
-      },
-    ],
+            borderWidth: item.isOverrun ? 1 : 0
+          }
+        }))
+      }
+    ]
   };
 }
