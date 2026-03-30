@@ -63,7 +63,7 @@ export function getPlannedVsActualManhoursByProject(projects, selectedType) {
     const isHighlighted = selectedType ? p.type === selectedType : true;
 
     return {
-      name: p.shortName,
+      name: p.name,
       shortName: p.shortName || p.name,
       planned,
       actual,

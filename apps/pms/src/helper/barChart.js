@@ -1,13 +1,17 @@
-export function barChart({ chartData, selectedType }) {
+export function barChart({ chartData, selectedType, visibleStatuses }) {
   const hasSelectedType = Boolean(selectedType);
+
+  const filteredData = chartData.filter(item =>
+    visibleStatuses.includes(item.name)
+  );
 
   return {
     tooltip: {
       trigger: 'axis',
       axisPointer: { type: 'none' },
-      formatter: (params) => {
+      formatter: params => {
         const dataIndex = params?.[0]?.dataIndex ?? 0;
-        const item = chartData[dataIndex];
+        const item = filteredData[dataIndex];
 
         if (!item) return '';
 
@@ -23,35 +27,43 @@ export function barChart({ chartData, selectedType }) {
           ${item.name}<br/>
           Total Projects: ${item.total}
         `;
-      },
+      }
     },
     xAxis: {
       type: 'category',
-      data: chartData.map((d) => d.name),
+      data: filteredData.map(d => d.name)
     },
+
     yAxis: {
       type: 'value',
-      minInterval: 1,
+      minInterval: 1
     },
+
+    grid: {
+      top: 30,
+      bottom: 20,
+      containLabel: true
+    },
+
     series: [
       {
         name: 'Highlighted',
         type: 'bar',
         stack: 'total',
-        data: chartData.map((d) => d.highlighted),
+        data: filteredData.map(d => d.highlighted),
         itemStyle: {
-          color: '#5070dd',
-        },
+          color: '#5070dd'
+        }
       },
       {
         name: 'Total',
         type: 'bar',
         stack: 'total',
-        data: chartData.map((d) => d.rest),
+        data: filteredData.map(d => d.rest),
         itemStyle: {
-          opacity: selectedType ? 0.25 : 0.9,
-        },
-      },
-    ],
+          opacity: selectedType ? 0.25 : 0.9
+        }
+      }
+    ]
   };
 }

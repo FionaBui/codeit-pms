@@ -3,7 +3,7 @@ export default function BaseChart({ option, onEvents }) {
   return (
     <EChartsReact
       option={option}
-      style={{ height: 600, width: '100%' }}
+      style={{ height: 570, width: '100%' }}
       onEvents={onEvents}
     ></EChartsReact>
   );

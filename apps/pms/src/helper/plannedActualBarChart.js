@@ -9,10 +9,8 @@ export function plannedActualBarChart({ chartData, selectedType }) {
       formatter: params => {
         const planned = params.find(p => p.seriesName === 'Planned manhours');
         const actual = params.find(p => p.seriesName === 'Actual manhours');
-        console.log('params', params);
         const fullName =
           planned?.data?.fullName || actual?.data?.fullName || '';
-        console.log('planned', planned);
         const plannedValue = planned?.value ?? 0;
         const actualValue = actual?.value ?? 0;
 
@@ -25,6 +23,7 @@ export function plannedActualBarChart({ chartData, selectedType }) {
       }
     },
     legend: {
+      bottom: '0%',
       data: ['Planned manhours', 'Actual manhours']
     },
     xAxis: {
@@ -45,7 +44,7 @@ export function plannedActualBarChart({ chartData, selectedType }) {
       left: 10,
       right: 60,
       top: 20,
-      bottom: 50,
+      bottom: 35,
       containLabel: true
     },
     series: [

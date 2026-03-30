@@ -5,7 +5,6 @@ import { getPlannedVsActualManhoursByProject } from '../../helper/projectCountSt
 export default function PlannedActualBarChart({ projects, selectedType }) {
   const chartData = getPlannedVsActualManhoursByProject(projects, selectedType);
   const option = plannedActualBarChart({ chartData, selectedType });
-  // const chartHeight = Math.max(chartData.length * 28, 500);
   return (
     <ChartCard title="Planned manhours vs Actual">
       <BaseChart option={option} style={{ width: '100%' }} />
