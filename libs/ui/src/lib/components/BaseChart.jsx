@@ -1,5 +1,5 @@
 import EChartsReact from 'echarts-for-react';
-export default function BaseChart({ option, onEvents, height = '100%' }) {
+export default function BaseChart({ option, onEvents, height = '40vh' }) {
   return (
     <EChartsReact
       option={option}

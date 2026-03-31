@@ -22,7 +22,7 @@ export function ProjectCountStatusBarChart({
 
   return (
     <ChartCard title="Projects Count by Status">
-      <BaseChart option={option} height={350} />
+      <BaseChart option={option} height={'38vh'} />
       <Space wrap size={16} style={{ justifyContent: 'center', width: '100%' }}>
         {ALL_STATUSES.map(status => {
           const isActive = visibleStatuses.includes(status);

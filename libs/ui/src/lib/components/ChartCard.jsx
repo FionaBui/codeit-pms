@@ -1,5 +1,5 @@
 import { Card } from 'antd';
-export default function ChartCard({ title, children, height = 380 }) {
+export default function ChartCard({ title, children, height = '40vh' }) {
   return (
     <Card
       title={title}
