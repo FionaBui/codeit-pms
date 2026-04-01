@@ -4,16 +4,32 @@ const ALL_TYPES = [
   'Type 3: Customizations & Change requests',
   'Type 4: Daily support & Continuous improvements'
 ];
+
 const ALL_STATUSES = ['plan', 'execution', 'closing', 'finished'];
 
+function matchProject(project, selectedType, selectedStatus) {
+  const matchType = selectedType ? project.type === selectedType : true;
+  const matchStatus = selectedStatus ? project.status === selectedStatus : true;
+
+  return matchType && matchStatus;
+}
+
 // Count type
-export function getProjectCountByType(projects) {
+export function getProjectCountByType(projects, selectedStatus = null) {
   if (!Array.isArray(projects)) return [];
+
   const result = {};
+
   projects.forEach(p => {
     if (!p.type) return;
+
+    const matchStatus = selectedStatus ? p.status === selectedStatus : true;
+
+    if (!matchStatus) return;
+
     result[p.type] = (result[p.type] ?? 0) + 1;
   });
+
   return ALL_TYPES.map(type => ({
     name: type,
     value: result[type] ?? 0
@@ -21,11 +37,24 @@ export function getProjectCountByType(projects) {
 }
 
 // Total manhours by type
-export function getTotalApprovalManhoursByType(projects) {
+export function getTotalApprovalManhoursByType(
+  projects,
+  selectedStatus = null
+) {
+  if (!Array.isArray(projects)) return [];
+
   const result = {};
+
   projects.forEach(p => {
-    result[p.type] = (result[p.type] ?? 0) + (p.plannedManhours ?? 0);
+    if (!p.type) return;
+
+    const matchStatus = selectedStatus ? p.status === selectedStatus : true;
+
+    if (!matchStatus) return;
+
+    result[p.type] = (result[p.type] ?? 0) + (Number(p.plannedManhours) || 0);
   });
+
   return ALL_TYPES.map(type => ({
     name: type,
     value: result[type] ?? 0
@@ -33,7 +62,11 @@ export function getTotalApprovalManhoursByType(projects) {
 }
 
 // Count projects by Status
-export function getProjectCountByStatus(projects, selectedType) {
+export function getProjectCountByStatus(
+  projects,
+  selectedType = null,
+  selectedStatus = null
+) {
   if (!Array.isArray(projects)) return [];
 
   return ALL_STATUSES.map(status => {
@@ -48,19 +81,23 @@ export function getProjectCountByStatus(projects, selectedType) {
       name: status,
       highlighted,
       rest: total - highlighted,
-      total
+      total,
+      isSelected: selectedStatus ? status === selectedStatus : false
     };
   });
 }
 
 // Planned vs Actual manhours
-export function getPlannedVsActualManhoursByProject(projects, selectedType) {
+export function getPlannedVsActualManhoursByProject(
+  projects,
+  selectedType = null,
+  selectedStatus = null
+) {
   if (!Array.isArray(projects)) return [];
 
   return projects.map(p => {
     const planned = Number(p.plannedManhours) || 0;
     const actual = Number(p.actualManhours) || 0;
-    const isHighlighted = selectedType ? p.type === selectedType : true;
 
     return {
       name: p.name,
@@ -68,7 +105,7 @@ export function getPlannedVsActualManhoursByProject(projects, selectedType) {
       planned,
       actual,
       isOverrun: actual > planned,
-      isHighlighted
+      isHighlighted: matchProject(p, selectedType, selectedStatus)
     };
   });
 }

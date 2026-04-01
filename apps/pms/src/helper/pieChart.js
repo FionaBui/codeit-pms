@@ -1,21 +1,81 @@
 export function pieChart({
   labelFormatter,
   chartData,
-  selectedName,
-  legendSelected
+  selectedType,
+  legendSelected,
+  overlayChartData,
+  selectedStatus
 }) {
-  const hasSelection = Boolean(selectedName);
+  const hasTypeSelection = Boolean(selectedType);
+  const hasSelectedStatus = Boolean(selectedStatus);
 
-  const data = chartData.map(item => {
-    const isSelected = item.name === selectedName;
+  const baseData = chartData.map(item => {
+    const isSelectedType = item.name === selectedType;
 
     return {
       ...item,
       itemStyle: {
-        opacity: !hasSelection || isSelected ? 1 : 0.25
+        opacity: hasSelectedStatus
+          ? 0.25
+          : !hasTypeSelection || isSelectedType
+            ? 1
+            : 0.25
       }
     };
   });
+
+  const overlayData = (overlayChartData ?? []).filter(item => item.value > 0);
+
+  const series = [
+    {
+      type: 'pie',
+      radius: '40%',
+      center: ['50%', '40%'],
+      selectedMode: false,
+      data: baseData,
+      label: {
+        show: !hasSelectedStatus,
+        position: 'outside',
+        formatter: labelFormatter,
+        fontSize: 12,
+        width: 120,
+        overflow: 'break',
+        distanceToLabelLine: 5
+      },
+      labelLine: {
+        show: true,
+        length: 20,
+        length2: 15
+      },
+      emphasis: {
+        scale: true,
+        scaleSize: 6
+      }
+    }
+  ];
+
+  if (hasSelectedStatus) {
+    series.push({
+      type: 'pie',
+      radius: '40%',
+      center: ['50%', '40%'],
+      selectedMode: false,
+      z: 100,
+      data: overlayData,
+      label: {
+        show: true,
+        position: 'outside',
+        formatter: labelFormatter
+      },
+      labelLine: {
+        show: true
+      },
+      emphasis: {
+        scale: true,
+        scaleSize: 6
+      }
+    });
+  }
 
   return {
     tooltip: {
@@ -26,12 +86,10 @@ export function pieChart({
       <div style="
         max-width: 220px;
         white-space: normal;
-        word-break: break-word;
         overflow-wrap: anywhere;
-        line-height: 1.4;
+       
       ">
         <div style="
-          font-weight: 500;
           overflow-wrap: anywhere;
         ">
           ${params.name}
@@ -53,39 +111,12 @@ export function pieChart({
         fontSize: 12
       },
       selected: legendSelected ?? {},
-      inactiveColor: 'rgba(242, 101, 34, 0.45)',
+      inactiveColor: '#B1B2B5',
       formatter: name => {
         const isVisible = (legendSelected ?? {})[name] !== false;
         return isVisible ? name : `${name} (click to show)`;
       }
     },
-    series: [
-      {
-        type: 'pie',
-        radius: '40%',
-        center: ['50%', '40%'],
-        avoidLabelOverlap: true,
-        selectedMode: false,
-        data,
-        label: {
-          show: true,
-          position: 'outside',
-          formatter: labelFormatter,
-          fontSize: 12,
-          width: 120,
-          overflow: 'break',
-          distanceToLabelLine: 5
-        },
-        labelLine: {
-          show: true,
-          length: 20,
-          length2: 15
-        },
-        emphasis: {
-          scale: true,
-          scaleSize: 6
-        }
-      }
-    ]
+    series
   };
 }

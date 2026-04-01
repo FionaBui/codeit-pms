@@ -9,20 +9,38 @@ const LEGEND_COLOR = '#5070dd';
 export function ProjectCountStatusBarChart({
   projects,
   selectedType,
+  selectedStatus,
   visibleStatuses,
-  onStatusLegendClick
+  onStatusLegendClick,
+  onStatusClick
 }) {
-  const chartData = getProjectCountByStatus(projects, selectedType);
+  const chartData = getProjectCountByStatus(
+    projects,
+    selectedType,
+    selectedStatus
+  );
 
   const option = barChart({
     chartData,
     selectedType,
-    visibleStatuses
+    visibleStatuses,
+    selectedStatus
   });
 
   return (
-    <ChartCard title="Projects Count by Status">
-      <BaseChart option={option} height={'38vh'} />
+    <ChartCard title="Projects Count by Status" height="50vh">
+      <BaseChart
+        option={option}
+        height={'46vh'}
+        onEvents={{
+          click: params => {
+            if (params.componentType === 'series') {
+              onStatusClick?.(params.name);
+            }
+          }
+        }}
+      />
+
       <Space wrap size={16} style={{ justifyContent: 'center', width: '100%' }}>
         {ALL_STATUSES.map(status => {
           const isActive = visibleStatuses.includes(status);
@@ -50,12 +68,7 @@ export function ProjectCountStatusBarChart({
                 }}
               />
               <span style={{ fontSize: 12 }}>
-                {status}{' '}
-                {!isActive && (
-                  <span style={{ marginLeft: 6, color: '#999', fontSize: 12 }}>
-                    (click to show)
-                  </span>
-                )}
+                {!isActive ? `${status} (click to show)` : status}
               </span>
             </div>
           );

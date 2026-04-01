@@ -1,5 +1,13 @@
-export function plannedActualBarChart({ chartData, selectedType }) {
+export function plannedActualBarChart({
+  chartData,
+  selectedType,
+  selectedStatus
+}) {
   const hasSelectedType = Boolean(selectedType);
+  const hasSelectedStatus = Boolean(selectedStatus);
+
+  const hasAnyFilter = hasSelectedType || hasSelectedStatus;
+
   return {
     tooltip: {
       trigger: 'axis',
@@ -22,31 +30,37 @@ export function plannedActualBarChart({ chartData, selectedType }) {
         `;
       }
     },
+
     legend: {
       bottom: '0%',
       data: ['Planned manhours', 'Actual manhours']
     },
+
     xAxis: {
       type: 'value',
       boundaryGap: [0, 0.01],
       name: 'Hours'
     },
+
     yAxis: {
       type: 'category',
       data: chartData.map(item => item.shortName),
       axisLabel: {
-        width: 140,
-        overflow: 'break',
-        lineHeight: 14
+        interval: 0,
+        width: 180,
+        // overflow: 'break',
+        lineHeight: 18
       }
     },
+
     grid: {
       left: 10,
-      right: 60,
+      right: 70,
       top: 20,
       bottom: 35,
       containLabel: true
     },
+
     series: [
       {
         name: 'Planned manhours',
@@ -58,7 +72,7 @@ export function plannedActualBarChart({ chartData, selectedType }) {
           value: item.planned,
           fullName: item.name,
           itemStyle: {
-            opacity: hasSelectedType && !item.isHighlighted ? 0.25 : 1
+            opacity: hasAnyFilter && !item.isHighlighted ? 0.25 : 1
           }
         }))
       },
@@ -73,7 +87,7 @@ export function plannedActualBarChart({ chartData, selectedType }) {
           value: item.actual,
           fullName: item.name,
           itemStyle: {
-            opacity: hasSelectedType && !item.isHighlighted ? 0.25 : 1,
+            opacity: hasAnyFilter && !item.isHighlighted ? 0.25 : 1,
             borderColor: item.isOverrun ? '#F63A1D' : undefined,
             borderWidth: item.isOverrun ? 1 : 0
           }
