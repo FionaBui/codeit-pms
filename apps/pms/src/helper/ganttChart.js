@@ -5,6 +5,17 @@ function getMonthPosition(date) {
   const daysInMonth = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
   return monthIndex + (day - 1) / daysInMonth;
 }
+function getTodayPosition() {
+  const today = new Date();
+  const monthIndex = today.getMonth();
+  const day = today.getDate();
+  const daysInMonth = new Date(
+    today.getFullYear(),
+    today.getMonth() + 1,
+    0
+  ).getDate();
+  return monthIndex + (day - 1) / daysInMonth;
+}
 function formatDate(date) {
   if (!date) return '';
   return new Date(date).toLocaleDateString('en-US', {
@@ -30,6 +41,8 @@ const months = [
 
 export function ganttChart({ projects }) {
   if (!Array.isArray(projects)) return {};
+
+  const todayPosition = getTodayPosition();
 
   const chartData = projects.map(p => {
     const start = getMonthPosition(p.startDate);
@@ -122,6 +135,21 @@ export function ganttChart({ projects }) {
         data: chartData.map(item => item.progressEnd - item.start),
         itemStyle: {
           color: '#d97a00'
+        },
+        markLine: {
+          symbol: 'none',
+          label: {
+            show: true,
+            formatter: 'Today',
+            position: 'insideStartTop'
+          },
+
+          data: [
+            {
+              xAxis: todayPosition
+            }
+          ],
+          silent: true
         }
       },
       {
