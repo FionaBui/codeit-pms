@@ -1,12 +1,9 @@
 import { Col, Row, Space, Typography } from 'antd';
-import { useAuth } from '@codeit/auth';
 import { useEffect, useState } from 'react';
 import { listProjects } from '../../api/projectApi';
-
 import PlannedActualChart from '../../components/dashboard/PlannedActualChart';
-import { ProjectTypePieChart } from '../../components/dashboard/ProjectTypePieChart';
 import { ProjectCountStatusBarChart } from '../../components/dashboard/ProjectCountStatusBarChart';
-import { ApprovalManhoursPieChart } from '../../components/dashboard/ApprovalManhoursPieChart';
+import { ProjectByTypeChart } from '../../components/dashboard/ProjectByTypeChart';
 
 const DEFAULT_LEGEND_SELECTED_TYPE = {
   'Type 1: new development outside Core Services': true,
@@ -47,10 +44,10 @@ export default function ProjectCountStatusPage() {
       status: null
     }));
 
-    setLegendSelectedType(prev => ({
-      ...prev,
-      [typeName]: true
-    }));
+    // setLegendSelectedType(prev => ({
+    //   ...prev,
+    //   [typeName]: true
+    // }));
   }
 
   function handleTypeLegendChange(nextSelectedMap) {
@@ -84,23 +81,14 @@ export default function ProjectCountStatusPage() {
 
       <Row gutter={[16, 16]}>
         <Col xs={24} lg={12}>
-          <ProjectTypePieChart
-            projects={projects}
-            selectedType={selectedFilter.projectType}
-            selectedStatus={selectedFilter.status}
-            onTypeClick={handleTypeClick}
-            legendSelected={legendSelectedType}
-            onLegendChange={handleTypeLegendChange}
-          />
+        <ProjectByTypeChart title='Projects by Type' projects={projects} onTypeClick={handleTypeClick} selectedType={selectedFilter.projectType} />
         </Col>
 
         <Col xs={24} lg={12}>
-          <ApprovalManhoursPieChart
-            projects={projects}
-            selectedType={selectedFilter.projectType}
-            selectedStatus={selectedFilter.status}
-            onTypeClick={handleTypeClick}
-          />
+      <ProjectByTypeChart title='Approved Manhours by Type' projects={projects} onTypeClick={handleTypeClick} accKey='plannedManhours' labelFormatter={params => {
+        const shortName = params.name.split(':')[0];
+        return `${shortName}: ${params.value?.toLocaleString()} h (${params.percent}%)`;
+      }} selectedType={selectedFilter.projectType} />
         </Col>
 
         <Col xs={24} lg={12}>
