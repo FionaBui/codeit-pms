@@ -1,14 +1,20 @@
 import { BaseChart, ChartCard } from '@codeit/ui';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 const LEGEND_COLOR = '#5070dd';
 
 export function ProjectCountStatusBarChart({
   projects,
   selectedType,
-  onStatusClick
+  onStatusClick,
+  selectedStatus: inputSelectedStatus
 }) {
   const [selectedStatus, setSelectedStatus] = useState();
+
+  useEffect(() => {
+    if (inputSelectedStatus !== selectedStatus)
+      setSelectedStatus(inputSelectedStatus);
+  }, [inputSelectedStatus]);
 
   const option = useMemo(() => {
     const data = Object.values(
