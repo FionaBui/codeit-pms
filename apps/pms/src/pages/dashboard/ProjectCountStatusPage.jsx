@@ -81,23 +81,32 @@ export default function ProjectCountStatusPage() {
 
       <Row gutter={[16, 16]}>
         <Col xs={24} lg={12}>
-        <ProjectByTypeChart title='Projects by Type' projects={projects} onTypeClick={handleTypeClick} selectedType={selectedFilter.projectType} />
+          <ProjectByTypeChart
+            title="Projects by Type"
+            projects={projects}
+            onTypeClick={handleTypeClick}
+            selectedType={selectedFilter.projectType}
+          />
         </Col>
 
         <Col xs={24} lg={12}>
-      <ProjectByTypeChart title='Approved Manhours by Type' projects={projects} onTypeClick={handleTypeClick} accKey='plannedManhours' labelFormatter={params => {
-        const shortName = params.name.split(':')[0];
-        return `${shortName}: ${params.value?.toLocaleString()} h (${params.percent}%)`;
-      }} selectedType={selectedFilter.projectType} />
+          <ProjectByTypeChart
+            title="Approved Manhours by Type"
+            projects={projects}
+            onTypeClick={handleTypeClick}
+            accKey="plannedManhours"
+            labelFormatter={params => {
+              const shortName = params.name.split(':')[0];
+              return `${shortName}: ${params.value?.toLocaleString()} h (${params.percent}%)`;
+            }}
+            selectedType={selectedFilter.projectType}
+          />
         </Col>
 
         <Col xs={24} lg={12}>
           <ProjectCountStatusBarChart
             projects={projects}
             selectedType={selectedFilter.projectType}
-            selectedStatus={selectedFilter.status}
-            visibleStatuses={visibleStatuses}
-            onStatusLegendClick={handleStatusLegendClick}
             onStatusClick={handleStatusClick}
           />
         </Col>
