@@ -27,7 +27,7 @@ export const MainLayout = ({
   userTrigger,
   onSettingsClick,
   menuMode = 'vertical',
-  contentStyle = { padding: '12px 36px' },
+  contentStyle = { padding: '8px' }
 }) => {
   const defaultLogo = (
     <a href="/" className="shrink-0 flex gap-x-2 items-center leading-normal">
@@ -45,13 +45,13 @@ export const MainLayout = ({
     key,
     label,
     icon,
-    onClick,
+    onClick
   }));
 
   const dropdownItems = userMenuItems.map(({ key, label, onClick }) => ({
     key,
     label,
-    onClick,
+    onClick
   }));
 
   const headerRight = (onSettingsClick != null ||
@@ -86,15 +86,15 @@ export const MainLayout = ({
         horizontalItemSelectedBg: '#024753',
         /* vertical menu: same selected/hover as horizontal */
         itemHoverBg: '#024753',
-        itemSelectedBg: '#024753',
-      },
-    },
+        itemSelectedBg: '#024753'
+      }
+    }
   };
 
   const [collapsed, setCollapsed] = useState(false);
 
   if (menuMode === 'vertical') {
-    const sidebarItems = menuItemConfig.map((item) => {
+    const sidebarItems = menuItemConfig.map(item => {
       if (!collapsed) {
         return item;
       }
@@ -104,7 +104,7 @@ export const MainLayout = ({
         ...item,
         // In collapsed mode, rely on Sider's built-in tooltip via `title`
         label: null,
-        title: text,
+        title: text
       };
     });
 
@@ -135,7 +135,7 @@ export const MainLayout = ({
                 className="main-layout-sidebar-menu border-none h-full"
                 style={{ backgroundColor: 'inherit' }}
                 triggerSubMenuAction="click"
-                selectedKeys={location.pathname?.split("/")}
+                selectedKeys={location.pathname?.split('/')}
               />
             </ConfigProvider>
           </Layout.Sider>
@@ -163,11 +163,11 @@ export const MainLayout = ({
               minWidth: 0,
               height: '100%',
               backgroundColor: 'inherit',
-              alignItems: 'center',
+              alignItems: 'center'
             }}
             className="main-layout-header-menu h-full grow justify-center items-center border-none"
             triggerSubMenuAction="click"
-            selectedKeys={location.pathname?.split("/")}
+            selectedKeys={location.pathname?.split('/')}
           />
         </ConfigProvider>
         {headerRight}

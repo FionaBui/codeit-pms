@@ -17,7 +17,7 @@ export const ProjectByTypeChart = ({
   title = 'Projects by Type',
   projects = [],
   onTypeClick,
-  accKey,
+  calcKey,
   labelFormatter,
   selectedType: inputSelectedType,
   selectedStatus
@@ -29,62 +29,38 @@ export const ProjectByTypeChart = ({
   }, [inputSelectedType, selectedType]);
 
   const option = useMemo(() => {
-    const counts = projects.reduce((acc, { type, status, [accKey]: v }) => {
+    const counts = projects.reduce((acc, { type, status, [calcKey]: v }) => {
       if (!type) return acc;
 
       const value = v || 1;
       const item = acc[type] ?? { total: 0, filtered: 0 };
 
       item.total += value;
-      if (!selectedStatus || status === selectedStatus) {
-        item.filtered += value;
-      }
+      if (status === selectedStatus) item.filtered += value;
 
       acc[type] = item;
 
       return acc;
     }, {});
-
-    const data = Object.entries(counts).map(([type, count], index) => ({
-      name: type,
-      value: count.total,
-      itemStyle: {
-        color: PIE_COLORS[index % PIE_COLORS.length],
-        opacity:
-          !selectedStatus && (!selectedType || selectedType === type) ? 1 : 0.25
-      }
-    }));
-
-    const totalValue = data.reduce((sum, item) => sum + item.value, 0);
-    const maxFilteredValue = Math.max(
-      ...Object.values(counts).map(item => item.filtered),
+    const totalValue = Object.values(counts).reduce(
+      (acc, { total }) => acc + total,
       0
     );
-
-    const overlayData = totalValue
-      ? Object.entries(counts).reduce(
-          (result, [type, count], index) => {
-            const angle = (count.total / totalValue) * Math.PI * 2;
-            const startAngle = result.currentAngle;
-            const endAngle = startAngle + angle;
-
-            result.items.push({
-              name: type,
-              filtered: count.filtered,
-              total: count.total,
-              color: PIE_COLORS[index % PIE_COLORS.length],
-              startAngle,
-              endAngle,
-              opacity: 1
-            });
-            result.currentAngle = endAngle;
-
-            return result;
-          },
-          { currentAngle: -Math.PI / 2, items: [] }
-        ).items
-      : [];
-
+    const data = Object.entries(counts).map(
+      ([type, { total, filtered }], index) => ({
+        name: type,
+        value: total,
+        filtered,
+        totalValue,
+        itemStyle: {
+          color: PIE_COLORS[index % PIE_COLORS.length],
+          opacity:
+            !selectedStatus && (!selectedType || selectedType === type)
+              ? 1
+              : 0.25
+        }
+      })
+    );
     const series = [
       {
         type: 'pie',
@@ -94,18 +70,29 @@ export const ProjectByTypeChart = ({
         data,
         label: {
           position: 'outside',
-          formatter:
-            labelFormatter ||
-            (params => {
-              const shortName = params.name.split(':')[0];
-              return `${shortName}: ${params.value?.toLocaleString()} (${params.percent}%)`;
-            }),
+          formatter: ({
+            name,
+            percent,
+            value,
+            data: { filtered, totalValue }
+          }) => {
+            const shortName = name.split(':')[0];
+
+            if (selectedStatus) {
+              value = filtered;
+              percent = (filtered / totalValue) * 100;
+            }
+
+            return (
+              labelFormatter?.({ name: shortName, percent, value }) ||
+              `${shortName}: ${value?.toLocaleString()} (${percent?.toFixed(2)}%)`
+            );
+          },
           fontSize: 12,
-          width: 120,
-          overflow: 'break',
+          width: 200,
+          overflow: 'truncate',
           distanceToLabelLine: 5,
-          // opacity: selectedStatus ? 0.35 : 1,
-          show: selectedStatus ? false : true
+          opacity: 1
         },
         labelLine: {
           show: true,
@@ -116,7 +103,28 @@ export const ProjectByTypeChart = ({
       }
     ];
 
-    if (selectedStatus && maxFilteredValue > 0) {
+    if (selectedStatus && totalValue) {
+      const overlayData = Object.entries(counts).reduce(
+        (acc, [type, { total, filtered }], index) => {
+          const angle = (total / totalValue) * Math.PI * 2;
+          const startAngle = acc.at(-1)?.endAngle ?? -Math.PI / 2;
+          const endAngle = startAngle + angle;
+
+          acc.push({
+            name: type,
+            filtered,
+            total,
+            color: PIE_COLORS[index % PIE_COLORS.length],
+            startAngle,
+            endAngle,
+            opacity: 1
+          });
+
+          return acc;
+        },
+        []
+      );
+
       series.push({
         type: 'custom',
         coordinateSystem: 'none',
@@ -131,8 +139,7 @@ export const ProjectByTypeChart = ({
           const width = api.getWidth();
           const height = api.getHeight();
           const baseRadius = Math.min(width, height) * 0.5 * 0.5;
-          const outerRadius =
-            baseRadius * (0.2 + (item.filtered / item.total) * 0.8);
+          const outerRadius = baseRadius * (item.filtered / item.total);
 
           return {
             type: 'sector',
@@ -158,13 +165,28 @@ export const ProjectByTypeChart = ({
       tooltip: {
         trigger: 'item',
         renderMode: 'html',
-        formatter: params => `
-        <div style="max-width: 220px; white-space: normal; overflow-wrap: anywhere;">
-          <div style="overflow-wrap: anywhere;">${params.name}</div>
-          <div>Value: <b>${params.value?.toLocaleString()}</b></div>
-          <div>Percentage: <b>${params.percent}%</b></div>
+        textStyle: { fontSize: 12 },
+        formatter: ({
+          name,
+          value,
+          percent,
+          data: { filtered, totalValue }
+        }) => {
+          return `
+        <div style="max-width: 400px; white-space: normal; overflow-wrap: anywhere; display: grid; grid-template-columns: auto 1fr; column-gap: 12px;">
+          <span style="color: #4b6979; font-weight: 600; text-align: right">Project Type</span>
+          <span style="overflow-wrap: anywhere;">${name}</span>
+          <span style="color: #4b6979; font-weight: 600; text-align: right">Count of projects</span>
+          <span>${value?.toLocaleString()} (${percent?.toFixed(2)}%)</span>
+          ${
+            filtered && filtered !== value
+              ? `<span style="color: #4b6979; font-weight: 600; text-align: right">Highlighted</span>
+          <span>${filtered?.toLocaleString()} (${((filtered / totalValue) * 100)?.toFixed(2)}%)</span>`
+              : ''
+          }
         </div>
-      `
+      `;
+        }
       },
       legend: {
         orient: 'vertical',
@@ -174,7 +196,7 @@ export const ProjectByTypeChart = ({
       },
       series
     };
-  }, [accKey, labelFormatter, projects, selectedStatus, selectedType]);
+  }, [calcKey, labelFormatter, projects, selectedStatus, selectedType]);
 
   const handleClick = useCallback(
     params => {

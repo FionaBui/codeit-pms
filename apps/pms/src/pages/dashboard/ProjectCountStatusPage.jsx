@@ -28,7 +28,6 @@ export default function ProjectCountStatusPage() {
     }));
   }
 
-
   function handleStatusClick(statusName) {
     setSelectedFilter(prev => ({
       projectType: null,
@@ -36,16 +35,15 @@ export default function ProjectCountStatusPage() {
     }));
   }
 
-
   return (
-    <Space orientation="vertical" size={24} style={{ width: '100%' }}>
+    <Space orientation="vertical" size={8} style={{ width: '100%' }}>
       <div>
         <Title level={3} style={{ marginBottom: 4 }}>
           Project Count & Status
         </Title>
       </div>
 
-      <Row gutter={[16, 16]}>
+      <Row gutter={[8, 8]}>
         <Col xs={24} lg={12}>
           <ProjectByTypeChart
             title="Projects by Type"
@@ -61,11 +59,10 @@ export default function ProjectCountStatusPage() {
             title="Approved Manhours by Type"
             projects={projects}
             onTypeClick={handleTypeClick}
-            accKey="plannedManhours"
-            labelFormatter={params => {
-              const shortName = params.name.split(':')[0];
-              return `${shortName}: ${params.value?.toLocaleString()} h (${params.percent}%)`;
-            }}
+            calcKey="plannedManhours"
+            labelFormatter={({ name, value, percent }) =>
+              `${name}: ${value?.toLocaleString()} h (${percent?.toFixed(2)}%)`
+            }
             selectedType={selectedFilter.projectType}
             selectedStatus={selectedFilter.status}
           />
