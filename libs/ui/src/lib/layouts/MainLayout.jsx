@@ -27,7 +27,7 @@ export const MainLayout = ({
   userTrigger,
   onSettingsClick,
   menuMode = 'vertical',
-  contentStyle = { padding: '0 48px' },
+  contentStyle = { padding: '8px' }
 }) => {
   const defaultLogo = (
     <a href="/" className="shrink-0 flex gap-x-2 items-center leading-normal">
@@ -45,13 +45,13 @@ export const MainLayout = ({
     key,
     label,
     icon,
-    onClick,
+    onClick
   }));
 
   const dropdownItems = userMenuItems.map(({ key, label, onClick }) => ({
     key,
     label,
-    onClick,
+    onClick
   }));
 
   const headerRight = (onSettingsClick != null ||
@@ -86,15 +86,15 @@ export const MainLayout = ({
         horizontalItemSelectedBg: '#024753',
         /* vertical menu: same selected/hover as horizontal */
         itemHoverBg: '#024753',
-        itemSelectedBg: '#024753',
-      },
-    },
+        itemSelectedBg: '#024753'
+      }
+    }
   };
 
   const [collapsed, setCollapsed] = useState(false);
 
   if (menuMode === 'vertical') {
-    const sidebarItems = menuItemConfig.map((item) => {
+    const sidebarItems = menuItemConfig.map(item => {
       if (!collapsed) {
         return item;
       }
@@ -104,12 +104,12 @@ export const MainLayout = ({
         ...item,
         // In collapsed mode, rely on Sider's built-in tooltip via `title`
         label: null,
-        title: text,
+        title: text
       };
     });
 
     return (
-      <Layout style={{ minHeight: '100vh' }}>
+      <Layout className="h-screen overflow-hidden">
         <Layout.Header
           className="h-12 flex items-stretch px-2 md:px-5 leading-normal bg-brand z-10"
           style={{ boxShadow: '0px 4px 4px 0px #00000040' }}
@@ -118,7 +118,7 @@ export const MainLayout = ({
           <div style={{ flex: 1 }} />
           {headerRight}
         </Layout.Header>
-        <Layout>
+        <Layout className="flex-1 overflow-hidden">
           <Layout.Sider
             collapsible
             width={250}
@@ -135,11 +135,11 @@ export const MainLayout = ({
                 className="main-layout-sidebar-menu border-none h-full"
                 style={{ backgroundColor: 'inherit' }}
                 triggerSubMenuAction="click"
-                selectedKeys={location.pathname?.split("/")}
+                selectedKeys={location.pathname?.split('/')}
               />
             </ConfigProvider>
           </Layout.Sider>
-          <Layout.Content style={contentStyle}>
+          <Layout.Content className="flex-1 overflow-auto" style={contentStyle}>
             <Outlet />
           </Layout.Content>
         </Layout>
@@ -148,7 +148,7 @@ export const MainLayout = ({
   }
 
   return (
-    <Layout>
+    <Layout className="h-screen overflow-hidden">
       <Layout.Header
         className="h-12 flex items-stretch px-2 md:px-5 leading-normal bg-brand z-10"
         style={{ boxShadow: '0px 4px 4px 0px #00000040' }}
@@ -163,16 +163,16 @@ export const MainLayout = ({
               minWidth: 0,
               height: '100%',
               backgroundColor: 'inherit',
-              alignItems: 'center',
+              alignItems: 'center'
             }}
             className="main-layout-header-menu h-full grow justify-center items-center border-none"
             triggerSubMenuAction="click"
-            selectedKeys={location.pathname?.split("/")}
+            selectedKeys={location.pathname?.split('/')}
           />
         </ConfigProvider>
         {headerRight}
       </Layout.Header>
-      <Layout.Content style={contentStyle}>
+      <Layout.Content className="flex-1 overflow-auto" style={contentStyle}>
         <Outlet />
       </Layout.Content>
     </Layout>
