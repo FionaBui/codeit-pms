@@ -64,8 +64,8 @@ export const ProjectByTypeChart = ({
     const series = [
       {
         type: 'pie',
-        radius: '50%',
-        center: ['50%', '40%'],
+        radius: '70%',
+        center: ['30%', '50%'],
         selectedMode: false,
         data,
         label: {
@@ -85,7 +85,7 @@ export const ProjectByTypeChart = ({
 
             return (
               labelFormatter?.({ name: shortName, percent, value }) ||
-              `${shortName}: ${value?.toLocaleString()} (${percent?.toFixed(2)}%)`
+              `${value?.toLocaleString()} (${percent?.toFixed(2)}%)`
             );
           },
           fontSize: 12,
@@ -96,8 +96,8 @@ export const ProjectByTypeChart = ({
         },
         labelLine: {
           show: true,
-          length: 20,
-          length2: 15
+          length: 10,
+          length2: 10
         },
         emphasis: { scale: false, scaleSize: 6 }
       }
@@ -190,7 +190,9 @@ export const ProjectByTypeChart = ({
       },
       legend: {
         orient: 'vertical',
-        left: 'center',
+        // left: 'center',
+        top: 'center',
+        right: 10,
         textStyle: { fontSize: 12 },
         inactiveColor: '#B1B2B5'
       },
@@ -209,7 +211,7 @@ export const ProjectByTypeChart = ({
   );
 
   return (
-    <ChartCard title={title} height="400px">
+    <ChartCard title={title} height="300px">
       <BaseChart
         option={option}
         onEvents={{

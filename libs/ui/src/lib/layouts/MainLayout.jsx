@@ -3,6 +3,7 @@ import { ConfigProvider, Dropdown, Layout, Menu } from 'antd';
 import { SettingOutlined, UserOutlined } from '@ant-design/icons';
 import { Outlet } from 'react-router-dom';
 import './MainLayout.css';
+import { useAuth } from '@codeit/auth';
 
 /**
  * Props for MainLayout. All optional so each app can customize.
@@ -54,6 +55,10 @@ export const MainLayout = ({
     onClick
   }));
 
+  const { user } = useAuth();
+
+  console.log(user);
+
   const headerRight = (onSettingsClick != null ||
     dropdownItems.length > 0 ||
     userTrigger) && (
@@ -70,7 +75,13 @@ export const MainLayout = ({
             {userTrigger != null ? (
               userTrigger
             ) : (
-              <UserOutlined className="text-2xl text-white shrink-0 cursor-pointer" />
+              <div className="flex items-center gap-x-1 text-white cursor-pointer">
+                <UserOutlined className="text-2xl shrink-0" />
+                <div className="text-white">
+                  <p>{user?.displayName}</p>
+                  <p className="text-xs">{user?.email}</p>
+                </div>
+              </div>
             )}
           </div>
         </Dropdown>

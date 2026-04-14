@@ -38,7 +38,7 @@ export default function ProjectCountStatusPage() {
   return (
     <Space orientation="vertical" size={8} style={{ width: '100%' }}>
       <div>
-        <Title level={3} style={{ marginBottom: 4 }}>
+        <Title level={4} style={{ marginBottom: 4 }}>
           Project Count & Status
         </Title>
       </div>
@@ -61,7 +61,7 @@ export default function ProjectCountStatusPage() {
             onTypeClick={handleTypeClick}
             calcKey="plannedManhours"
             labelFormatter={({ name, value, percent }) =>
-              `${name}: ${value?.toLocaleString()} h (${percent?.toFixed(2)}%)`
+              `${value?.toLocaleString()} h (${percent?.toFixed(2)}%)`
             }
             selectedType={selectedFilter.projectType}
             selectedStatus={selectedFilter.status}

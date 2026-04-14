@@ -20,7 +20,7 @@ export default function PlannedActualChart({
   });
 
   return (
-    <ChartCard title="Planned manhours vs Actual" height="400px">
+    <ChartCard title="Planned manhours vs Actual manhours" height="400px">
       <BaseChart option={option} />
     </ChartCard>
   );
