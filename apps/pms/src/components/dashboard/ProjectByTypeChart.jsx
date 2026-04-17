@@ -1,17 +1,5 @@
-import { BaseChart, ChartCard } from '@codeit/ui';
+import { BaseChart, ChartCard, CHART_COLORS } from '@codeit/ui';
 import { useMemo, useState, useCallback, useEffect } from 'react';
-
-const PIE_COLORS = [
-  '#5470c6',
-  '#91cc75',
-  '#fac858',
-  '#ee6666',
-  '#73c0de',
-  '#3ba272',
-  '#fc8452',
-  '#9a60b4',
-  '#ea7ccc'
-];
 
 export const ProjectByTypeChart = ({
   title = 'Projects by Type',
@@ -53,7 +41,7 @@ export const ProjectByTypeChart = ({
         filtered,
         totalValue,
         itemStyle: {
-          color: PIE_COLORS[index % PIE_COLORS.length],
+          color: CHART_COLORS[index % CHART_COLORS.length],
           opacity:
             !selectedStatus && (!selectedType || selectedType === type)
               ? 1
@@ -114,7 +102,7 @@ export const ProjectByTypeChart = ({
             name: type,
             filtered,
             total,
-            color: PIE_COLORS[index % PIE_COLORS.length],
+            color: CHART_COLORS[index % CHART_COLORS.length],
             startAngle,
             endAngle,
             opacity: 1
