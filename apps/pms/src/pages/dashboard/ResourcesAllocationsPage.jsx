@@ -42,14 +42,21 @@ function getCurrentMonth() {
   return `${year}-${month}-01`;
 }
 export default function ResourcesAllocationsPage() {
-  const [rows, setRows] = useState([]);
+  const [nextMonthRows, setNextMonthRows] = useState([]);
+  const currentMonth = getCurrentMonth();
   useEffect(() => {
     getResourceAllocationForNextMonths(1).then(resourceAllocations => {
-      const currentMonth = getCurrentMonth();
-      const data = getAllocationRowsByMonth(resourceAllocations, currentMonth);
-      setRows(data);
+      const nextMonthData = getAllocationRowsByMonth(
+        resourceAllocations,
+        currentMonth
+      );
+      setNextMonthRows(nextMonthData);
     });
-  }, []);
-  console.log('rows', rows);
-  return <ResourcesAllocationsChart rows={rows} />;
+  }, [currentMonth]);
+  return (
+    <ResourcesAllocationsChart
+      rows={nextMonthRows}
+      currentMonth={currentMonth}
+    />
+  );
 }
