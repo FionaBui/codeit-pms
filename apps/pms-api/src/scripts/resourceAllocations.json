@@ -3388,26 +3388,6 @@
     "updatedBy": "seed"
   },
   {
-    "resource": "chau-nguyen",
-    "project": "markem-5940g",
-    "allocation": [
-      {
-        "month": "2026-01-01T00:00:00.000Z",
-        "percent": 0.1
-      },
-      {
-        "month": "2026-02-01T00:00:00.000Z",
-        "percent": 0.1
-      },
-      {
-        "month": "2026-03-01T00:00:00.000Z",
-        "percent": 0.1
-      }
-    ],
-    "createdBy": "seed",
-    "updatedBy": "seed"
-  },
-  {
     "resource": "tien-nguyen",
     "project": "markem-5940g",
     "allocation": [
