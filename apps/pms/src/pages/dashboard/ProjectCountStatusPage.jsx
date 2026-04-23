@@ -43,7 +43,7 @@ export default function ProjectCountStatusPage() {
         </Title>
       </div>
 
-      <div className="grid grid-cols-[1fr_500px] gap-2">
+      <div className="grid grid-cols-[1fr_500px] min-[1800px]:grid-cols-2  gap-2">
         <ProjectByTypeChart
           title="Projects by Type"
           projects={projects}
