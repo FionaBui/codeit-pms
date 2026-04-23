@@ -1,62 +1,66 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { ChartCard } from '@codeit/ui';
 import { getResourceAllocationForNextMonths } from '../../api/resourceAllocationApi.js';
 
 import ResourcesAllocationsChart from '../../components/dashboard/ResourcesAllocationsChart.jsx';
+import ResourcesAllocationsThreeMonthsChart from '../../components/dashboard/ResourcesAllocationsThreeMonthsChart.jsx';
+import {
+  getAllocationRowsForMonths,
+  getCurrentMonthRows,
+  getMonthStart,
+  getNextThreeMonths
+} from '../../helper/resourceAllocation.js';
 
-function getPercentForMonth(allocation = [], selectedMonth) {
-  const found = allocation.find(item => item.month.startsWith(selectedMonth));
-
-  return found ? found.percent : 0;
-}
-function getAllocationRowsByMonth(resourceAllocations, selectedMonth) {
-  if (!Array.isArray(resourceAllocations)) {
-    return [];
-  }
-
-  const groupedByResource = {};
-
-  resourceAllocations.forEach(doc => {
-    const percent = getPercentForMonth(doc.allocation, selectedMonth);
-    if (percent <= 0) return;
-
-    if (!groupedByResource[doc.resource]) {
-      groupedByResource[doc.resource] = {
-        resourceName: doc.resource,
-        totalPercent: 0,
-        allocations: []
-      };
-    }
-    groupedByResource[doc.resource].totalPercent += percent;
-    groupedByResource[doc.resource].allocations.push({
-      project: doc.project,
-      percent
-    });
-  });
-  return Object.values(groupedByResource);
-}
-
-function getCurrentMonth() {
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = String(today.getMonth() + 1).padStart(2, '0');
-  return `${year}-${month}-01`;
-}
 export default function ResourcesAllocationsPage() {
-  const [nextMonthRows, setNextMonthRows] = useState([]);
-  const currentMonth = getCurrentMonth();
+  const [allRows, setAllRows] = useState([]);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedResource, setSelectedResource] = useState(null);
+
+  const currentMonth = getMonthStart(0);
+  const months = useMemo(() => getNextThreeMonths(), []);
+
   useEffect(() => {
-    getResourceAllocationForNextMonths(1).then(resourceAllocations => {
-      const nextMonthData = getAllocationRowsByMonth(
+    getResourceAllocationForNextMonths(3).then(resourceAllocations => {
+      const groupedRows = getAllocationRowsForMonths(
         resourceAllocations,
-        currentMonth
+        months
       );
-      setNextMonthRows(nextMonthData);
+
+      setAllRows(groupedRows);
     });
-  }, [currentMonth]);
+  }, [months]);
+
+  const handleSelectProject = project => {
+    setSelectedProject(prev => (prev === project ? null : project));
+    setSelectedResource(null);
+  };
+
+  const handleSelectResource = resource => {
+    setSelectedResource(prev => (prev === resource ? null : resource));
+    setSelectedProject(null);
+  };
+
+  const currentMonthRows = useMemo(() => {
+    return getCurrentMonthRows(allRows, currentMonth);
+  }, [allRows, currentMonth]);
+
   return (
-    <ResourcesAllocationsChart
-      rows={nextMonthRows}
-      currentMonth={currentMonth}
-    />
+    <ChartCard height="100vh">
+      <ResourcesAllocationsChart
+        rows={currentMonthRows}
+        currentMonth={currentMonth}
+        selectedProject={selectedProject}
+        onSelectProject={handleSelectProject}
+        selectedResource={selectedResource}
+      />
+
+      <ResourcesAllocationsThreeMonthsChart
+        rows={allRows}
+        months={months}
+        selectedProject={selectedProject}
+        selectedResource={selectedResource}
+        onSelectResource={handleSelectResource}
+      />
+    </ChartCard>
   );
 }
