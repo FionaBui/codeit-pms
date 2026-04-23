@@ -20,7 +20,8 @@ export const ProjectByTypeChart = ({
   calcKey,
   labelFormatter,
   selectedType: inputSelectedType,
-  selectedStatus
+  selectedStatus,
+  className
 }) => {
   const [selectedType, setSelectedType] = useState(null);
 
@@ -65,7 +66,7 @@ export const ProjectByTypeChart = ({
       {
         type: 'pie',
         radius: '70%',
-        center: ['30%', '50%'],
+        center: [200, '50%'],
         selectedMode: false,
         data,
         label: {
@@ -144,8 +145,9 @@ export const ProjectByTypeChart = ({
           return {
             type: 'sector',
             shape: {
-              cx: width * 0.5,
-              cy: height * 0.4,
+              // cx: width * 0.25,
+              cx: 200,
+              cy: height * 0.5,
               r0: 0,
               r: outerRadius,
               startAngle: item.startAngle,
@@ -192,8 +194,24 @@ export const ProjectByTypeChart = ({
         orient: 'vertical',
         // left: 'center',
         top: 'center',
-        right: 10,
-        textStyle: { fontSize: 12 },
+        left: 400,
+        textStyle: {
+          fontSize: 12,
+          width: 280,
+          overflow: 'truncate',
+          ellipsis: '...'
+        },
+        tooltip: {
+          show: true,
+          confine: true,
+          renderMode: 'html',
+          textStyle: { fontSize: 12 },
+          formatter: params => {
+            const name = typeof params === 'string' ? params : params?.name;
+            if (!name) return '';
+            return `<div style="max-width: 400px; white-space: normal; overflow-wrap: anywhere;">${name}</div>`;
+          }
+        },
         inactiveColor: '#B1B2B5'
       },
       series
@@ -211,7 +229,7 @@ export const ProjectByTypeChart = ({
   );
 
   return (
-    <ChartCard title={title} height="300px">
+    <ChartCard title={title} height="200px" className={className}>
       <BaseChart
         option={option}
         onEvents={{
