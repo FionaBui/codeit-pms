@@ -1,21 +1,9 @@
 import { Col, Row, Space, Typography } from 'antd';
-import { useAuth } from '@codeit/auth';
 import { useEffect, useState } from 'react';
 import { listProjects } from '../../api/projectApi';
-
 import PlannedActualChart from '../../components/dashboard/PlannedActualChart';
-import { ProjectTypePieChart } from '../../components/dashboard/ProjectTypePieChart';
 import { ProjectCountStatusBarChart } from '../../components/dashboard/ProjectCountStatusBarChart';
-import { ApprovalManhoursPieChart } from '../../components/dashboard/ApprovalManhoursPieChart';
-
-const DEFAULT_LEGEND_SELECTED_TYPE = {
-  'Type 1: new development outside Core Services': true,
-  'Type 2: development / improvements inside Core Services': true,
-  'Type 3: Customizations & Change requests': true,
-  'Type 4: Daily support & Continuous improvements': false
-};
-
-const DEFAULT_VISIBLE_STATUSES = ['plan', 'execution', 'closing'];
+import { ProjectByTypeChart } from '../../components/dashboard/ProjectByTypeChart';
 
 const { Title } = Typography;
 
@@ -33,28 +21,11 @@ export default function ProjectCountStatusPage() {
     status: null
   });
 
-  const [visibleStatuses, setVisibleStatuses] = useState(
-    DEFAULT_VISIBLE_STATUSES
-  );
-
-  const [legendSelectedType, setLegendSelectedType] = useState(
-    DEFAULT_LEGEND_SELECTED_TYPE
-  );
-
   function handleTypeClick(typeName) {
     setSelectedFilter(prev => ({
       projectType: prev.projectType === typeName ? null : typeName,
       status: null
     }));
-
-    setLegendSelectedType(prev => ({
-      ...prev,
-      [typeName]: true
-    }));
-  }
-
-  function handleTypeLegendChange(nextSelectedMap) {
-    setLegendSelectedType(nextSelectedMap);
   }
 
   function handleStatusClick(statusName) {
@@ -64,42 +35,36 @@ export default function ProjectCountStatusPage() {
     }));
   }
 
-  function handleStatusLegendClick(statusName) {
-    setVisibleStatuses(prev => {
-      if (prev.includes(statusName)) {
-        return prev.filter(status => status !== statusName);
-      }
-
-      return [...prev, statusName];
-    });
-  }
-
   return (
-    <Space orientation="vertical" size={24} style={{ width: '100%' }}>
+    <Space orientation="vertical" size={8} style={{ width: '100%' }}>
       <div>
         <Title level={3} style={{ marginBottom: 4 }}>
           Project Count & Status
         </Title>
       </div>
 
-      <Row gutter={[16, 16]}>
+      <Row gutter={[8, 8]}>
         <Col xs={24} lg={12}>
-          <ProjectTypePieChart
+          <ProjectByTypeChart
+            title="Projects by Type"
             projects={projects}
+            onTypeClick={handleTypeClick}
             selectedType={selectedFilter.projectType}
             selectedStatus={selectedFilter.status}
-            onTypeClick={handleTypeClick}
-            legendSelected={legendSelectedType}
-            onLegendChange={handleTypeLegendChange}
           />
         </Col>
 
         <Col xs={24} lg={12}>
-          <ApprovalManhoursPieChart
+          <ProjectByTypeChart
+            title="Approved Manhours by Type"
             projects={projects}
+            onTypeClick={handleTypeClick}
+            calcKey="plannedManhours"
+            labelFormatter={({ name, value, percent }) =>
+              `${name}: ${value?.toLocaleString()} h (${percent?.toFixed(2)}%)`
+            }
             selectedType={selectedFilter.projectType}
             selectedStatus={selectedFilter.status}
-            onTypeClick={handleTypeClick}
           />
         </Col>
 
@@ -107,10 +72,8 @@ export default function ProjectCountStatusPage() {
           <ProjectCountStatusBarChart
             projects={projects}
             selectedType={selectedFilter.projectType}
-            selectedStatus={selectedFilter.status}
-            visibleStatuses={visibleStatuses}
-            onStatusLegendClick={handleStatusLegendClick}
             onStatusClick={handleStatusClick}
+            selectedStatus={selectedFilter.status}
           />
         </Col>
 
