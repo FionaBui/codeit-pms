@@ -135,7 +135,7 @@ export function ProjectCountStatusBarChart({
   );
 
   return (
-    <ChartCard title="Projects Count by Status" height="400px">
+    <ChartCard title="Projects Count by Status" height="200px">
       <BaseChart
         option={option}
         onEvents={{

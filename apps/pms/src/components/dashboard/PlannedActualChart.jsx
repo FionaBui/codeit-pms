@@ -5,7 +5,8 @@ import { getPlannedVsActualManhoursByProject } from '../../helper/projectCountSt
 export default function PlannedActualChart({
   projects,
   selectedType,
-  selectedStatus
+  selectedStatus,
+  className
 }) {
   const chartData = getPlannedVsActualManhoursByProject(
     projects,
@@ -20,7 +21,12 @@ export default function PlannedActualChart({
   });
 
   return (
-    <ChartCard title="Planned manhours vs Actual" height="400px">
+    <ChartCard
+      title="Planned manhours vs Actual manhours"
+      className={className}
+      classNames={{ body: 'flex-1' }}
+      height="100%"
+    >
       <BaseChart option={option} />
     </ChartCard>
   );

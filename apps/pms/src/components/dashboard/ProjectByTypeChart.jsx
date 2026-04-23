@@ -8,7 +8,8 @@ export const ProjectByTypeChart = ({
   calcKey,
   labelFormatter,
   selectedType: inputSelectedType,
-  selectedStatus
+  selectedStatus,
+  className
 }) => {
   const [selectedType, setSelectedType] = useState(null);
 
@@ -52,8 +53,8 @@ export const ProjectByTypeChart = ({
     const series = [
       {
         type: 'pie',
-        radius: '50%',
-        center: ['50%', '40%'],
+        radius: '70%',
+        center: [200, '50%'],
         selectedMode: false,
         data,
         label: {
@@ -73,7 +74,7 @@ export const ProjectByTypeChart = ({
 
             return (
               labelFormatter?.({ name: shortName, percent, value }) ||
-              `${shortName}: ${value?.toLocaleString()} (${percent?.toFixed(2)}%)`
+              `${value?.toLocaleString()} (${percent?.toFixed(2)}%)`
             );
           },
           fontSize: 12,
@@ -84,8 +85,8 @@ export const ProjectByTypeChart = ({
         },
         labelLine: {
           show: true,
-          length: 20,
-          length2: 15
+          length: 10,
+          length2: 10
         },
         emphasis: { scale: false, scaleSize: 6 }
       }
@@ -132,8 +133,9 @@ export const ProjectByTypeChart = ({
           return {
             type: 'sector',
             shape: {
-              cx: width * 0.5,
-              cy: height * 0.4,
+              // cx: width * 0.25,
+              cx: 200,
+              cy: height * 0.5,
               r0: 0,
               r: outerRadius,
               startAngle: item.startAngle,
@@ -178,8 +180,26 @@ export const ProjectByTypeChart = ({
       },
       legend: {
         orient: 'vertical',
-        left: 'center',
-        textStyle: { fontSize: 12 },
+        // left: 'center',
+        top: 'center',
+        left: 400,
+        textStyle: {
+          fontSize: 12,
+          width: 280,
+          overflow: 'truncate',
+          ellipsis: '...'
+        },
+        tooltip: {
+          show: true,
+          confine: true,
+          renderMode: 'html',
+          textStyle: { fontSize: 12 },
+          formatter: params => {
+            const name = typeof params === 'string' ? params : params?.name;
+            if (!name) return '';
+            return `<div style="max-width: 400px; white-space: normal; overflow-wrap: anywhere;">${name}</div>`;
+          }
+        },
         inactiveColor: '#B1B2B5'
       },
       series
@@ -197,7 +217,7 @@ export const ProjectByTypeChart = ({
   );
 
   return (
-    <ChartCard title={title} height="400px">
+    <ChartCard title={title} height="200px" className={className}>
       <BaseChart
         option={option}
         onEvents={{
