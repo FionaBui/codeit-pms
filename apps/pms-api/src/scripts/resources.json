@@ -166,5 +166,19 @@
     "title": "QC Engineer",
     "createdBy": "seed",
     "updatedBy": "seed"
+  },
+  {
+    "_id": "hans-petter",
+    "name": "Hans Petter",
+    "title": "Head of IT",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "krzysztof-les",
+    "name": "Krzysztof Les",
+    "title": "Software Development Manager",
+    "createdBy": "seed",
+    "updatedBy": "seed"
   }
 ]

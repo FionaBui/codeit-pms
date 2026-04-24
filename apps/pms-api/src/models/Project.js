@@ -23,10 +23,10 @@ const ProjectSchema = new Schema(
     type: {
       type: String,
       enum: [
-        "Type 1: new development outside Core Services",
-        "Type 2: development / improvements inside Core Services",
-        "Type 3: Customizations & Change requests",
-        "Type 4: Daily support & Continuous improvements"
+        'Type 1: new development outside Core Services',
+        'Type 2: development / improvements inside Core Services',
+        'Type 3: Customizations & Change requests',
+        'Type 4: Daily support & Continuous improvements'
       ],
       required: true
     },
@@ -45,7 +45,7 @@ const ProjectSchema = new Schema(
     actualManhours: Number,
     status: {
       type: String,
-      enum: ["plan", "execution", "closing", "finished"],
+      enum: ['plan', 'execution', 'closing', 'finished'],
       required: true
     },
     completion: {
@@ -53,6 +53,14 @@ const ProjectSchema = new Schema(
       default: 0,
       min: 0,
       max: 1
+    },
+    manager: {
+      type: String,
+      ref: 'Resource'
+    },
+    priority: {
+      type: String,
+      enum: ['low', 'medium', 'high']
     },
     updatedBy: String,
     createdBy: String
