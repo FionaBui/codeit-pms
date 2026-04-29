@@ -1,4 +1,8 @@
-import { listProjects } from '../services/projectService.js';
+import {
+  listProjects,
+  createProject as createProjectService,
+  updateProject as updateProjectService
+} from '../services/projectService.js';
 
 export async function getProjects(req, res, next) {
   try {
@@ -9,3 +13,28 @@ export async function getProjects(req, res, next) {
   }
 }
 
+export async function createProject(req, res, next) {
+  try {
+    const project = await createProjectService(req.body);
+
+    res.status(201).json({
+      data: project
+    });
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function updateProject(req, res, next) {
+  try {
+    const project = await updateProjectService(req.params.id, req.body);
+
+    if (!project) {
+      return res.status(404).json({ message: 'Project not found' });
+    }
+
+    res.status(200).json({ data: project });
+  } catch (err) {
+    next(err);
+  }
+}
