@@ -10,18 +10,18 @@ import ResourcesAllocationsPage from './pages/dashboard/ResourcesAllocationsPage
 import HeadcountPage from './pages/dashboard/HeadcountPage';
 import RawDataPage from './pages/dashboard/RawDataPage';
 import ProjectManagementPage from './pages/management/ProjectManagementPage';
+import UsersPage from './pages/management/UsersPage';
 import Settings from './pages/Settings';
 
 import {
-  HomeOutlined,
   DashboardOutlined,
   ProjectOutlined,
   SettingOutlined,
   ScheduleOutlined,
-  BarChartOutlined,
   TeamOutlined,
   ContactsOutlined,
   DatabaseOutlined,
+  UserOutlined,
 } from '@ant-design/icons';
 
 function PmsLayout() {
@@ -66,6 +66,12 @@ function PmsLayout() {
       label: 'Project Management',
       icon: <ScheduleOutlined />,
       onClick: () => navigate('/project-management'),
+    },
+    {
+      key: 'users',
+      label: 'Users',
+      icon: <UserOutlined />,
+      onClick: () => navigate('/users'),
     },
     {
       key: 'settings',
@@ -133,6 +139,7 @@ export const router = createBrowserRouter([
       { path: 'headcount', element: <HeadcountPage /> },
       { path: 'raw-data', element: <RawDataPage /> },
       { path: 'project-management', element: <ProjectManagementPage /> },
+      { path: 'users', element: <UsersPage /> },
       { path: 'settings', element: <Settings /> },
     ],
   },

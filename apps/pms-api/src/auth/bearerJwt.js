@@ -22,15 +22,26 @@ function buildJwksUri() {
   return `https://login.microsoftonline.com/${tenantId}/discovery/v2.0/keys`;
 }
 
-function buildIssuer() {
+/** Accept v2 login URL and legacy sts.windows.net issuers for the same tenant. */
+function buildIssuerVerifyOption() {
   const explicit = process.env.AAD_ISSUER;
-  if (explicit) return explicit;
+  if (explicit) {
+    const list = explicit
+      .split(',')
+      .map(s => s.trim())
+      .filter(Boolean);
+    return list.length === 1 ? list[0] : list;
+  }
 
   const tenantId = getTenantId();
-  return `https://login.microsoftonline.com/${tenantId}/v2.0`;
+  return [
+    `https://login.microsoftonline.com/${tenantId}/v2.0`,
+    `https://sts.windows.net/${tenantId}/`
+  ];
 }
 
-const AAD_ISSUER_PATTERN = /^https:\/\/login\.microsoftonline\.com\/[^/]+\/v2\.0$/;
+const AAD_ISSUER_PATTERN =
+  /^https:\/\/login\.microsoftonline\.com\/[^/]+\/v2\.0$/;
 
 function isMultiTenant() {
   const t = getTenantId();
@@ -41,7 +52,7 @@ function buildAudienceList() {
   const raw = getEnv('AAD_AUDIENCE');
   return raw
     .split(',')
-    .map((s) => s.trim())
+    .map(s => s.trim())
     .filter(Boolean);
 }
 
@@ -51,7 +62,7 @@ const jwksClient = jwksRsa({
   cacheMaxAge: 10 * 60 * 1000,
   rateLimit: true,
   jwksRequestsPerMinute: 10,
-  jwksUri: buildJwksUri(),
+  jwksUri: buildJwksUri()
 });
 
 function getSigningKey(header, callback) {
@@ -67,7 +78,7 @@ export function requireAuth(req, res, next) {
     const token = getBearerToken(req);
     if (!token) {
       return res.status(401).json({
-        error: { code: 'unauthorized', message: 'Missing bearer token' },
+        error: { code: 'unauthorized', message: 'Missing bearer token' }
       });
     }
 
@@ -75,13 +86,16 @@ export function requireAuth(req, res, next) {
     const multiTenant = isMultiTenant();
     const opts = {
       algorithms: ['RS256'],
-      audience: audiences.length === 1 ? audiences[0] : audiences,
+      audience: audiences.length === 1 ? audiences[0] : audiences
     };
-    if (!multiTenant) opts.issuer = buildIssuer();
+    if (!multiTenant) opts.issuer = buildIssuerVerifyOption();
 
     jwt.verify(token, getSigningKey, opts, (err, payload) => {
       if (err) {
-        const errPayload = { code: 'unauthorized', message: 'Invalid access token' };
+        const errPayload = {
+          code: 'unauthorized',
+          message: 'Invalid access token'
+        };
         if (process.env.NODE_ENV !== 'production') {
           errPayload.detail = err.message;
           try {
@@ -91,16 +105,22 @@ export function requireAuth(req, res, next) {
               errPayload.tokenIss = decoded.payload.iss;
               errPayload.expectedAudience = audiences;
             }
-          } catch (_) {}
+          } catch {
+            // Omit debug fields if jwt.decode throws on malformed input.
+          }
         }
         return res.status(401).json({ error: errPayload });
       }
-      if (multiTenant && (!payload.iss || !AAD_ISSUER_PATTERN.test(payload.iss))) {
+      if (
+        multiTenant &&
+        (!payload.iss || !AAD_ISSUER_PATTERN.test(payload.iss))
+      ) {
         return res.status(401).json({
-          error: { code: 'unauthorized', message: 'Invalid access token' },
+          error: { code: 'unauthorized', message: 'Invalid access token' }
         });
       }
       req.auth = payload;
+      req.bearerToken = token;
       next();
     });
   } catch (e) {
