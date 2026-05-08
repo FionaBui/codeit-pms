@@ -4,15 +4,11 @@ import {
   Button,
   Card,
   Col,
-  DatePicker,
   Form,
   Input,
-  InputNumber,
-  Modal,
   Drawer,
   Progress,
   Row,
-  Select,
   Space,
   Statistic,
   Table,
@@ -28,6 +24,12 @@ import {
   updateProject
 } from '../../api/projectApi.js';
 import { listResources } from '../../api/resourceApi.js';
+import {
+  getResourceAllocationsByProject,
+  saveResourceAllocationsByProject
+} from '../../api/resourceAllocationApi.js';
+import ResourceAssignment from '../../components/management/ResourceAssignment.jsx';
+import ProjectFormFields from '../../components/management/ProjectFormFields.jsx';
 
 const { Title, Text } = Typography;
 
@@ -60,9 +62,9 @@ export default function ProjectManagementPage() {
   const [resources, setResources] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchText, setSearchText] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [editingProject, setEditingProject] = useState(null);
+  const [resourceAssignments, setResourceAssignments] = useState([]);
 
   const [form] = Form.useForm();
 
@@ -140,15 +142,15 @@ export default function ProjectManagementPage() {
     };
   }, [projects]);
 
-  function openCreateModal() {
+  function openCreateDrawer() {
     setEditingProject(null);
 
     form.resetFields();
-
-    setIsModalOpen(true);
+    setResourceAssignments([]);
+    setIsDrawerOpen(true);
   }
 
-  function openEditModal(project) {
+  async function openEditDrawer(project) {
     setEditingProject(project);
 
     form.setFieldsValue({
@@ -159,7 +161,25 @@ export default function ProjectManagementPage() {
       endDate: dayjs(project.endDate)
     });
 
-    setIsModalOpen(true);
+    try {
+      const allocations = await getResourceAllocationsByProject(project._id);
+
+      const formattedAllocations = allocations.map(row => ({
+        resource: row.resourceId,
+        allocation: (row.allocation || []).map(item => ({
+          month: dayjs(item.month).startOf('month').format('YYYY-MM-DD'),
+          percent: Number(item.percent || 0) * 100
+        }))
+      }));
+
+      setResourceAssignments(formattedAllocations);
+    } catch (error) {
+      console.error('Failed to load project allocations:', error);
+
+      setResourceAssignments([]);
+    }
+
+    setIsDrawerOpen(true);
   }
 
   async function handleSaveProject(values) {
@@ -175,6 +195,15 @@ export default function ProjectManagementPage() {
 
       if (editingProject) {
         await updateProject(editingProject._id, formattedProject);
+
+        await saveResourceAllocationsByProject(
+          editingProject._id,
+          resourceAssignments.map(row => ({
+            resource: row.resource,
+            allocation: row.allocation
+          }))
+        );
+
         message.success('Project updated successfully', 3);
       } else {
         await createProject(formattedProject);
@@ -182,7 +211,7 @@ export default function ProjectManagementPage() {
         form.resetFields();
       }
 
-      setIsModalOpen(false);
+      setIsDrawerOpen(false);
 
       await fetchProjects();
     } catch (error) {
@@ -253,7 +282,7 @@ export default function ProjectManagementPage() {
       title: 'Action',
       key: 'action',
       render: (_, project) => (
-        <Button icon={<EditOutlined />} onClick={() => openEditModal(project)}>
+        <Button icon={<EditOutlined />} onClick={() => openEditDrawer(project)}>
           Edit
         </Button>
       )
@@ -323,7 +352,7 @@ export default function ProjectManagementPage() {
                 <Button
                   type="primary"
                   icon={<PlusOutlined />}
-                  onClick={openCreateModal}
+                  onClick={openCreateDrawer}
                 >
                   New project
                 </Button>
@@ -345,18 +374,19 @@ export default function ProjectManagementPage() {
       {/* Drawer */}
       <Drawer
         title={editingProject ? 'Edit project' : 'Create new project'}
-        open={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        width={720}
+        open={isDrawerOpen}
+        onClose={() => setIsDrawerOpen(false)}
+        size={980}
         afterOpenChange={open => {
           if (!open) {
             form.resetFields();
             setEditingProject(null);
+            setResourceAssignments([]);
           }
         }}
         extra={
           <Space>
-            <Button onClick={() => setIsModalOpen(false)}>Cancel</Button>
+            <Button onClick={() => setIsDrawerOpen(false)}>Cancel</Button>
 
             <Button
               type="primary"
@@ -380,140 +410,20 @@ export default function ProjectManagementPage() {
             actualManhours: 0
           }}
         >
-          <Row gutter={16}>
-            <Col span={12}>
-              <Form.Item
-                label="Project name"
-                name="name"
-                rules={[
-                  { required: true, message: 'Project name is required' }
-                ]}
-              >
-                <Input />
-              </Form.Item>
-            </Col>
-
-            <Col span={12}>
-              <Form.Item
-                label="Short name"
-                name="shortName"
-                rules={[{ required: true, message: 'Short name is required' }]}
-              >
-                <Input />
-              </Form.Item>
-            </Col>
-
-            <Col span={12}>
-              <Form.Item
-                label="Project manager"
-                name="manager"
-                rules={[{ required: true, message: 'Manager is required' }]}
-              >
-                <Select
-                  showSearch
-                  placeholder="Select project manager"
-                  optionFilterProp="label"
-                  options={resources.map(resource => ({
-                    label: resource.name,
-                    value: resource._id
-                  }))}
-                />
-              </Form.Item>
-            </Col>
-
-            <Col span={12}>
-              <Form.Item
-                label="Project type"
-                name="type"
-                rules={[
-                  { required: true, message: 'Project type is required' }
-                ]}
-              >
-                <Select
-                  options={projectTypes.map(type => ({
-                    label: type,
-                    value: type
-                  }))}
-                />
-              </Form.Item>
-            </Col>
-
-            <Col span={12}>
-              <Form.Item
-                label="Start date"
-                name="startDate"
-                rules={[{ required: true, message: 'Start date is required' }]}
-              >
-                <DatePicker style={{ width: '100%' }} />
-              </Form.Item>
-            </Col>
-
-            <Col span={12}>
-              <Form.Item
-                label="End date"
-                name="endDate"
-                rules={[{ required: true, message: 'End date is required' }]}
-              >
-                <DatePicker style={{ width: '100%' }} />
-              </Form.Item>
-            </Col>
-
-            <Col span={8}>
-              <Form.Item label="Status" name="status">
-                <Select
-                  options={projectStatuses.map(status => ({
-                    label: status,
-                    value: status
-                  }))}
-                />
-              </Form.Item>
-            </Col>
-
-            <Col span={8}>
-              <Form.Item label="Priority" name="priority">
-                <Select
-                  options={projectPriorities.map(priority => ({
-                    label: priority,
-                    value: priority
-                  }))}
-                />
-              </Form.Item>
-            </Col>
-
-            <Col span={8}>
-              <Form.Item
-                label="Completion (%)"
-                name="completion"
-                rules={[
-                  {
-                    required: true,
-                    message: 'Completion is required'
-                  },
-                  {
-                    type: 'number',
-                    min: 0,
-                    max: 100,
-                    message: 'Completion must be between 0% and 100%'
-                  }
-                ]}
-              >
-                <InputNumber style={{ width: '100%' }} />
-              </Form.Item>
-            </Col>
-
-            <Col span={12}>
-              <Form.Item label="Planned manhours" name="plannedManhours">
-                <InputNumber min={0} style={{ width: '100%' }} />
-              </Form.Item>
-            </Col>
-
-            <Col span={12}>
-              <Form.Item label="Actual manhours" name="actualManhours">
-                <InputNumber min={0} style={{ width: '100%' }} />
-              </Form.Item>
-            </Col>
-          </Row>
+          <ProjectFormFields
+            resources={resources}
+            projectTypes={projectTypes}
+            projectStatuses={projectStatuses}
+            projectPriorities={projectPriorities}
+          />
         </Form>
+        <ResourceAssignment
+          resources={resources}
+          projectStartDate={Form.useWatch('startDate', form)}
+          projectEndDate={Form.useWatch('endDate', form)}
+          value={resourceAssignments}
+          onChange={setResourceAssignments}
+        />
       </Drawer>
     </ChartCard>
   );
