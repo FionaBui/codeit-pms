@@ -233,7 +233,7 @@ export default function ProjectManagementPage() {
       title: 'Project',
       dataIndex: 'shortName',
       key: 'shortName',
-      sorter: (a, b) => a.shortName.localeCompare(b.shortName),
+      // sorter: (a, b) => a.shortName.localeCompare(b.shortName),
       render: (_, project) => (
         <Space orientation="vertical" size={0}>
           <Text strong>{project.shortName}</Text>
@@ -281,6 +281,28 @@ export default function ProjectManagementPage() {
       title: 'Status',
       dataIndex: 'status',
       key: 'status',
+
+      filters: [
+        {
+          text: 'plan',
+          value: 'plan'
+        },
+        {
+          text: 'execution',
+          value: 'execution'
+        },
+        {
+          text: 'closing',
+          value: 'closing'
+        },
+        {
+          text: 'finished',
+          value: 'finished'
+        }
+      ],
+
+      onFilter: (value, record) => record.status === value,
+
       render: status => (
         <Tag color={statusColors[status]}>{status.toUpperCase()}</Tag>
       )
