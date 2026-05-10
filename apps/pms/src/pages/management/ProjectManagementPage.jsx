@@ -222,11 +222,18 @@ export default function ProjectManagementPage() {
     }
   }
 
+  const priorityOrder = {
+    high: 3,
+    medium: 2,
+    low: 1
+  };
+
   const columns = [
     {
       title: 'Project',
       dataIndex: 'shortName',
       key: 'shortName',
+      sorter: (a, b) => a.shortName.localeCompare(b.shortName),
       render: (_, project) => (
         <Space orientation="vertical" size={0}>
           <Text strong>{project.shortName}</Text>
@@ -243,6 +250,34 @@ export default function ProjectManagementPage() {
       render: manager => manager.name
     },
     {
+      title: 'Type',
+      dataIndex: 'type',
+      key: 'type',
+
+      filters: [
+        {
+          text: 'Type 1: new development outside Core Services',
+          value: 'Type 1: new development outside Core Services'
+        },
+        {
+          text: 'Type 2: development / improvements inside Core Services',
+          value: 'Type 2: development / improvements inside Core Services'
+        },
+        {
+          text: 'Type 3: Customizations & Change requests',
+          value: 'Type 3: Customizations & Change requests'
+        },
+        {
+          text: 'Type 4: Daily support & Continuous improvements',
+          value: 'Type 4: Daily support & Continuous improvements'
+        }
+      ],
+
+      onFilter: (value, record) => record.type === value,
+
+      render: type => <Text>{type.split(':')[0]}</Text>
+    },
+    {
       title: 'Status',
       dataIndex: 'status',
       key: 'status',
@@ -254,6 +289,8 @@ export default function ProjectManagementPage() {
       title: 'Priority',
       dataIndex: 'priority',
       key: 'priority',
+      defaultSortOrder: 'descend',
+      sorter: (a, b) => priorityOrder[a.priority] - priorityOrder[b.priority],
       render: priority => (
         <Tag color={priorityColors[priority]}>{priority.toUpperCase()}</Tag>
       )
