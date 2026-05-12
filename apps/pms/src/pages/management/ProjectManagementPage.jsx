@@ -47,14 +47,14 @@ const priorityColors = {
   high: 'red'
 };
 
-const projectTypes = [
-  'Type 1: new development outside Core Services',
-  'Type 2: development / improvements inside Core Services',
-  'Type 3: Customizations & Change requests',
-  'Type 4: Daily support & Continuous improvements'
-];
+// const projectTypes = [
+//   'Type 1: new development outside Core Services',
+//   'Type 2: development / improvements inside Core Services',
+//   'Type 3: Customizations & Change requests',
+//   'Type 4: Daily support & Continuous improvements'
+// ];
 
-const projectStatuses = ['plan', 'execution', 'closing', 'finished'];
+// const projectStatuses = ['plan', 'execution', 'closing', 'finished'];
 
 const projectPriorities = ['low', 'medium', 'high'];
 
@@ -340,6 +340,18 @@ export default function ProjectManagementPage() {
     }
   ];
 
+  const projectTypes = Array.from(
+    new Set(projects.map(project => project.type).filter(Boolean))
+  );
+
+  const projectStatuses = Array.from(
+    new Set(projects.map(project => project.status).filter(Boolean))
+  );
+
+  const projectPriorities = Array.from(
+    new Set(projects.map(project => project.priority).filter(Boolean))
+  );
+
   return (
     <ChartCard title="Project Management" height="85vh">
       <Space orientation="vertical" size={16} style={{ width: '100%' }}>
@@ -463,9 +475,9 @@ export default function ProjectManagementPage() {
         >
           <ProjectFormFields
             resources={resources}
-            projectTypes={projectTypes}
-            projectStatuses={projectStatuses}
-            projectPriorities={projectPriorities}
+            typeOptions={projectTypes}
+            statusOptions={projectStatuses}
+            priorityOptions={projectPriorities}
           />
         </Form>
         <ResourceAssignment
