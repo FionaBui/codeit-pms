@@ -1,5 +1,9 @@
 import { Button, Card, Typography, Select, InputNumber } from 'antd';
-import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
+import {
+  PlusOutlined,
+  DeleteOutlined,
+  ExclamationCircleOutlined
+} from '@ant-design/icons';
 import { dayjs } from '@codeit/utils';
 
 const { Text } = Typography;
@@ -31,7 +35,9 @@ export default function ResourceAssignment({
   projectStartDate,
   projectEndDate,
   value = [],
-  onChange
+  onChange,
+  existingAllocations = [],
+  currentProjectId
 }) {
   function addResourceRow() {
     const newRow = {
@@ -79,7 +85,7 @@ export default function ResourceAssignment({
               ? {
                   ...item,
                   month: monthValue,
-                  percent: percent || 0
+                  percent: percent ?? null
                 }
               : item
           )
@@ -87,7 +93,7 @@ export default function ResourceAssignment({
             ...existingAllocation,
             {
               month: monthValue,
-              percent: percent || 0
+              percent: percent ?? null
             }
           ];
 
@@ -106,10 +112,50 @@ export default function ResourceAssignment({
         dayjs(item.month).startOf('month').format('YYYY-MM-DD') === monthValue
     );
 
-    return found ? found.percent : 0;
+    return found ? found.percent : null;
   }
 
   const months = getMonthsBetween(projectStartDate, projectEndDate);
+
+  function getResourceName(resourceId) {
+    const found = resources.find(resource => resource._id === resourceId);
+
+    return found ? found.name : '';
+  }
+
+  function getExistingPercent(resourceId, monthValue) {
+    return existingAllocations.reduce((sum, allocationRow) => {
+      if (allocationRow.resourceId !== resourceId) {
+        return sum;
+      }
+
+      if (allocationRow.projectId === currentProjectId) {
+        return sum;
+      }
+
+      const monthItem = allocationRow.allocation?.find(
+        item =>
+          dayjs(item.month).startOf('month').format('YYYY-MM-DD') === monthValue
+      );
+
+      return sum + Number(monthItem?.percent || 0) * 100;
+    }, 0);
+  }
+
+  function getTotalPercent(row, monthValue) {
+    if (!row.resource) {
+      return 0;
+    }
+
+    const currentProjectPercent = getAllocationValue(row, monthValue);
+    const otherProjectsPercent = getExistingPercent(row.resource, monthValue);
+
+    return currentProjectPercent + otherProjectsPercent;
+  }
+
+  function isRowOverloaded(row) {
+    return months.some(month => getTotalPercent(row, month.value) > 100);
+  }
 
   return (
     <Card
@@ -123,6 +169,7 @@ export default function ResourceAssignment({
       {value.length === 0 && (
         <Text type="secondary">No resources assigned yet.</Text>
       )}
+
       {value.length > 0 && (
         <div style={{ overflowX: 'auto', paddingBottom: 8 }}>
           <table
@@ -135,14 +182,24 @@ export default function ResourceAssignment({
           >
             <thead>
               <tr>
-                <th style={{ width: 240, textAlign: 'left', paddingRight: 16 }}>
+                <th
+                  style={{
+                    width: 240,
+                    textAlign: 'left',
+                    paddingRight: 16
+                  }}
+                >
                   Resource
                 </th>
 
                 {months.map(month => (
                   <th
                     key={month.value}
-                    style={{ width: 180, textAlign: 'left', paddingRight: 16 }}
+                    style={{
+                      width: 180,
+                      textAlign: 'left',
+                      paddingRight: 16
+                    }}
                   >
                     {month.label}
                   </th>
@@ -154,50 +211,110 @@ export default function ResourceAssignment({
 
             <tbody>
               {value.map((row, index) => (
-                <tr key={index}>
-                  <td style={{ width: 240, paddingRight: 16 }}>
-                    <Select
-                      placeholder="Select resource"
-                      style={{ width: '100%' }}
-                      value={row.resource}
-                      onChange={selectedValue => {
-                        updateRow(index, 'resource', selectedValue);
-                      }}
-                      options={resources.map(resource => ({
-                        label: resource.name,
-                        value: resource._id
-                      }))}
-                    />
-                  </td>
-
-                  {months.map(month => (
+                <>
+                  <tr key={index}>
                     <td
-                      key={month.value}
-                      style={{ width: 180, paddingRight: 16 }}
+                      style={{
+                        width: 240,
+                        paddingRight: 16,
+                        verticalAlign: 'top'
+                      }}
                     >
-                      <InputNumber
-                        min={0}
-                        max={100}
-                        style={{ width: '100%' }}
-                        value={getAllocationValue(row, month.value)}
-                        onChange={number => {
-                          updateAllocation(index, month.value, number);
+                      <Select
+                        placeholder="Select resource"
+                        style={{ width: '100%', alignContent: 'top' }}
+                        value={row.resource}
+                        onChange={selectedValue => {
+                          updateRow(index, 'resource', selectedValue);
+                        }}
+                        options={resources.map(resource => ({
+                          label: resource.name,
+                          value: resource._id
+                        }))}
+                      />
+                    </td>
+
+                    {months.map(month => {
+                      const totalPercent = getTotalPercent(row, month.value);
+
+                      const isOverloaded = totalPercent > 100;
+
+                      return (
+                        <td
+                          key={month.value}
+                          style={{
+                            width: 180,
+                            paddingRight: 16
+                          }}
+                        >
+                          <InputNumber
+                            min={0}
+                            max={100}
+                            status={isOverloaded ? 'error' : undefined}
+                            style={{
+                              width: '100%',
+                              backgroundColor: isOverloaded
+                                ? '#fff1f0'
+                                : undefined
+                            }}
+                            value={getAllocationValue(row, month.value)}
+                            onChange={number => {
+                              updateAllocation(index, month.value, number);
+                            }}
+                          />
+
+                          {row.resource && (
+                            <div
+                              style={{
+                                marginTop: 6,
+                                fontSize: 11,
+                                textAlign: 'center',
+                                color: isOverloaded ? '#ff4d4f' : '#607d8b'
+                              }}
+                            >
+                              Total: {Math.round(totalPercent)}%
+                            </div>
+                          )}
+                        </td>
+                      );
+                    })}
+
+                    <td style={{ width: 60 }}>
+                      <Button
+                        danger
+                        type="text"
+                        icon={<DeleteOutlined />}
+                        onClick={() => {
+                          removeRow(index);
                         }}
                       />
                     </td>
-                  ))}
+                  </tr>
 
-                  <td style={{ width: 60 }}>
-                    <Button
-                      danger
-                      type="text"
-                      icon={<DeleteOutlined />}
-                      onClick={() => {
-                        removeRow(index);
-                      }}
-                    />
-                  </td>
-                </tr>
+                  {isRowOverloaded(row) && (
+                    <tr>
+                      <td colSpan={months.length + 2}>
+                        <div
+                          style={{
+                            background: '#fff1f0',
+                            border: '1px solid #ffccc7',
+                            color: '#ff4d4f',
+                            padding: '10px 14px',
+                            borderRadius: 6,
+                            fontSize: 13
+                          }}
+                        >
+                          <ExclamationCircleOutlined
+                            style={{ marginRight: 8 }}
+                          />
+                          {getResourceName(row.resource)} is overallocated in
+                          one or more months. Total workload exceeds 100% when
+                          combined with other projects.
+                        </div>
+                      </td>
+                    </tr>
+                  )}
+                </>
               ))}
             </tbody>
           </table>

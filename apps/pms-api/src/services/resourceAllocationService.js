@@ -60,7 +60,9 @@ export async function findResourceAllocationForNextMonths(
     },
     {
       $project: {
+        resourceId: '$resource._id',
         resource: '$resource.name',
+        projectId: '$project._id',
         project: '$project.name',
         allocation: '$allocation'
       }

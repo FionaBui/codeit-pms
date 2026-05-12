@@ -26,7 +26,8 @@ import {
 import { listResources } from '../../api/resourceApi.js';
 import {
   getResourceAllocationsByProject,
-  saveResourceAllocationsByProject
+  saveResourceAllocationsByProject,
+  getResourceAllocationForNextMonths
 } from '../../api/resourceAllocationApi.js';
 import ResourceAssignment from '../../components/management/ResourceAssignment.jsx';
 import ProjectFormFields from '../../components/management/ProjectFormFields.jsx';
@@ -65,6 +66,7 @@ export default function ProjectManagementPage() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [editingProject, setEditingProject] = useState(null);
   const [resourceAssignments, setResourceAssignments] = useState([]);
+  const [allResourceAllocations, setAllResourceAllocations] = useState([]);
 
   const [form] = Form.useForm();
 
@@ -72,6 +74,16 @@ export default function ProjectManagementPage() {
     fetchProjects();
     fetchResources();
   }, []);
+
+  async function fetchAllResourceAllocations() {
+    try {
+      const data = await getResourceAllocationForNextMonths(12);
+      setAllResourceAllocations(data);
+    } catch (error) {
+      console.error('Failed to load all resource allocations:', error);
+      setAllResourceAllocations([]);
+    }
+  }
 
   async function fetchProjects() {
     try {
@@ -144,6 +156,7 @@ export default function ProjectManagementPage() {
 
   function openCreateDrawer() {
     setEditingProject(null);
+    fetchAllResourceAllocations();
 
     form.resetFields();
     setResourceAssignments([]);
@@ -152,6 +165,7 @@ export default function ProjectManagementPage() {
 
   async function openEditDrawer(project) {
     setEditingProject(project);
+    await fetchAllResourceAllocations();
 
     form.setFieldsValue({
       ...project,
@@ -228,12 +242,28 @@ export default function ProjectManagementPage() {
     low: 1
   };
 
+  function createFilters(data, field, getValue = item => item[field]) {
+    return Array.from(
+      new Set(data.map(item => getValue(item)).filter(Boolean))
+    ).map(value => ({
+      text: value,
+      value
+    }));
+  }
+
+  const typeFilters = createFilters(projects, 'type');
+  const statusFilters = createFilters(projects, 'status');
+  const managerFilters = createFilters(
+    projects,
+    'manager',
+    project => project.manager?.name
+  );
+
   const columns = [
     {
       title: 'Project',
       dataIndex: 'shortName',
       key: 'shortName',
-      // sorter: (a, b) => a.shortName.localeCompare(b.shortName),
       render: (_, project) => (
         <Space orientation="vertical" size={0}>
           <Text strong>{project.shortName}</Text>
@@ -247,62 +277,24 @@ export default function ProjectManagementPage() {
       title: 'Manager',
       dataIndex: 'manager',
       key: 'manager',
-      render: manager => manager.name
+      filters: managerFilters,
+      onFilter: (value, record) => record.manager?.name === value,
+      render: manager => manager?.name
     },
     {
       title: 'Type',
       dataIndex: 'type',
       key: 'type',
-
-      filters: [
-        {
-          text: 'Type 1: new development outside Core Services',
-          value: 'Type 1: new development outside Core Services'
-        },
-        {
-          text: 'Type 2: development / improvements inside Core Services',
-          value: 'Type 2: development / improvements inside Core Services'
-        },
-        {
-          text: 'Type 3: Customizations & Change requests',
-          value: 'Type 3: Customizations & Change requests'
-        },
-        {
-          text: 'Type 4: Daily support & Continuous improvements',
-          value: 'Type 4: Daily support & Continuous improvements'
-        }
-      ],
-
+      filters: typeFilters,
       onFilter: (value, record) => record.type === value,
-
-      render: type => <Text>{type.split(':')[0]}</Text>
+      render: type => <Text>{type?.split(':')[0]}</Text>
     },
     {
       title: 'Status',
       dataIndex: 'status',
       key: 'status',
-
-      filters: [
-        {
-          text: 'plan',
-          value: 'plan'
-        },
-        {
-          text: 'execution',
-          value: 'execution'
-        },
-        {
-          text: 'closing',
-          value: 'closing'
-        },
-        {
-          text: 'finished',
-          value: 'finished'
-        }
-      ],
-
+      filters: statusFilters,
       onFilter: (value, record) => record.status === value,
-
       render: status => (
         <Tag color={statusColors[status]}>{status.toUpperCase()}</Tag>
       )
@@ -426,7 +418,7 @@ export default function ProjectManagementPage() {
           columns={columns}
           dataSource={filteredProjects}
           loading={loading}
-          pagination={{ pageSize: 8 }}
+          pagination={false}
         />
       </Space>
 
@@ -482,6 +474,8 @@ export default function ProjectManagementPage() {
           projectEndDate={Form.useWatch('endDate', form)}
           value={resourceAssignments}
           onChange={setResourceAssignments}
+          existingAllocations={allResourceAllocations}
+          currentProjectId={editingProject?._id}
         />
       </Drawer>
     </ChartCard>
