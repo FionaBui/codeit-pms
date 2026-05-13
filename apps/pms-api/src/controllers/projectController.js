@@ -1,7 +1,8 @@
 import {
   listProjects,
   createProject as createProjectService,
-  updateProject as updateProjectService
+  updateProject as updateProjectService,
+  deleteProject as deleteProjectService
 } from '../services/projectService.js';
 
 export async function getProjects(req, res, next) {
@@ -34,6 +35,24 @@ export async function updateProject(req, res, next) {
     }
 
     res.status(200).json({ data: project });
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function deleteProject(req, res, next) {
+  try {
+    const project = await deleteProjectService(req.params.id);
+
+    if (!project) {
+      return res.status(404).json({
+        message: 'Project not found'
+      });
+    }
+
+    res.status(200).json({
+      data: project
+    });
   } catch (err) {
     next(err);
   }

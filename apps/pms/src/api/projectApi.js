@@ -39,3 +39,9 @@ export async function updateProject(id, project) {
   const res = await client.put(`/projects/${id}`, project);
   return res.data;
 }
+
+export async function deleteProject(projectId) {
+  const client = await getApiClient();
+
+  return await client.delete(`/projects/${projectId}`);
+}

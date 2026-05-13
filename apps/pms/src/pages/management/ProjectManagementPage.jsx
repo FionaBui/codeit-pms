@@ -14,14 +14,21 @@ import {
   Table,
   Tag,
   Typography,
-  message
+  message,
+  Modal
 } from 'antd';
-import { EditOutlined, PlusOutlined, SearchOutlined } from '@ant-design/icons';
+import {
+  EditOutlined,
+  PlusOutlined,
+  SearchOutlined,
+  DeleteOutlined
+} from '@ant-design/icons';
 import dayjs from 'dayjs';
 import {
   listProjects,
   createProject,
-  updateProject
+  updateProject,
+  deleteProject
 } from '../../api/projectApi.js';
 import { listResources } from '../../api/resourceApi.js';
 import {
@@ -46,17 +53,6 @@ const priorityColors = {
   medium: 'blue',
   high: 'red'
 };
-
-// const projectTypes = [
-//   'Type 1: new development outside Core Services',
-//   'Type 2: development / improvements inside Core Services',
-//   'Type 3: Customizations & Change requests',
-//   'Type 4: Daily support & Continuous improvements'
-// ];
-
-// const projectStatuses = ['plan', 'execution', 'closing', 'finished'];
-
-const projectPriorities = ['low', 'medium', 'high'];
 
 export default function ProjectManagementPage() {
   const [projects, setProjects] = useState([]);
@@ -236,6 +232,37 @@ export default function ProjectManagementPage() {
     }
   }
 
+  function handleDeleteProject(project) {
+    Modal.confirm({
+      title: 'Delete project',
+      content: `You're about to delete "${project.name}". This action cannot be undone.`,
+      okText: 'Delete',
+      cancelText: 'Cancel',
+      okButtonProps: {
+        danger: true
+      },
+      centered: true,
+
+      async onOk() {
+        try {
+          setLoading(true);
+
+          await deleteProject(project._id);
+
+          message.success('Project deleted successfully', 3);
+
+          await fetchProjects();
+        } catch (error) {
+          console.error('Delete project failed:', error);
+
+          message.error('Failed to delete project', 3);
+        } finally {
+          setLoading(false);
+        }
+      }
+    });
+  }
+
   const priorityOrder = {
     high: 3,
     medium: 2,
@@ -333,9 +360,27 @@ export default function ProjectManagementPage() {
       title: 'Action',
       key: 'action',
       render: (_, project) => (
-        <Button icon={<EditOutlined />} onClick={() => openEditDrawer(project)}>
-          Edit
-        </Button>
+        <Space>
+          <Button
+            style={{
+              borderColor: '#1677ff',
+              color: '#1677ff'
+            }}
+            icon={<EditOutlined />}
+            color="primary"
+            onClick={() => openEditDrawer(project)}
+          >
+            Edit
+          </Button>
+
+          <Button
+            danger
+            icon={<DeleteOutlined />}
+            onClick={() => handleDeleteProject(project)}
+          >
+            Delete
+          </Button>
+        </Space>
       )
     }
   ];

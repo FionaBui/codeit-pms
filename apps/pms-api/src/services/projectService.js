@@ -31,3 +31,9 @@ export async function updateProject(id, projectData) {
     }
   ).populate('manager');
 }
+
+export async function deleteProject(id) {
+  return await Project.findOneAndDelete({
+    _id: id
+  });
+}
