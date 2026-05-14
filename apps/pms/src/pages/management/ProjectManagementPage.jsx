@@ -288,16 +288,26 @@ export default function ProjectManagementPage() {
 
   const columns = [
     {
-      title: 'Project',
+      title: <div style={{ paddingLeft: 20 }}>Project</div>,
+      paddingLeft: '20px',
       dataIndex: 'shortName',
       key: 'shortName',
       render: (_, project) => (
-        <Space orientation="vertical" size={0}>
-          <Text strong>{project.shortName}</Text>
-          <Text type="secondary" style={{ fontSize: 12 }}>
-            {project.name}
-          </Text>
-        </Space>
+        <div style={{ paddingLeft: 20 }}>
+          <Space orientation="vertical" size={0}>
+            <Text strong>{project.shortName}</Text>
+
+            <Text
+              type="secondary"
+              style={{
+                fontSize: 12,
+                whiteSpace: 'normal'
+              }}
+            >
+              {project.name}
+            </Text>
+          </Space>
+        </div>
       )
     },
     {
@@ -366,6 +376,7 @@ export default function ProjectManagementPage() {
               borderColor: '#1677ff',
               color: '#1677ff'
             }}
+            size="small"
             icon={<EditOutlined />}
             color="primary"
             onClick={() => openEditDrawer(project)}
@@ -375,6 +386,7 @@ export default function ProjectManagementPage() {
 
           <Button
             danger
+            size="small"
             icon={<DeleteOutlined />}
             onClick={() => handleDeleteProject(project)}
           >
@@ -401,73 +413,80 @@ export default function ProjectManagementPage() {
     <ChartCard title="Project Management" height="85vh">
       <Space orientation="vertical" size={16} style={{ width: '100%' }}>
         {/* Summary */}
-        <Row gutter={[16, 16]}>
+        <Row gutter={[16, 16]} style={{ margin: '12px 20px' }}>
           <Col xs={24} sm={12} lg={6}>
-            <Card>
-              <Statistic title="Total projects" value={summary.totalProjects} />
+            <Card size="small">
+              <Statistic
+                title="Total projects"
+                value={summary.totalProjects}
+                valueStyle={{ fontSize: 20 }}
+              />
             </Card>
           </Col>
 
           <Col xs={24} sm={12} lg={6}>
-            <Card>
+            <Card size="small">
               <Statistic
                 title="Active projects"
                 value={summary.activeProjects}
+                valueStyle={{ fontSize: 20 }}
               />
             </Card>
           </Col>
 
           <Col xs={24} sm={12} lg={6}>
-            <Card>
+            <Card size="small">
               <Statistic
                 title="High priority"
                 value={summary.highPriorityProjects}
+                valueStyle={{ fontSize: 20 }}
               />
             </Card>
           </Col>
 
           <Col xs={24} sm={12} lg={6}>
-            <Card>
+            <Card size="small">
               <Statistic
                 title="Planned hours"
                 value={summary.totalPlannedHours}
                 suffix="h"
+                valueStyle={{ fontSize: 20 }}
               />
             </Card>
           </Col>
         </Row>
 
         {/* Search */}
-        <Card>
-          <Row gutter={[16, 16]} align="middle" justify="space-between">
-            <Col xs={24} md={12}>
-              <Title level={4} style={{ margin: 0 }}>
-                All Projects
-              </Title>
-            </Col>
 
-            <Col xs={24} md={12}>
-              <Space style={{ width: '100%', justifyContent: 'flex-end' }}>
-                <Input
-                  allowClear
-                  prefix={<SearchOutlined />}
-                  placeholder="Search project, manager or status"
-                  value={searchText}
-                  onChange={event => setSearchText(event.target.value)}
-                  style={{ width: 300 }}
-                />
+        <Row gutter={[16, 16]} align="middle" justify="space-between">
+          <Col xs={24} md={12}>
+            <Title level={5} style={{ paddingLeft: 20 }}>
+              All Projects
+            </Title>
+          </Col>
 
-                <Button
-                  type="primary"
-                  icon={<PlusOutlined />}
-                  onClick={openCreateDrawer}
-                >
-                  New project
-                </Button>
-              </Space>
-            </Col>
-          </Row>
-        </Card>
+          <Col xs={24} md={12}>
+            <Space style={{ width: '100%', justifyContent: 'flex-end' }}>
+              <Input
+                allowClear
+                prefix={<SearchOutlined />}
+                placeholder="Search project, manager or status"
+                value={searchText}
+                onChange={event => setSearchText(event.target.value)}
+                style={{ width: 300 }}
+              />
+
+              <Button
+                type="primary"
+                icon={<PlusOutlined />}
+                onClick={openCreateDrawer}
+                style={{ marginRight: 20 }}
+              >
+                New project
+              </Button>
+            </Space>
+          </Col>
+        </Row>
 
         {/* Table */}
         <Table
@@ -476,6 +495,8 @@ export default function ProjectManagementPage() {
           dataSource={filteredProjects}
           loading={loading}
           pagination={false}
+          size="small"
+          // margin="30px"
         />
       </Space>
 
@@ -484,7 +505,7 @@ export default function ProjectManagementPage() {
         title={editingProject ? 'Edit project' : 'Create new project'}
         open={isDrawerOpen}
         onClose={() => setIsDrawerOpen(false)}
-        size={980}
+        size={1200}
         afterOpenChange={open => {
           if (!open) {
             form.resetFields();

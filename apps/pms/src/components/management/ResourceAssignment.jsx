@@ -174,7 +174,7 @@ export default function ResourceAssignment({
         <div style={{ overflowX: 'auto', paddingBottom: 8 }}>
           <table
             style={{
-              minWidth: 240 + months.length * 180 + 60,
+              minWidth: 240 + months.length * 100 + 60,
               width: 'max-content',
               borderCollapse: 'separate',
               borderSpacing: '0 12px'
@@ -196,7 +196,7 @@ export default function ResourceAssignment({
                   <th
                     key={month.value}
                     style={{
-                      width: 180,
+                      width: 100,
                       textAlign: 'left',
                       paddingRight: 16
                     }}
@@ -243,7 +243,7 @@ export default function ResourceAssignment({
                         <td
                           key={month.value}
                           style={{
-                            width: 180,
+                            width: 100,
                             paddingRight: 16
                           }}
                         >
@@ -268,7 +268,7 @@ export default function ResourceAssignment({
                               style={{
                                 marginTop: 6,
                                 fontSize: 11,
-                                textAlign: 'center',
+                                textAlign: 'left',
                                 color: isOverloaded ? '#ff4d4f' : '#607d8b'
                               }}
                             >
