@@ -68,7 +68,7 @@ const ProjectSchema = new Schema(
   { timestamps: true }
 );
 
-ProjectSchema.pre('save', function (next) {
+ProjectSchema.pre('validate', function (next) {
   if (this.isNew && !this._id && this.shortName) {
     this._id = slugify(this.shortName);
   }
