@@ -58,6 +58,7 @@ export default function ProjectManagementPage() {
   const [projects, setProjects] = useState([]);
   const [resources, setResources] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [drawerLoading, setDrawerLoading] = useState(false);
   const [searchText, setSearchText] = useState('');
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [editingProject, setEditingProject] = useState(null);
@@ -71,6 +72,7 @@ export default function ProjectManagementPage() {
   useEffect(() => {
     fetchProjects();
     fetchResources();
+    fetchAllResourceAllocations();
   }, []);
 
   async function fetchAllResourceAllocations() {
@@ -88,7 +90,7 @@ export default function ProjectManagementPage() {
       setLoading(true);
 
       const res = await listProjects();
-      console.log('API response:', res.data);
+      // console.log('API response:', res.data);
 
       setProjects(res.data);
     } catch (error) {
@@ -101,7 +103,7 @@ export default function ProjectManagementPage() {
   async function fetchResources() {
     try {
       const res = await listResources();
-      console.log('API resources:', res.data);
+      // console.log('API resources:', res.data);
 
       const resourcesArray = Array.isArray(res)
         ? res
@@ -114,7 +116,7 @@ export default function ProjectManagementPage() {
       console.error('Failed to load resources:', error);
     }
   }
-  console.log('projects', projects);
+  // console.log('projects', projects);
   const filteredProjects = useMemo(() => {
     return projects.filter(project => {
       const keyword = searchText.toLowerCase();
@@ -160,8 +162,6 @@ export default function ProjectManagementPage() {
 
   function openCreateDrawer() {
     setEditingProject(null);
-    fetchAllResourceAllocations();
-
     form.resetFields();
     setResourceAssignments([]);
     setIsDrawerOpen(true);
@@ -169,11 +169,13 @@ export default function ProjectManagementPage() {
 
   async function openEditDrawer(project) {
     setEditingProject(project);
-    await fetchAllResourceAllocations();
+    setResourceAssignments([]);
+    setIsDrawerOpen(true);
+    setDrawerLoading(true);
 
     form.setFieldsValue({
       ...project,
-      manager: project.manager._id,
+      manager: project.manager?._id,
       completion: Math.round((project.completion || 0) * 100),
       startDate: dayjs(project.startDate),
       endDate: dayjs(project.endDate)
@@ -193,11 +195,10 @@ export default function ProjectManagementPage() {
       setResourceAssignments(formattedAllocations);
     } catch (error) {
       console.error('Failed to load project allocations:', error);
-
       setResourceAssignments([]);
+    } finally {
+      setDrawerLoading(false);
     }
-
-    setIsDrawerOpen(true);
   }
 
   async function handleSaveProject(values) {
@@ -560,6 +561,7 @@ export default function ProjectManagementPage() {
         </Form>
         <ResourceAssignment
           resources={resources}
+          loading={drawerLoading}
           projectStartDate={Form.useWatch('startDate', form)}
           projectEndDate={Form.useWatch('endDate', form)}
           value={resourceAssignments}

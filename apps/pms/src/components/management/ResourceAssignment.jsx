@@ -1,8 +1,17 @@
-import { Button, Card, Typography, Select, InputNumber } from 'antd';
+import React, { useMemo } from 'react';
+import {
+  Button,
+  Card,
+  Typography,
+  Select,
+  InputNumber,
+  Popconfirm
+} from 'antd';
 import {
   PlusOutlined,
   DeleteOutlined,
-  ExclamationCircleOutlined
+  ExclamationCircleOutlined,
+  QuestionCircleOutlined
 } from '@ant-design/icons';
 import { dayjs } from '@codeit/utils';
 
@@ -37,7 +46,8 @@ export default function ResourceAssignment({
   value = [],
   onChange,
   existingAllocations = [],
-  currentProjectId
+  currentProjectId,
+  loading = false
 }) {
   function addResourceRow() {
     const newRow = {
@@ -115,7 +125,9 @@ export default function ResourceAssignment({
     return found ? found.percent : null;
   }
 
-  const months = getMonthsBetween(projectStartDate, projectEndDate);
+  const months = useMemo(() => {
+    return getMonthsBetween(projectStartDate, projectEndDate);
+  }, [projectStartDate, projectEndDate]);
 
   function getResourceName(resourceId) {
     const found = resources.find(resource => resource._id === resourceId);
@@ -160,6 +172,7 @@ export default function ResourceAssignment({
   return (
     <Card
       title="Resource Assignment"
+      loading={loading}
       extra={
         <Button type="primary" icon={<PlusOutlined />} onClick={addResourceRow}>
           Add Resource
@@ -280,14 +293,19 @@ export default function ResourceAssignment({
                     })}
 
                     <td style={{ width: 60 }}>
-                      <Button
-                        danger
-                        type="text"
-                        icon={<DeleteOutlined />}
-                        onClick={() => {
-                          removeRow(index);
-                        }}
-                      />
+                      <Popconfirm
+                        title="Remove resource?"
+                        description="Are you sure to remove this resource?"
+                        okText="Remove"
+                        cancelText="Cancel"
+                        okButtonProps={{ danger: true }}
+                        icon={
+                          <QuestionCircleOutlined style={{ color: 'orange' }} />
+                        }
+                        onConfirm={() => removeRow(index)}
+                      >
+                        <Button danger type="text" icon={<DeleteOutlined />} />
+                      </Popconfirm>
                     </td>
                   </tr>
 
