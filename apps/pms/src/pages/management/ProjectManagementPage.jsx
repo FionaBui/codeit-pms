@@ -58,17 +58,21 @@ export default function ProjectManagementPage() {
   const [projects, setProjects] = useState([]);
   const [resources, setResources] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [drawerLoading, setDrawerLoading] = useState(false);
   const [searchText, setSearchText] = useState('');
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [editingProject, setEditingProject] = useState(null);
   const [resourceAssignments, setResourceAssignments] = useState([]);
   const [allResourceAllocations, setAllResourceAllocations] = useState([]);
+  const [filteredInfo, setFilteredInfo] = useState({});
+  const [sortedInfo, setSortedInfo] = useState({});
 
   const [form] = Form.useForm();
 
   useEffect(() => {
     fetchProjects();
     fetchResources();
+    fetchAllResourceAllocations();
   }, []);
 
   async function fetchAllResourceAllocations() {
@@ -86,7 +90,7 @@ export default function ProjectManagementPage() {
       setLoading(true);
 
       const res = await listProjects();
-      console.log('API response:', res.data);
+      // console.log('API response:', res.data);
 
       setProjects(res.data);
     } catch (error) {
@@ -99,7 +103,7 @@ export default function ProjectManagementPage() {
   async function fetchResources() {
     try {
       const res = await listResources();
-      console.log('API resources:', res.data);
+      // console.log('API resources:', res.data);
 
       const resourcesArray = Array.isArray(res)
         ? res
@@ -112,7 +116,7 @@ export default function ProjectManagementPage() {
       console.error('Failed to load resources:', error);
     }
   }
-  console.log('projects', projects);
+  // console.log('projects', projects);
   const filteredProjects = useMemo(() => {
     return projects.filter(project => {
       const keyword = searchText.toLowerCase();
@@ -150,10 +154,14 @@ export default function ProjectManagementPage() {
     };
   }, [projects]);
 
+  function clearAllFilters() {
+    setSearchText('');
+    setFilteredInfo({});
+    setSortedInfo({});
+  }
+
   function openCreateDrawer() {
     setEditingProject(null);
-    fetchAllResourceAllocations();
-
     form.resetFields();
     setResourceAssignments([]);
     setIsDrawerOpen(true);
@@ -161,11 +169,13 @@ export default function ProjectManagementPage() {
 
   async function openEditDrawer(project) {
     setEditingProject(project);
-    await fetchAllResourceAllocations();
+    setResourceAssignments([]);
+    setIsDrawerOpen(true);
+    setDrawerLoading(true);
 
     form.setFieldsValue({
       ...project,
-      manager: project.manager._id,
+      manager: project.manager?._id,
       completion: Math.round((project.completion || 0) * 100),
       startDate: dayjs(project.startDate),
       endDate: dayjs(project.endDate)
@@ -185,11 +195,10 @@ export default function ProjectManagementPage() {
       setResourceAssignments(formattedAllocations);
     } catch (error) {
       console.error('Failed to load project allocations:', error);
-
       setResourceAssignments([]);
+    } finally {
+      setDrawerLoading(false);
     }
-
-    setIsDrawerOpen(true);
   }
 
   async function handleSaveProject(values) {
@@ -311,10 +320,11 @@ export default function ProjectManagementPage() {
       )
     },
     {
-      title: 'Manager',
+      title: 'Contact',
       dataIndex: 'manager',
       key: 'manager',
       filters: managerFilters,
+      filteredValue: filteredInfo.manager || null,
       onFilter: (value, record) => record.manager?.name === value,
       render: manager => manager?.name
     },
@@ -323,6 +333,7 @@ export default function ProjectManagementPage() {
       dataIndex: 'type',
       key: 'type',
       filters: typeFilters,
+      filteredValue: filteredInfo.type || null,
       onFilter: (value, record) => record.type === value,
       render: type => <Text>{type?.split(':')[0]}</Text>
     },
@@ -331,6 +342,7 @@ export default function ProjectManagementPage() {
       dataIndex: 'status',
       key: 'status',
       filters: statusFilters,
+      filteredValue: filteredInfo.status || null,
       onFilter: (value, record) => record.status === value,
       render: status => (
         <Tag color={statusColors[status]}>{status.toUpperCase()}</Tag>
@@ -340,8 +352,8 @@ export default function ProjectManagementPage() {
       title: 'Priority',
       dataIndex: 'priority',
       key: 'priority',
-      defaultSortOrder: 'descend',
       sorter: (a, b) => priorityOrder[a.priority] - priorityOrder[b.priority],
+      sortOrder: sortedInfo.columnKey === 'priority' ? sortedInfo.order : null,
       render: priority => (
         <Tag color={priorityColors[priority]}>{priority.toUpperCase()}</Tag>
       )
@@ -380,18 +392,14 @@ export default function ProjectManagementPage() {
             icon={<EditOutlined />}
             color="primary"
             onClick={() => openEditDrawer(project)}
-          >
-            Edit
-          </Button>
+          ></Button>
 
           <Button
             danger
             size="small"
             icon={<DeleteOutlined />}
             onClick={() => handleDeleteProject(project)}
-          >
-            Delete
-          </Button>
+          ></Button>
         </Space>
       )
     }
@@ -459,32 +467,34 @@ export default function ProjectManagementPage() {
         {/* Search */}
 
         <Row gutter={[16, 16]} align="middle" justify="space-between">
-          <Col xs={24} md={12}>
-            <Title level={5} style={{ paddingLeft: 20 }}>
-              All Projects
-            </Title>
-          </Col>
+          <Col>
+            <Space size={10}>
+              <Title level={5} style={{ margin: 0, padding: 20 }}>
+                All Projects
+              </Title>
 
-          <Col xs={24} md={12}>
-            <Space style={{ width: '100%', justifyContent: 'flex-end' }}>
               <Input
                 allowClear
                 prefix={<SearchOutlined />}
-                placeholder="Search project, manager or status"
+                placeholder="Search project, contact person or status"
                 value={searchText}
                 onChange={event => setSearchText(event.target.value)}
                 style={{ width: 300 }}
               />
 
-              <Button
-                type="primary"
-                icon={<PlusOutlined />}
-                onClick={openCreateDrawer}
-                style={{ marginRight: 20 }}
-              >
-                New project
-              </Button>
+              <Button onClick={clearAllFilters}>Clear</Button>
             </Space>
+          </Col>
+
+          <Col>
+            <Button
+              type="primary"
+              icon={<PlusOutlined />}
+              onClick={openCreateDrawer}
+              style={{ marginRight: 20 }}
+            >
+              New project
+            </Button>
           </Col>
         </Row>
 
@@ -496,7 +506,10 @@ export default function ProjectManagementPage() {
           loading={loading}
           pagination={false}
           size="small"
-          // margin="30px"
+          onChange={(_, filters, sorter) => {
+            setFilteredInfo(filters);
+            setSortedInfo(sorter);
+          }}
         />
       </Space>
 
@@ -548,6 +561,7 @@ export default function ProjectManagementPage() {
         </Form>
         <ResourceAssignment
           resources={resources}
+          loading={drawerLoading}
           projectStartDate={Form.useWatch('startDate', form)}
           projectEndDate={Form.useWatch('endDate', form)}
           value={resourceAssignments}

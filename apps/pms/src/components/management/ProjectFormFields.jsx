@@ -62,11 +62,11 @@ export default function ProjectFormFields({
       <Col span={12}>
         <Form.Item
           name="manager"
-          label="Manager"
+          label="Contact"
           rules={[
             {
               required: true,
-              message: 'Please input project manager'
+              message: 'Please input project contact person'
             }
           ]}
         >
