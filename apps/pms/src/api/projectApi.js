@@ -6,7 +6,8 @@ import { getApiClient } from './apiClient.js';
 export async function listProjects() {
   const client = await getApiClient();
   const res = await client.get('/projects');
-  return res.data;
+
+  return res.data.data;
 }
 
 /**
@@ -16,7 +17,8 @@ export async function listProjects() {
 export async function getProjectById(id) {
   const client = await getApiClient();
   const res = await client.get(`/projects/${id}`);
-  return res.data;
+
+  return res.data.data;
 }
 
 /**
@@ -26,7 +28,8 @@ export async function getProjectById(id) {
 export async function createProject(project) {
   const client = await getApiClient();
   const res = await client.post('/projects', project);
-  return res.data;
+
+  return res.data.data;
 }
 
 /**
@@ -37,11 +40,13 @@ export async function createProject(project) {
 export async function updateProject(id, project) {
   const client = await getApiClient();
   const res = await client.put(`/projects/${id}`, project);
-  return res.data;
+
+  return res.data.data;
 }
 
 export async function deleteProject(projectId) {
   const client = await getApiClient();
+  const res = await client.delete(`/projects/${projectId}`);
 
-  return await client.delete(`/projects/${projectId}`);
+  return res.data.data;
 }

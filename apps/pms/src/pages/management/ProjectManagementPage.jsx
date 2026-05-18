@@ -89,10 +89,10 @@ export default function ProjectManagementPage() {
     try {
       setLoading(true);
 
-      const res = await listProjects();
-      // console.log('API response:', res.data);
+      const projects = await listProjects();
 
-      setProjects(res.data);
+      // console.log('API response:', projects);
+      setProjects(projects);
     } catch (error) {
       console.error('Failed to load projects:', error);
     } finally {
@@ -206,33 +206,49 @@ export default function ProjectManagementPage() {
       ...values,
       startDate: values.startDate.toISOString(),
       endDate: values.endDate.toISOString(),
-      completion: values.completion / 100
+      completion: Number(values.completion || 0) / 100
     };
+
+    const formattedAssignments = resourceAssignments
+      .filter(row => row.resource)
+      .map(row => ({
+        resource: row.resource,
+        allocation: row.allocation || []
+      }));
 
     try {
       setLoading(true);
 
+      let savedProject;
+
       if (editingProject) {
-        await updateProject(editingProject._id, formattedProject);
-
-        await saveResourceAllocationsByProject(
+        savedProject = await updateProject(
           editingProject._id,
-          resourceAssignments.map(row => ({
-            resource: row.resource,
-            allocation: row.allocation
-          }))
+          formattedProject
         );
-
-        message.success('Project updated successfully', 3);
       } else {
-        await createProject(formattedProject);
-        message.success('Project created successfully', 3);
-        form.resetFields();
+        savedProject = await createProject(formattedProject);
       }
 
+      await saveResourceAllocationsByProject(
+        savedProject._id,
+        formattedAssignments
+      );
+
+      message.success(
+        editingProject
+          ? 'Project updated successfully'
+          : 'Project created successfully',
+        3
+      );
+
       setIsDrawerOpen(false);
+      setEditingProject(null);
+      setResourceAssignments([]);
+      form.resetFields();
 
       await fetchProjects();
+      await fetchAllResourceAllocations();
     } catch (error) {
       console.error('Save project failed:', error);
       message.error('Failed to save project', 3);
@@ -427,7 +443,8 @@ export default function ProjectManagementPage() {
               <Statistic
                 title="Total projects"
                 value={summary.totalProjects}
-                valueStyle={{ fontSize: 20 }}
+                // valueStyle={{ fontSize: 20 }}
+                styles={{ content: { fontSize: '20' } }}
               />
             </Card>
           </Col>
@@ -437,7 +454,7 @@ export default function ProjectManagementPage() {
               <Statistic
                 title="Active projects"
                 value={summary.activeProjects}
-                valueStyle={{ fontSize: 20 }}
+                styles={{ content: { fontSize: '20' } }}
               />
             </Card>
           </Col>
@@ -447,7 +464,7 @@ export default function ProjectManagementPage() {
               <Statistic
                 title="High priority"
                 value={summary.highPriorityProjects}
-                valueStyle={{ fontSize: 20 }}
+                styles={{ content: { fontSize: '20' } }}
               />
             </Card>
           </Col>
@@ -458,7 +475,7 @@ export default function ProjectManagementPage() {
                 title="Planned hours"
                 value={summary.totalPlannedHours}
                 suffix="h"
-                valueStyle={{ fontSize: 20 }}
+                styles={{ content: { fontSize: '20' } }}
               />
             </Card>
           </Col>

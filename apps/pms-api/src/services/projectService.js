@@ -1,5 +1,6 @@
 import { Project } from '../models/Project.js';
 import '../models/Resource.js';
+import { ResourceAllocation } from '../models/ResourceAllocation.js';
 
 export async function listProjects() {
   return await Project.find({}).populate('manager');
@@ -33,7 +34,17 @@ export async function updateProject(id, projectData) {
 }
 
 export async function deleteProject(id) {
-  return await Project.findOneAndDelete({
+  const deletedProject = await Project.findOneAndDelete({
     _id: id
   });
+
+  if (!deletedProject) {
+    return null;
+  }
+
+  await ResourceAllocation.deleteMany({
+    project: id
+  });
+
+  return deletedProject;
 }
