@@ -83,6 +83,10 @@ export default function ResourceManagementPage() {
     form.resetFields();
   }
 
+  function clearAllFilters() {
+    setSearchText('');
+  }
+
   async function handleSave(values) {
     try {
       const payload = {
@@ -134,10 +138,10 @@ export default function ResourceManagementPage() {
       sorter: (a, b) => a.name.localeCompare(b.name),
       render: (_, record) => (
         <Space orientation="vertical" size={0}>
-          <Text strong>{record.name}</Text>
-          <Text type="secondary" style={{ fontSize: 12 }}>
+          <Text>{record.name}</Text>
+          {/* <Text type="secondary" style={{ fontSize: 12 }}>
             {record._id}
-          </Text>
+          </Text> */}
         </Space>
       )
     },
@@ -166,6 +170,11 @@ export default function ResourceManagementPage() {
       render: (_, record) => (
         <Space>
           <Button
+            size="small"
+            style={{
+              borderColor: '#1677ff',
+              color: '#1677ff'
+            }}
             icon={<EditOutlined />}
             onClick={() => openEditDrawer(record)}
           />
@@ -175,7 +184,7 @@ export default function ResourceManagementPage() {
             description={`Are you sure you want to delete ${record.name}?`}
             onConfirm={() => handleDelete(record._id)}
           >
-            <Button danger icon={<DeleteOutlined />} />
+            <Button size="small" danger icon={<DeleteOutlined />} />
           </Popconfirm>
         </Space>
       )
@@ -205,6 +214,7 @@ export default function ResourceManagementPage() {
               onChange={event => setSearchText(event.target.value)}
               style={{ width: 280 }}
             />
+            <Button onClick={clearAllFilters}>Clear</Button>
           </Space>
 
           <Button

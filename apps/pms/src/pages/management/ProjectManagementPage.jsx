@@ -427,7 +427,7 @@ export default function ProjectManagementPage() {
               <Statistic
                 title="Total projects"
                 value={summary.totalProjects}
-                valueStyle={{ fontSize: 20 }}
+                styles={{ content: { fontSize: '20' } }}
               />
             </Card>
           </Col>
@@ -437,7 +437,7 @@ export default function ProjectManagementPage() {
               <Statistic
                 title="Active projects"
                 value={summary.activeProjects}
-                valueStyle={{ fontSize: 20 }}
+                styles={{ content: { fontSize: '20' } }}
               />
             </Card>
           </Col>
@@ -447,7 +447,7 @@ export default function ProjectManagementPage() {
               <Statistic
                 title="High priority"
                 value={summary.highPriorityProjects}
-                valueStyle={{ fontSize: 20 }}
+                styles={{ content: { fontSize: '20' } }}
               />
             </Card>
           </Col>
@@ -455,10 +455,10 @@ export default function ProjectManagementPage() {
           <Col xs={24} sm={12} lg={6}>
             <Card size="small">
               <Statistic
-                title="Planned hours"
+                title="Total planned hours"
                 value={summary.totalPlannedHours}
                 suffix="h"
-                valueStyle={{ fontSize: 20 }}
+                styles={{ content: { fontSize: '20' } }}
               />
             </Card>
           </Col>
