@@ -418,7 +418,7 @@ export default function ProjectManagementPage() {
   );
 
   return (
-    <ChartCard title="Project Management" height="85vh">
+    <ChartCard title="Project Management" height="100vh">
       <Space orientation="vertical" size={16} style={{ width: '100%' }}>
         {/* Summary */}
         <Row gutter={[16, 16]} style={{ margin: '12px 20px' }}>
