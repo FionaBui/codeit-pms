@@ -1,4 +1,4 @@
-import { createAuthedApiClient } from '@codeit/api';
+import { createAuthedApiClient } from '@codeit/auth/msal';
 
 let clientPromise = null;
 

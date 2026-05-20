@@ -1,61 +1,65 @@
 # @codeit/api
 
-Shared API utilities for frontend apps: runtime config, MSAL token, and Axios client helpers.
+Reusable HTTP client + runtime configuration for frontend apps.
+
+This package is intentionally **auth-provider-agnostic**: it knows how to
+load runtime config and build an Axios client that asks *someone else* for
+a token. MSAL-specific helpers live in [`@codeit/auth/msal`](../auth).
 
 ## Install
 
-Ensure peer dependencies are installed:
-
 ```bash
-npm install axios @azure/msal-browser
+npm install axios
 ```
 
-`@azure/msal-browser` is optional if you only use `createApiClient` / `createRuntimeApiClient` without MSAL.
+## Runtime config
 
-## Config
-
-By default, the library loads config from `/config.json`. Expected shape:
+Apps ship `/config.json` (or any URL you choose) so the same build can be
+deployed to multiple environments:
 
 ```json
 {
   "api": {
-    "baseUrl": "http://localhost:3333",
-    "scopes": ["api://your-app-id/pms.read"]
+    "baseUrl": "https://api.example.com",
+    "scopes": ["api://<app-id>/access_as_user"]
   }
 }
 ```
 
-Override the config URL via options (e.g. for tests or different apps):
-
-```js
-loadRuntimeConfig({ configUrl: '/my-config.json' });
-getApiBaseUrl({ configUrl: '/my-config.json' });
-createRuntimeApiClient({ configUrl: '/my-config.json' });
-```
+`scopes` is only required if the consumer is going to acquire tokens for
+those scopes (e.g. MSAL).
 
 ## API
 
 ### Runtime config
 
-- `loadRuntimeConfig(options?)` – Load config (cached). Options: `configUrl`, `throwOnError`
-- `getApiBaseUrl(options?)` – Get `api.baseUrl`
-- `getApiScopes(options?)` – Get `api.scopes` array
-- `resetRuntimeConfigCache()` – Clear config cache (tests, config changes)
+- `loadRuntimeConfig(options?)` — fetch and cache config. Options:
+  - `configUrl` (default `/config.json`)
+  - `throwOnError` (default `false`; when `false`, returns `{}` and logs a warning)
+- `getApiBaseUrl(options?)` — returns `api.baseUrl`, normalized (no trailing slash). Throws if missing.
+- `getApiScopes(options?)` — returns `api.scopes` as a string array (defaults to `[]`).
+- `resetRuntimeConfigCache()` — clears the cache (tests, or when config changes).
 
-### API client
+Failed config loads are not cached, so a transient failure can be retried.
 
-- `createApiClient({ baseUrl, accessToken?, axiosConfig? })` – Create Axios client with baseURL and optional Bearer token
-- `createRuntimeApiClient(options?)` – Create client from config (cached). Options: `configUrl`, `axiosConfig`
-- `createAuthedApiClient({ instance, configUrl? })` – Create client with MSAL token (baseUrl + scopes from config)
-- `resetRuntimeApiClientCache()` – Clear runtime client cache
+### HTTP client
 
-### MSAL token
+- `createApiClient(options)` — low-level Axios factory.
+  - `baseUrl` (required)
+  - `accessToken?: string` — static Bearer token. Use for tokens that don't change per request (PAT, API key, env-injected secret).
+  - `getToken?: () => Promise<string|null>` — called on every request to fetch a fresh token. Use for tokens that rotate (MSAL/OAuth).
+  - `accessToken` and `getToken` are mutually exclusive; passing both throws.
+  - `axiosConfig?` — extra Axios options (timeout, headers, etc.). `baseURL` is always overridden by `baseUrl`.
+  - `onRequest?`, `onResponse?`, `onError?` — extra interceptors.
 
-- `getMsalAccessToken({ instance, scopes })` – Get access token via `acquireTokenSilent`. Returns `null` if no account or empty scopes. May throw if interaction is required; callers should catch and trigger login.
+- `createRuntimeApiClient(options?)` — same as `createApiClient`, but reads `baseUrl` from runtime config.
+
+Neither factory caches the resulting client. Apps that want a singleton
+should wrap the call themselves, so cache ownership is explicit.
 
 ## Usage
 
-**Simple (no auth):**
+### Anonymous client
 
 ```js
 import { createRuntimeApiClient } from '@codeit/api';
@@ -64,30 +68,51 @@ const client = await createRuntimeApiClient();
 const res = await client.get('/projects');
 ```
 
-**With MSAL (e.g. in React hook):**
+### With a static token (PAT, API key)
 
 ```js
-import { useMsal } from '@azure/msal-react';
-import { createAuthedApiClient } from '@codeit/api';
+import { createRuntimeApiClient } from '@codeit/api';
 
-function useApiClient() {
-  const { instance } = useMsal();
-  const [client, setClient] = useState(null);
-
-  useEffect(() => {
-    createAuthedApiClient({ instance }).then(setClient);
-  }, [instance]);
-
-  return client;
-}
+const client = await createRuntimeApiClient({
+  accessToken: import.meta.env.VITE_API_TOKEN,
+});
 ```
 
-Or compose manually:
+### With a rotating token
 
 ```js
-import { createApiClient, getApiBaseUrl, getApiScopes, getMsalAccessToken } from '@codeit/api';
+import { createRuntimeApiClient } from '@codeit/api';
 
-const [baseUrl, scopes] = await Promise.all([getApiBaseUrl(), getApiScopes()]);
-const token = await getMsalAccessToken({ instance, scopes });
-const client = createApiClient({ baseUrl, accessToken: token });
+const client = await createRuntimeApiClient({
+  getToken: () => myAuth.getAccessToken(),
+});
+```
+
+### With MSAL
+
+Use `@codeit/auth/msal`:
+
+```js
+import { createAuthedApiClient } from '@codeit/auth/msal';
+
+const client = await createAuthedApiClient({ instance });
+```
+
+`createAuthedApiClient` attaches a fresh MSAL token on every request, so
+tokens never go stale during a session. If MSAL requires interactive
+sign-in, the failing request rejects with `MsalInteractionRequiredError`.
+
+### Adding interceptors
+
+```js
+const client = await createRuntimeApiClient({
+  onRequest: (config) => {
+    config.headers.set('x-correlation-id', crypto.randomUUID());
+    return config;
+  },
+  onError: (err) => {
+    // normalize errors here
+    return Promise.reject(err);
+  },
+});
 ```
