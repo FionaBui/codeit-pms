@@ -14,7 +14,7 @@ export function ProjectCountStatusBarChart({
   useEffect(() => {
     if (inputSelectedStatus !== selectedStatus)
       setSelectedStatus(inputSelectedStatus);
-  }, [inputSelectedStatus]);
+  }, [inputSelectedStatus, selectedStatus]);
 
   const option = useMemo(() => {
     const data = Object.values(

@@ -8,7 +8,7 @@ export default function ProjectsGanttPage() {
   const [projects, setProjects] = useState([]);
   useEffect(() => {
     listProjects().then(response => {
-      setProjects(response.data);
+      setProjects(response);
     });
   }, []);
   return (

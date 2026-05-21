@@ -12,7 +12,7 @@ export default function ProjectCountStatusPage() {
 
   useEffect(() => {
     listProjects().then(response => {
-      setProjects(response.data);
+      setProjects(response);
     });
   }, []);
 
