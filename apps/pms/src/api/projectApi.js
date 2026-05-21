@@ -5,7 +5,7 @@ import { getApiClient } from './apiClient.js';
  */
 export async function listProjects() {
   const res = await getApiClient().get('/projects');
-  return res.data;
+  return res.data.data;
 }
 
 /**
@@ -16,7 +16,7 @@ export async function listSeveraProjects(params = {}) {
   const res = await getApiClient().get('/projects/severa', { params });
   return {
     data: res.data.data ?? [],
-    nextPageToken: res.headers['nextpagetoken'] ?? null,
+    nextPageToken: res.headers['nextpagetoken'] ?? null
   };
 }
 
@@ -35,7 +35,7 @@ export async function fetchAllSeveraProjects() {
  */
 export async function getProjectById(id) {
   const res = await getApiClient().get(`/projects/${id}`);
-  return res.data;
+  return res.data.data;
 }
 
 /**
@@ -44,7 +44,7 @@ export async function getProjectById(id) {
  */
 export async function createProject(project) {
   const res = await getApiClient().post('/projects', project);
-  return res.data;
+  return res.data.data;
 }
 
 /**
@@ -54,7 +54,7 @@ export async function createProject(project) {
  */
 export async function updateProject(id, project) {
   const res = await getApiClient().put(`/projects/${id}`, project);
-  return res.data;
+  return res.data.data;
 }
 
 export async function deleteProject(projectId) {

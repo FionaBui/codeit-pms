@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { Fragment, useMemo } from 'react';
 import {
   Button,
   Card,
@@ -224,8 +224,8 @@ export default function ResourceAssignment({
 
             <tbody>
               {value.map((row, index) => (
-                <>
-                  <tr key={index}>
+                <Fragment key={row.resource || index}>
+                  <tr>
                     <td
                       style={{
                         width: 240,
@@ -332,7 +332,7 @@ export default function ResourceAssignment({
                       </td>
                     </tr>
                   )}
-                </>
+                </Fragment>
               ))}
             </tbody>
           </table>
