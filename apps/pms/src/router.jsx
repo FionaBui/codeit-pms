@@ -10,6 +10,7 @@ import ResourcesAllocationsPage from './pages/dashboard/ResourcesAllocationsPage
 import HeadcountPage from './pages/dashboard/HeadcountPage';
 import RawDataPage from './pages/dashboard/RawDataPage';
 import ProjectManagementPage from './pages/management/ProjectManagementPage';
+import ResourceManagementPage from './pages/management/ResourceManagementPage';
 import Settings from './pages/Settings';
 
 import {
@@ -21,7 +22,7 @@ import {
   BarChartOutlined,
   TeamOutlined,
   ContactsOutlined,
-  DatabaseOutlined,
+  DatabaseOutlined
 } from '@ant-design/icons';
 
 function PmsLayout() {
@@ -30,51 +31,63 @@ function PmsLayout() {
   const [menuMode, setMenuMode] = useState('vertical');
   const [settingsOpen, setSettingsOpen] = useState(false);
 
+  // const sectionLabelStyle = {
+  //   fontSize: 12,
+  //   fontWeight: 500,
+  //   color: '#9fb8c1',
+  //   letterSpacing: 0.5
+  // };
+
   const menuItems = [
     {
       key: 'project-count-status',
       label: 'Project Count & Status',
       icon: <DashboardOutlined />,
-      onClick: () => navigate('/project-count-status'),
+      onClick: () => navigate('/project-count-status')
     },
     {
       key: 'projects-gantt',
       label: 'Projects Gantt',
       icon: <ProjectOutlined />,
-      onClick: () => navigate('/projects-gantt'),
+      onClick: () => navigate('/projects-gantt')
     },
     {
       key: 'resources-allocations',
       label: 'Resources Allocations',
       icon: <TeamOutlined />,
-      onClick: () => navigate('/resources-allocations'),
+      onClick: () => navigate('/resources-allocations')
     },
     {
       key: 'headcount',
       label: 'Headcount',
       icon: <ContactsOutlined />,
-      onClick: () => navigate('/headcount'),
+      onClick: () => navigate('/headcount')
     },
     {
       key: 'raw-data',
       label: 'Raw Data Table',
       icon: <DatabaseOutlined />,
-      onClick: () => navigate('/raw-data'),
+      onClick: () => navigate('/raw-data')
     },
     {
       key: 'project-management',
       label: 'Project Management',
       icon: <ScheduleOutlined />,
-      onClick: () => navigate('/project-management'),
+      onClick: () => navigate('/project-management')
+    },
+    {
+      key: 'resource-management',
+      label: 'Resource Management',
+      icon: <TeamOutlined />,
+      onClick: () => navigate('/resource-management')
     },
     {
       key: 'settings',
       label: 'Settings',
       icon: <SettingOutlined />,
-      onClick: () => navigate('/settings'),
-    },
+      onClick: () => navigate('/settings')
+    }
   ];
-
   return (
     <>
       <MainLayout
@@ -87,8 +100,8 @@ function PmsLayout() {
           {
             key: 'logout',
             label: 'Logout',
-            onClick: () => logout(),
-          },
+            onClick: () => logout()
+          }
         ]}
       />
       <Drawer
@@ -104,7 +117,7 @@ function PmsLayout() {
             block
             options={[
               { label: 'Horizontal', value: 'horizontal' },
-              { label: 'Vertical', value: 'vertical' },
+              { label: 'Vertical', value: 'vertical' }
             ]}
             value={menuMode}
             onChange={setMenuMode}
@@ -133,7 +146,8 @@ export const router = createBrowserRouter([
       { path: 'headcount', element: <HeadcountPage /> },
       { path: 'raw-data', element: <RawDataPage /> },
       { path: 'project-management', element: <ProjectManagementPage /> },
-      { path: 'settings', element: <Settings /> },
-    ],
-  },
+      { path: 'resource-management', element: <ResourceManagementPage /> },
+      { path: 'settings', element: <Settings /> }
+    ]
+  }
 ]);

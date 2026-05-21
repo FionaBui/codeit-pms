@@ -434,7 +434,7 @@ export default function ProjectManagementPage() {
   );
 
   return (
-    <ChartCard title="Project Management" height="85vh">
+    <ChartCard title="Project Management" height="100vh">
       <Space orientation="vertical" size={16} style={{ width: '100%' }}>
         {/* Summary */}
         <Row gutter={[16, 16]} style={{ margin: '12px 20px' }}>
@@ -443,7 +443,6 @@ export default function ProjectManagementPage() {
               <Statistic
                 title="Total projects"
                 value={summary.totalProjects}
-                // valueStyle={{ fontSize: 20 }}
                 styles={{ content: { fontSize: '20' } }}
               />
             </Card>
@@ -472,7 +471,7 @@ export default function ProjectManagementPage() {
           <Col xs={24} sm={12} lg={6}>
             <Card size="small">
               <Statistic
-                title="Planned hours"
+                title="Total planned hours"
                 value={summary.totalPlannedHours}
                 suffix="h"
                 styles={{ content: { fontSize: '20' } }}
