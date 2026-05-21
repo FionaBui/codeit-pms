@@ -4,10 +4,29 @@ import { getApiClient } from './apiClient.js';
  * @returns {Promise<Array>}
  */
 export async function listProjects() {
-  const client = await getApiClient();
-  const res = await client.get('/projects');
-
+  const res = await getApiClient().get('/projects');
   return res.data.data;
+}
+
+/**
+ * @param {Object} [params]
+ * @returns {Promise<{ data: Array, nextPageToken: string|null }>}
+ */
+export async function listSeveraProjects(params = {}) {
+  const res = await getApiClient().get('/projects/severa', { params });
+  return {
+    data: res.data.data ?? [],
+    nextPageToken: res.headers['nextpagetoken'] ?? null
+  };
+}
+
+/**
+ * Fetches all Severa projects in one request (server handles pagination).
+ * @returns {Promise<Array>}
+ */
+export async function fetchAllSeveraProjects() {
+  const res = await getApiClient().get('/projects/severa/all');
+  return res.data.data ?? [];
 }
 
 /**
@@ -15,9 +34,7 @@ export async function listProjects() {
  * @returns {Promise<Object|null>}
  */
 export async function getProjectById(id) {
-  const client = await getApiClient();
-  const res = await client.get(`/projects/${id}`);
-
+  const res = await getApiClient().get(`/projects/${id}`);
   return res.data.data;
 }
 
@@ -26,9 +43,7 @@ export async function getProjectById(id) {
  * @returns {Promise<Object>}
  */
 export async function createProject(project) {
-  const client = await getApiClient();
-  const res = await client.post('/projects', project);
-
+  const res = await getApiClient().post('/projects', project);
   return res.data.data;
 }
 
@@ -38,15 +53,10 @@ export async function createProject(project) {
  * @returns {Promise<Object>}
  */
 export async function updateProject(id, project) {
-  const client = await getApiClient();
-  const res = await client.put(`/projects/${id}`, project);
-
+  const res = await getApiClient().put(`/projects/${id}`, project);
   return res.data.data;
 }
 
 export async function deleteProject(projectId) {
-  const client = await getApiClient();
-  const res = await client.delete(`/projects/${projectId}`);
-
-  return res.data.data;
+  return await getApiClient().delete(`/projects/${projectId}`);
 }

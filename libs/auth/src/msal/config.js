@@ -73,6 +73,6 @@ export async function createMsalInstance(overrides = {}) {
  * @returns {Promise<PublicClientApplication>}
  */
 export async function createMsalInstanceFromConfig() {
-  const config = await loadRuntimeConfig().catch(() => ({}));
+  const config = await loadRuntimeConfig();
   return createMsalInstance(config?.msal || {});
 }

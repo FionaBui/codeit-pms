@@ -13,7 +13,8 @@
     "createdBy": "seed",
     "updatedBy": "seed",
     "manager": "khoa-nguyen",
-    "priority": "medium"
+    "priority": "medium",
+    "number": 20230586
   },
   {
     "_id": "itds-ops",
@@ -45,7 +46,8 @@
     "createdBy": "seed",
     "updatedBy": "seed",
     "manager": "tan-le",
-    "priority": "low"
+    "priority": "low",
+    "number": 20230593
   },
   {
     "_id": "edoc",
@@ -61,7 +63,8 @@
     "createdBy": "seed",
     "updatedBy": "seed",
     "manager": "tan-le",
-    "priority": "low"
+    "priority": "low",
+    "number": 20230594
   },
   {
     "_id": "etag-elci",
@@ -77,7 +80,8 @@
     "createdBy": "seed",
     "updatedBy": "seed",
     "manager": "tan-le",
-    "priority": "low"
+    "priority": "low",
+    "number": 20240148
   },
   {
     "_id": "core-portal",
@@ -93,7 +97,8 @@
     "createdBy": "seed",
     "updatedBy": "seed",
     "manager": "quang-nguyen",
-    "priority": "medium"
+    "priority": "medium",
+    "number": 20240104
   },
   {
     "_id": "ce-3rd-line-support",
@@ -109,7 +114,8 @@
     "createdBy": "seed",
     "updatedBy": "seed",
     "manager": "duy-pham",
-    "priority": "high"
+    "priority": "high",
+    "number": 20230592
   },
   {
     "_id": "ce-support",
@@ -141,7 +147,8 @@
     "createdBy": "seed",
     "updatedBy": "seed",
     "manager": "quang-nguyen",
-    "priority": "medium"
+    "priority": "medium",
+    "number": 20240008
   },
   {
     "_id": "oms-mowi",
@@ -157,7 +164,8 @@
     "createdBy": "seed",
     "updatedBy": "seed",
     "manager": "khoa-nguyen",
-    "priority": "low"
+    "priority": "low",
+    "number": 20250152
   },
   {
     "_id": "oee",
@@ -173,7 +181,8 @@
     "createdBy": "seed",
     "updatedBy": "seed",
     "manager": "quang-nguyen",
-    "priority": "medium"
+    "priority": "medium",
+    "number": 20230609
   },
   {
     "_id": "go-live-oee-at-lmc",
@@ -189,7 +198,8 @@
     "createdBy": "seed",
     "updatedBy": "seed",
     "manager": "quang-nguyen",
-    "priority": "low"
+    "priority": "low",
+    "number": 20250092
   },
   {
     "_id": "sales--admin-works",
@@ -221,7 +231,8 @@
     "createdBy": "seed",
     "updatedBy": "seed",
     "manager": "quang-nguyen",
-    "priority": "medium"
+    "priority": "medium",
+    "number": 20250445
   },
   {
     "_id": "mowi-asia-vap--mt",
@@ -237,7 +248,8 @@
     "createdBy": "seed",
     "updatedBy": "seed",
     "manager": "quang-nguyen",
-    "priority": "high"
+    "priority": "high",
+    "number": 20250522
   },
   {
     "_id": "clp-20",
@@ -253,7 +265,8 @@
     "createdBy": "seed",
     "updatedBy": "seed",
     "manager": "duy-pham",
-    "priority": "medium"
+    "priority": "medium",
+    "number": 20250539
   },
   {
     "_id": "hackathon",
@@ -269,7 +282,8 @@
     "createdBy": "seed",
     "updatedBy": "seed",
     "manager": "krzysztof-les",
-    "priority": "medium"
+    "priority": "medium",
+    "number": 20250591
   },
   {
     "_id": "ai-research",
@@ -285,7 +299,8 @@
     "createdBy": "seed",
     "updatedBy": "seed",
     "manager": "duong-dang",
-    "priority": "low"
+    "priority": "low",
+    "number": 20250531
   },
   {
     "_id": "mowi-asia-tech-support",
@@ -349,7 +364,8 @@
     "createdBy": "seed",
     "updatedBy": "seed",
     "manager": "quang-nguyen",
-    "priority": "medium"
+    "priority": "medium",
+    "number": 20250258
   },
   {
     "_id": "sato-rfid",
@@ -365,7 +381,8 @@
     "createdBy": "seed",
     "updatedBy": "seed",
     "manager": "duy-pham",
-    "priority": "medium"
+    "priority": "medium",
+    "number": 20250734
   },
   {
     "_id": "markem-5940g",
@@ -381,7 +398,8 @@
     "createdBy": "seed",
     "updatedBy": "seed",
     "manager": "duy-pham",
-    "priority": "high"
+    "priority": "high",
+    "number": 20260006
   },
   {
     "_id": "deneast-phase-2",
@@ -397,6 +415,7 @@
     "createdBy": "seed",
     "updatedBy": "seed",
     "manager": "quang-nguyen",
-    "priority": "medium"
+    "priority": "medium",
+    "number": 20250412
   }
 ]

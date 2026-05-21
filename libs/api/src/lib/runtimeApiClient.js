@@ -1,50 +1,37 @@
 import { createApiClient } from './apiClient.js';
 import { getApiBaseUrl } from './runtimeConfig.js';
 
-let cachedClientPromise = null;
-let cachedOptions = null;
-
-/**
- * @typedef {import('axios').AxiosInstance} AxiosInstance
- * @typedef {import('axios').AxiosRequestConfig} AxiosRequestConfig
- */
-
 /**
  * @typedef {Object} RuntimeApiClientOptions
- * @property {string} [configUrl='/config.json'] - Config URL for baseUrl lookup
- * @property {AxiosRequestConfig} [axiosConfig] - Passed to axios.create()
+ * @property {string} [configUrl='/config.json'] - Config URL providing `api.baseUrl`.
+ * @property {import('./apiClient.js').CreateApiClientOptions['axiosConfig']} [axiosConfig]
+ * @property {import('./apiClient.js').CreateApiClientOptions['accessToken']} [accessToken]
+ * @property {import('./apiClient.js').CreateApiClientOptions['getToken']} [getToken]
+ * @property {import('./apiClient.js').CreateApiClientOptions['onRequest']} [onRequest]
+ * @property {import('./apiClient.js').CreateApiClientOptions['onResponse']} [onResponse]
+ * @property {import('./apiClient.js').CreateApiClientOptions['onError']} [onError]
  */
 
 /**
- * Creates (and caches) an Axios client using runtime config (`api.baseUrl`).
- * First call wins: subsequent calls with different options return the same cached client.
- * Call `resetRuntimeApiClientCache()` to clear (e.g. in tests or when config changes).
+ * Creates an Axios client using `api.baseUrl` from runtime config.
+ *
+ * Does *not* cache the resulting client — apps that need a singleton should
+ * wrap this in their own cache to make ownership explicit.
  *
  * @param {RuntimeApiClientOptions} [options]
- * @returns {Promise<AxiosInstance>}
+ * @returns {Promise<import('axios').AxiosInstance>}
  */
-export function createRuntimeApiClient(options = {}) {
-  const opts = { configUrl: options.configUrl, axiosConfig: options.axiosConfig };
-
-  if (cachedClientPromise && cachedOptions?.configUrl === opts.configUrl) {
-    return cachedClientPromise;
-  }
-
-  cachedOptions = opts;
-  cachedClientPromise = getApiBaseUrl({ configUrl: opts.configUrl }).then((baseUrl) =>
-    createApiClient({
-      baseUrl,
-      axiosConfig: opts.axiosConfig,
-    })
-  );
-
-  return cachedClientPromise;
-}
-
-/**
- * Clears the runtime API client cache. Call after config changes or in tests.
- */
-export function resetRuntimeApiClientCache() {
-  cachedClientPromise = null;
-  cachedOptions = null;
+export async function createRuntimeApiClient(options = {}) {
+  const { configUrl, axiosConfig, accessToken, getToken, onRequest, onResponse, onError } =
+    options;
+  const baseUrl = await getApiBaseUrl({ configUrl });
+  return createApiClient({
+    baseUrl,
+    axiosConfig,
+    accessToken,
+    getToken,
+    onRequest,
+    onResponse,
+    onError,
+  });
 }
