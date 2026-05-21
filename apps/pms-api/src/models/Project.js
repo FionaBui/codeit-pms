@@ -43,6 +43,11 @@ const ProjectSchema = new Schema(
       required: true
     },
     actualManhours: Number,
+    number: {
+      type: Number,
+      index: true,
+      sparse: true
+    },
     status: {
       type: String,
       enum: ['plan', 'execution', 'closing', 'finished'],

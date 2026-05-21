@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import path from 'node:path';
 import { createServer } from './server.js';
 import { connectToDatabase } from './config/db.js';
+import { startWorkers } from './workers/index.js';
 
 dotenv.config({ path: path.resolve(process.cwd(), 'apps/pms-api/.env') });
 
@@ -16,6 +17,8 @@ async function bootstrap() {
   app.listen(port, host, () => {
     console.log(`[ ready ] http://${host}:${port}`);
   });
+
+  startWorkers();
 }
 
 bootstrap().catch((err) => {
