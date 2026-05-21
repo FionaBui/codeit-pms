@@ -1,25 +1,21 @@
 import { Row, Col, Form, Input, Select, DatePicker, InputNumber } from 'antd';
 
+function toSelectOptions(items = []) {
+  return items.map(item => ({
+    label: item,
+    value: item
+  }));
+}
+
 export default function ProjectFormFields({
   resources = [],
   statusOptions = [],
   typeOptions = [],
   priorityOptions = []
 }) {
-  const typeSelectOptions = typeOptions.map(type => ({
-    label: type,
-    value: type
-  }));
-
-  const statusSelectOptions = statusOptions.map(status => ({
-    label: status,
-    value: status
-  }));
-
-  const prioritySelectOptions = priorityOptions.map(priority => ({
-    label: priority,
-    value: priority
-  }));
+  const typeSelectOptions = toSelectOptions(typeOptions);
+  const statusSelectOptions = toSelectOptions(statusOptions);
+  const prioritySelectOptions = toSelectOptions(priorityOptions);
 
   return (
     <Row gutter={16}>
