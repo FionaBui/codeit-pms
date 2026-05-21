@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useMsal } from '@azure/msal-react';
 import { InteractionStatus } from '@azure/msal-browser';
+import { MsalInteractionRequiredError } from '@codeit/auth/msal';
 import { Spin } from 'antd';
 import { initApiClient } from './apiClient.js';
 
@@ -34,7 +35,7 @@ export function ApiClientInit({ children }) {
 
   if (error) {
     const msg = String(error?.message ?? error);
-    const needsConsent = /70000|unauthorized|consent/i.test(msg);
+    const needsConsent = error instanceof MsalInteractionRequiredError;
     return (
       <div style={{ padding: 24, maxWidth: 560 }}>
         <p style={{ fontWeight: 500, marginBottom: 8 }}>Failed to initialize API client</p>
