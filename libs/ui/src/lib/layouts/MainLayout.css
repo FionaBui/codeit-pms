@@ -25,3 +25,9 @@
 .main-layout-sidebar-menu .ant-menu-item:hover {
   color: var(--ant-color-primary) !important;
 }
+
+.main-layout-sidebar-menu .ant-menu-item-divider,
+.main-layout-header-menu .ant-menu-item-divider {
+  border-color: #808080;
+  margin: 0 2px;
+}

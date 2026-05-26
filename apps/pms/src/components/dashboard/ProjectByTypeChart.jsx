@@ -9,7 +9,8 @@ export const ProjectByTypeChart = ({
   labelFormatter,
   selectedType: inputSelectedType,
   selectedStatus,
-  className
+  className,
+  height = '100%'
 }) => {
   const [selectedType, setSelectedType] = useState(null);
 
@@ -217,7 +218,11 @@ export const ProjectByTypeChart = ({
   );
 
   return (
-    <ChartCard title={title} height="200px" className={className}>
+    <ChartCard
+      title={title}
+      height={height}
+      className={['min-h-[200px]', className].filter(Boolean).join(' ')}
+    >
       <BaseChart
         option={option}
         onEvents={{

@@ -70,6 +70,10 @@ function PmsLayout() {
       onClick: () => navigate('/raw-data')
     },
     {
+      type: 'divider',
+      key: 'divider-1'
+    },
+    {
       key: 'project-management',
       label: 'Project Management',
       icon: <ScheduleOutlined />,
@@ -80,13 +84,13 @@ function PmsLayout() {
       label: 'Resource Management',
       icon: <TeamOutlined />,
       onClick: () => navigate('/resource-management')
-    },
-    {
-      key: 'settings',
-      label: 'Settings',
-      icon: <SettingOutlined />,
-      onClick: () => navigate('/settings')
     }
+    // {
+    //   key: 'settings',
+    //   label: 'Settings',
+    //   icon: <SettingOutlined />,
+    //   onClick: () => navigate('/settings')
+    // }
   ];
   return (
     <>

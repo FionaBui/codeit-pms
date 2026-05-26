@@ -8,7 +8,9 @@ export default function ResourcesAllocationsThreeMonthsChart({
   months = [],
   selectedProject,
   selectedResource,
-  onSelectResource
+  onSelectResource,
+  className,
+  height = '100%'
 }) {
   const resourceNames = rows.map(row => row.resourceName);
 
@@ -180,8 +182,16 @@ export default function ResourcesAllocationsThreeMonthsChart({
   };
 
   return (
-    <ChartCard title="Resources allocation next 03 months" height="40vh">
-      <BaseChart option={option} onEvents={{ click: handleChartClick }} />
+    <ChartCard
+      title="Resources allocation next 03 months"
+      height={height}
+      className={className}
+    >
+      <BaseChart
+        option={option}
+        onEvents={{ click: handleChartClick }}
+        style={{ width: '100%', height: '100%' }}
+      />
     </ChartCard>
   );
 }

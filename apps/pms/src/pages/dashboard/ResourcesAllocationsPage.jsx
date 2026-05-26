@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ChartCard } from '@codeit/ui';
+import { ContentLayout } from '@codeit/ui';
 import { getResourceAllocationForNextMonths } from '../../api/resourceAllocationApi.js';
 
 import ResourcesAllocationsChart from '../../components/dashboard/ResourcesAllocationsChart.jsx';
@@ -45,22 +45,26 @@ export default function ResourcesAllocationsPage() {
   }, [allRows, currentMonth]);
 
   return (
-    <ChartCard height="100vh">
-      <ResourcesAllocationsChart
-        rows={currentMonthRows}
-        currentMonth={currentMonth}
-        selectedProject={selectedProject}
-        onSelectProject={handleSelectProject}
-        selectedResource={selectedResource}
-      />
+    <ContentLayout title="Resources Allocations">
+      <div className="flex h-full min-h-0 flex-col gap-2">
+        <ResourcesAllocationsChart
+          rows={currentMonthRows}
+          currentMonth={currentMonth}
+          selectedProject={selectedProject}
+          onSelectProject={handleSelectProject}
+          selectedResource={selectedResource}
+          className="min-h-0 flex-1"
+        />
 
-      <ResourcesAllocationsThreeMonthsChart
-        rows={allRows}
-        months={months}
-        selectedProject={selectedProject}
-        selectedResource={selectedResource}
-        onSelectResource={handleSelectResource}
-      />
-    </ChartCard>
+        <ResourcesAllocationsThreeMonthsChart
+          rows={allRows}
+          months={months}
+          selectedProject={selectedProject}
+          selectedResource={selectedResource}
+          onSelectResource={handleSelectResource}
+          className="min-h-0 flex-1"
+        />
+      </div>
+    </ContentLayout>
   );
 }

@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { ContentLayout } from '@codeit/ui';
 import {
   Button,
-  Card,
   Drawer,
   Form,
   Input,
@@ -25,15 +25,7 @@ import {
   deleteResource
 } from '../../api/resourceApi';
 
-const { Title, Text } = Typography;
-
-function slugify(value = '') {
-  return value
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, '-')
-    .replace(/[^a-z0-9-]/g, '');
-}
+const { Text } = Typography;
 
 export default function ResourceManagementPage() {
   const [resources, setResources] = useState([]);
@@ -41,6 +33,8 @@ export default function ResourceManagementPage() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [editingResource, setEditingResource] = useState(null);
   const [searchText, setSearchText] = useState('');
+  const tableContainerRef = useRef(null);
+  const [tableScrollY, setTableScrollY] = useState(0);
 
   const [form] = Form.useForm();
 
@@ -130,6 +124,34 @@ export default function ResourceManagementPage() {
     );
   });
 
+  useLayoutEffect(() => {
+    const container = tableContainerRef.current;
+    if (!container) {
+      return;
+    }
+
+    const updateScrollY = () => {
+      const header =
+        container.querySelector('.ant-table-thead') ??
+        container.querySelector('.ant-table-header');
+      const headerHeight = header?.getBoundingClientRect().height ?? 39;
+      const nextScrollY = Math.max(
+        Math.floor(container.clientHeight - headerHeight),
+        120
+      );
+
+      setTableScrollY(nextScrollY);
+    };
+
+    updateScrollY();
+    requestAnimationFrame(updateScrollY);
+
+    const observer = new ResizeObserver(updateScrollY);
+    observer.observe(container);
+
+    return () => observer.disconnect();
+  }, [loading, filteredResources.length]);
+
   const columns = [
     {
       title: 'Resource',
@@ -139,9 +161,6 @@ export default function ResourceManagementPage() {
       render: (_, record) => (
         <Space orientation="vertical" size={0}>
           <Text>{record.name}</Text>
-          {/* <Text type="secondary" style={{ fontSize: 12 }}>
-            {record._id}
-          </Text> */}
         </Space>
       )
     },
@@ -151,18 +170,6 @@ export default function ResourceManagementPage() {
       key: 'title',
       sorter: (a, b) => (a.title || '').localeCompare(b.title || '')
     },
-    // {
-    //   title: 'Created by',
-    //   dataIndex: 'createdBy',
-    //   key: 'createdBy',
-    //   width: 120
-    // },
-    // {
-    //   title: 'Updated by',
-    //   dataIndex: 'updatedBy',
-    //   key: 'updatedBy',
-    //   width: 120
-    // },
     {
       title: 'Actions',
       key: 'actions',
@@ -193,19 +200,10 @@ export default function ResourceManagementPage() {
 
   return (
     <>
-      <Card>
-        <Space
-          style={{
-            width: '100%',
-            justifyContent: 'space-between',
-            marginBottom: 16
-          }}
-        >
-          <Space>
-            <Title level={4} style={{ margin: 0 }}>
-              Resource Management
-            </Title>
-
+      <ContentLayout
+        title="Resource Management"
+        actions={
+          <Space wrap>
             <Input
               allowClear
               prefix={<SearchOutlined />}
@@ -214,28 +212,31 @@ export default function ResourceManagementPage() {
               onChange={event => setSearchText(event.target.value)}
               style={{ width: 280 }}
             />
+
             <Button onClick={clearAllFilters}>Clear</Button>
+
+            <Button type="primary" icon={<PlusOutlined />} onClick={openCreateDrawer}>
+              New resource
+            </Button>
           </Space>
-
-          <Button
-            type="primary"
-            icon={<PlusOutlined />}
-            onClick={openCreateDrawer}
-          >
-            New resource
-          </Button>
-        </Space>
-
-        <Table
-          rowKey="_id"
-          loading={loading}
-          columns={columns}
-          size="small"
-          dataSource={filteredResources}
-          pagination={false}
-          scroll={{ x: 900 }}
-        />
-      </Card>
+        }
+      >
+        <div className="flex h-full min-h-0 w-full max-w-full flex-col overflow-hidden">
+          <div ref={tableContainerRef} className="min-h-0 flex-1 overflow-hidden">
+            <Table
+              rowKey="_id"
+              loading={loading}
+              columns={columns}
+              size="small"
+              dataSource={filteredResources}
+              pagination={false}
+              tableLayout="fixed"
+              className="w-full min-w-0"
+              scroll={tableScrollY > 0 ? { y: tableScrollY } : undefined}
+            />
+          </div>
+        </div>
+      </ContentLayout>
 
       <Drawer
         title={editingResource ? 'Edit resource' : 'Create resource'}

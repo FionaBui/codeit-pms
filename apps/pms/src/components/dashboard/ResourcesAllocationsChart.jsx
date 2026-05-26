@@ -6,7 +6,9 @@ export default function ResourcesAllocationsChart({
   currentMonth,
   selectedProject,
   onSelectProject,
-  selectedResource
+  selectedResource,
+  className,
+  height = '100%'
 }) {
   const resourceNames = rows.map(row => row.resourceName);
 
@@ -117,7 +119,8 @@ export default function ResourcesAllocationsChart({
   return (
     <ChartCard
       title="Resources allocation per projects of next 01 month"
-      height="40vh"
+      height={height}
+      className={className}
     >
       <div
         style={{
@@ -128,7 +131,10 @@ export default function ResourcesAllocationsChart({
           padding: '10px 0'
         }}
       >
-        <BaseChart option={option} />
+        <BaseChart
+          option={option}
+          style={{ width: '100%', height: '100%' }}
+        />
 
         <div
           style={{

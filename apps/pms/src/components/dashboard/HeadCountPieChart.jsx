@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect } from 'react';
-import { Row, Col, Typography, Button } from 'antd';
+import { Typography, Button } from 'antd';
 import { CaretUpFilled, CaretDownFilled } from '@ant-design/icons';
 import { BaseChart, CHART_COLORS } from '@codeit/ui';
 
@@ -8,13 +8,22 @@ const { Text } = Typography;
 export function HeadCountPieChart({
   title,
   data = [],
-  height = 180,
+  height = '100%',
   selectedProject,
   onSelectProject,
-  projectColorMap = {}
+  projectColorMap = {},
+  className
 }) {
   const maxVisibleItems = 6;
   const [startIndex, setStartIndex] = useState(0);
+  const rootClassName = [
+    'flex w-full min-h-0 items-center gap-4',
+    height === '100%' ? 'h-full' : '',
+    className
+  ]
+    .filter(Boolean)
+    .join(' ');
+  const rootStyle = height !== '100%' ? { height } : undefined;
 
   //   const hasSelectedProject = useMemo(() => {
   //     return data.some(item => item.name === selectedProject);
@@ -163,97 +172,90 @@ export function HeadCountPieChart({
   };
 
   return (
-    <Row gutter={[16, 16]} align="middle">
-      <Col xs={24} md={14}>
-        <div style={{ height }}>
-          <BaseChart option={option} onEvents={onEvents} />
-        </div>
-      </Col>
+    <div className={rootClassName} style={rootStyle}>
+      <div className="h-full min-h-0 w-[58%]">
+        <BaseChart
+          option={option}
+          onEvents={onEvents}
+          style={{ width: '100%', height: '100%' }}
+        />
+      </div>
 
-      <Col xs={24} md={10}>
-        <div
+      <div className="flex h-full min-h-0 min-w-0 flex-1 flex-col justify-center">
+        <Text
+          strong
           style={{
-            minHeight: height,
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center'
+            fontSize: 14,
+            marginBottom: 6
           }}
         >
-          <Text
-            strong
-            style={{
-              fontSize: 14,
-              marginBottom: 6
-            }}
-          >
-            Project
-          </Text>
+          Project
+        </Text>
 
-          <div>
-            {visibleItems.map((item, index) => {
-              const color =
-                projectColorMap[item.name] ||
-                CHART_COLORS[index % CHART_COLORS.length];
+        <div className="min-h-0 flex-1 overflow-hidden">
+          {visibleItems.map((item, index) => {
+            const color =
+              projectColorMap[item.name] ||
+              CHART_COLORS[index % CHART_COLORS.length];
 
-              const isSelected = selectedProject === item.name;
-              const isDimmed = selectedProject && !isSelected;
+            const isSelected = selectedProject === item.name;
+            const isDimmed = selectedProject && !isSelected;
 
-              return (
-                <div
-                  key={item.name}
-                  onClick={() => handleProjectSelect(item.name)}
+            return (
+              <div
+                key={item.name}
+                onClick={() => handleProjectSelect(item.name)}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  cursor: 'pointer',
+                  opacity: isDimmed ? 0.35 : 1,
+                  marginBottom: 10
+                }}
+              >
+                <span
                   style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 8,
-                    cursor: 'pointer',
-                    opacity: isDimmed ? 0.35 : 1,
-                    marginBottom: 10
+                    width: 12,
+                    height: 12,
+                    borderRadius: '60%',
+                    backgroundColor: color,
+                    flexShrink: 0
+                  }}
+                />
+
+                <Text
+                  ellipsis={{ tooltip: item.name }}
+                  style={{
+                    flex: 1
                   }}
                 >
-                  <span
-                    style={{
-                      width: 12,
-                      height: 12,
-                      borderRadius: '60%',
-                      backgroundColor: color,
-                      flexShrink: 0
-                    }}
-                  />
-
-                  <Text
-                    ellipsis={{ tooltip: item.name }}
-                    style={{
-                      flex: 1
-                    }}
-                  >
-                    {item.name}
-                  </Text>
-                </div>
-              );
-            })}
-          </div>
-
-          <div
-            style={{ display: 'flex', justifyContent: 'center', marginTop: 4 }}
-          >
-            <Button
-              type="text"
-              size="small"
-              icon={<CaretDownFilled />}
-              onClick={scrollDown}
-              disabled={!canScrollDown}
-            />
-            <Button
-              type="text"
-              size="small"
-              icon={<CaretUpFilled />}
-              onClick={scrollUp}
-              disabled={!canScrollUp}
-            />
-          </div>
+                  {item.name}
+                </Text>
+              </div>
+            );
+          })}
         </div>
-      </Col>
-    </Row>
+
+        <div
+          style={{ display: 'flex', justifyContent: 'center', marginTop: 4 }}
+        >
+          <Button
+            type="text"
+            size="small"
+            icon={<CaretDownFilled />}
+            onClick={scrollDown}
+            disabled={!canScrollDown}
+          />
+          <Button
+            type="text"
+            size="small"
+            icon={<CaretUpFilled />}
+            onClick={scrollUp}
+            disabled={!canScrollUp}
+          />
+        </div>
+      </div>
+    </div>
   );
 }

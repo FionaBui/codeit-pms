@@ -42,12 +42,13 @@ export const MainLayout = ({
     </a>
   );
 
-  const menuItemConfig = menuItems.map(({ key, label, icon, onClick }) => ({
-    key,
-    label,
-    icon,
-    onClick
-  }));
+  const menuItemConfig = menuItems.map((item) => {
+    if (item.type === 'divider') {
+      return { type: 'divider', key: item.key };
+    }
+    const { key, label, icon, onClick } = item;
+    return { key, label, icon, onClick };
+  });
 
   const dropdownItems = userMenuItems.map(({ key, label, onClick }) => ({
     key,
@@ -106,7 +107,7 @@ export const MainLayout = ({
 
   if (menuMode === 'vertical') {
     const sidebarItems = menuItemConfig.map(item => {
-      if (!collapsed) {
+      if (item.type === 'divider' || !collapsed) {
         return item;
       }
       const text = typeof item.label === 'string' ? item.label : undefined;

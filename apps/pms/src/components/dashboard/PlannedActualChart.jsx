@@ -24,10 +24,9 @@ export default function PlannedActualChart({
     <ChartCard
       title="Planned manhours vs Actual manhours"
       className={className}
-      classNames={{ body: 'flex-1' }}
       height="100%"
     >
-      <BaseChart option={option} />
+      <BaseChart option={option} style={{ width: '100%', height: '100%' }} />
     </ChartCard>
   );
 }

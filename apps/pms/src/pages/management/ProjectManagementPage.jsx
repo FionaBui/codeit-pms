@@ -1,14 +1,12 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { ChartCard } from '@codeit/ui';
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { ContentLayout } from '@codeit/ui';
 import {
   Button,
   Card,
-  Col,
   Form,
   Input,
   Drawer,
   Progress,
-  Row,
   Space,
   Statistic,
   Table,
@@ -39,8 +37,7 @@ import {
 import ResourceAssignment from '../../components/management/ResourceAssignment.jsx';
 import ProjectFormFields from '../../components/management/ProjectFormFields.jsx';
 
-const { Title, Text } = Typography;
-
+const { Text } = Typography;
 const statusColors = {
   plan: 'default',
   execution: 'processing',
@@ -66,6 +63,8 @@ export default function ProjectManagementPage() {
   const [allResourceAllocations, setAllResourceAllocations] = useState([]);
   const [filteredInfo, setFilteredInfo] = useState({});
   const [sortedInfo, setSortedInfo] = useState({});
+  const tableContainerRef = useRef(null);
+  const [tableScrollY, setTableScrollY] = useState(0);
 
   const [form] = Form.useForm();
 
@@ -129,6 +128,34 @@ export default function ProjectManagementPage() {
       );
     });
   }, [projects, searchText]);
+
+  useLayoutEffect(() => {
+    const container = tableContainerRef.current;
+    if (!container) {
+      return;
+    }
+
+    const updateScrollY = () => {
+      const header =
+        container.querySelector('.ant-table-thead') ??
+        container.querySelector('.ant-table-header');
+      const headerHeight = header?.getBoundingClientRect().height ?? 39;
+      const nextScrollY = Math.max(
+        Math.floor(container.clientHeight - headerHeight),
+        120
+      );
+
+      setTableScrollY(nextScrollY);
+    };
+
+    updateScrollY();
+    requestAnimationFrame(updateScrollY);
+
+    const observer = new ResizeObserver(updateScrollY);
+    observer.observe(container);
+
+    return () => observer.disconnect();
+  }, [loading, filteredProjects.length]);
 
   const summary = useMemo(() => {
     const totalProjects = projects.length;
@@ -324,9 +351,9 @@ export default function ProjectManagementPage() {
 
             <Text
               type="secondary"
+              ellipsis={{ tooltip: project.name }}
               style={{
-                fontSize: 12,
-                whiteSpace: 'normal'
+                fontSize: 12
               }}
             >
               {project.name}
@@ -434,11 +461,30 @@ export default function ProjectManagementPage() {
   );
 
   return (
-    <ChartCard title="Project Management" height="100vh">
-      <Space orientation="vertical" size={16} style={{ width: '100%' }}>
-        {/* Summary */}
-        <Row gutter={[16, 16]} style={{ margin: '12px 20px' }}>
-          <Col xs={24} sm={12} lg={6}>
+    <>
+      <ContentLayout
+        title="Project Management"
+        actions={
+          <Space wrap>
+            <Input
+              allowClear
+              prefix={<SearchOutlined />}
+              placeholder="Search project, contact person or status"
+              value={searchText}
+              onChange={event => setSearchText(event.target.value)}
+              style={{ width: 300 }}
+            />
+
+            <Button onClick={clearAllFilters}>Clear</Button>
+
+            <Button type="primary" icon={<PlusOutlined />} onClick={openCreateDrawer}>
+              New project
+            </Button>
+          </Space>
+        }
+      >
+        <div className="flex h-full min-h-0 w-full max-w-full flex-col gap-4 overflow-hidden">
+          <div className="grid w-full shrink-0 grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <Card size="small">
               <Statistic
                 title="Total projects"
@@ -446,9 +492,7 @@ export default function ProjectManagementPage() {
                 styles={{ content: { fontSize: '20' } }}
               />
             </Card>
-          </Col>
 
-          <Col xs={24} sm={12} lg={6}>
             <Card size="small">
               <Statistic
                 title="Active projects"
@@ -456,9 +500,7 @@ export default function ProjectManagementPage() {
                 styles={{ content: { fontSize: '20' } }}
               />
             </Card>
-          </Col>
 
-          <Col xs={24} sm={12} lg={6}>
             <Card size="small">
               <Statistic
                 title="High priority"
@@ -466,9 +508,7 @@ export default function ProjectManagementPage() {
                 styles={{ content: { fontSize: '20' } }}
               />
             </Card>
-          </Col>
 
-          <Col xs={24} sm={12} lg={6}>
             <Card size="small">
               <Statistic
                 title="Total planned hours"
@@ -477,59 +517,28 @@ export default function ProjectManagementPage() {
                 styles={{ content: { fontSize: '20' } }}
               />
             </Card>
-          </Col>
-        </Row>
+          </div>
 
-        {/* Search */}
+          <div ref={tableContainerRef} className="min-h-0 flex-1 overflow-hidden">
+            <Table
+              rowKey="_id"
+              columns={columns}
+              dataSource={filteredProjects}
+              loading={loading}
+              pagination={false}
+              size="small"
+              tableLayout="fixed"
+              className="w-full min-w-0"
+              scroll={tableScrollY > 0 ? { y: tableScrollY } : undefined}
+              onChange={(_, filters, sorter) => {
+                setFilteredInfo(filters);
+                setSortedInfo(sorter);
+              }}
+            />
+          </div>
+        </div>
+      </ContentLayout>
 
-        <Row gutter={[16, 16]} align="middle" justify="space-between">
-          <Col>
-            <Space size={10}>
-              <Title level={5} style={{ margin: 0, padding: 20 }}>
-                All Projects
-              </Title>
-
-              <Input
-                allowClear
-                prefix={<SearchOutlined />}
-                placeholder="Search project, contact person or status"
-                value={searchText}
-                onChange={event => setSearchText(event.target.value)}
-                style={{ width: 300 }}
-              />
-
-              <Button onClick={clearAllFilters}>Clear</Button>
-            </Space>
-          </Col>
-
-          <Col>
-            <Button
-              type="primary"
-              icon={<PlusOutlined />}
-              onClick={openCreateDrawer}
-              style={{ marginRight: 20 }}
-            >
-              New project
-            </Button>
-          </Col>
-        </Row>
-
-        {/* Table */}
-        <Table
-          rowKey="_id"
-          columns={columns}
-          dataSource={filteredProjects}
-          loading={loading}
-          pagination={false}
-          size="small"
-          onChange={(_, filters, sorter) => {
-            setFilteredInfo(filters);
-            setSortedInfo(sorter);
-          }}
-        />
-      </Space>
-
-      {/* Drawer */}
       <Drawer
         title={editingProject ? 'Edit project' : 'Create new project'}
         open={isDrawerOpen}
@@ -586,6 +595,6 @@ export default function ProjectManagementPage() {
           currentProjectId={editingProject?._id}
         />
       </Drawer>
-    </ChartCard>
+    </>
   );
 }

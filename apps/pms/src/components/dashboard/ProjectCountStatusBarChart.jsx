@@ -7,7 +7,9 @@ export function ProjectCountStatusBarChart({
   projects,
   selectedType,
   onStatusClick,
-  selectedStatus: inputSelectedStatus
+  selectedStatus: inputSelectedStatus,
+  className,
+  height = '100%'
 }) {
   const [selectedStatus, setSelectedStatus] = useState();
 
@@ -135,7 +137,11 @@ export function ProjectCountStatusBarChart({
   );
 
   return (
-    <ChartCard title="Projects Count by Status" height="200px">
+    <ChartCard
+      title="Projects Count by Status"
+      height={height}
+      className={['min-h-[200px]', className].filter(Boolean).join(' ')}
+    >
       <BaseChart
         option={option}
         onEvents={{
@@ -148,6 +154,7 @@ export function ProjectCountStatusBarChart({
             }
           }
         }}
+        style={{ width: '100%', height: '100%' }}
       />
     </ChartCard>
   );
