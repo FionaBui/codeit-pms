@@ -11,7 +11,8 @@ export default function ProjectFormFields({
   resources = [],
   statusOptions = [],
   typeOptions = [],
-  priorityOptions = []
+  priorityOptions = [],
+  isEditMode = false
 }) {
   const typeSelectOptions = toSelectOptions(typeOptions);
   const statusSelectOptions = toSelectOptions(statusOptions);
@@ -125,11 +126,6 @@ export default function ProjectFormFields({
           <Select options={statusSelectOptions} />
         </Form.Item>
       </Col>
-      <Col span={12}>
-        <Form.Item name="priority" label="Priority">
-          <Select options={prioritySelectOptions} />
-        </Form.Item>
-      </Col>
 
       <Col span={12}>
         <Form.Item name="plannedManhours" label="Planned Manhours">
@@ -139,7 +135,18 @@ export default function ProjectFormFields({
 
       <Col span={12}>
         <Form.Item name="actualManhours" label="Actual Manhours">
-          <InputNumber min={0} style={{ width: '100%' }} />
+          <InputNumber
+            min={0}
+            style={{ width: '100%' }}
+            precision={0}
+            disabled={isEditMode}
+          />
+        </Form.Item>
+      </Col>
+
+      <Col span={12}>
+        <Form.Item name="priority" label="Priority">
+          <Select options={prioritySelectOptions} />
         </Form.Item>
       </Col>
     </Row>

@@ -1,4 +1,10 @@
-import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import React, {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState
+} from 'react';
 import { ContentLayout } from '@codeit/ui';
 import {
   Button,
@@ -419,7 +425,7 @@ export default function ProjectManagementPage() {
       title: 'Actual',
       dataIndex: 'actualManhours',
       key: 'actualManhours',
-      render: value => `${value} h`
+      render: value => `${Math.round(value || 0)} h`
     },
     {
       title: 'Action',
@@ -477,7 +483,11 @@ export default function ProjectManagementPage() {
 
             <Button onClick={clearAllFilters}>Clear</Button>
 
-            <Button type="primary" icon={<PlusOutlined />} onClick={openCreateDrawer}>
+            <Button
+              type="primary"
+              icon={<PlusOutlined />}
+              onClick={openCreateDrawer}
+            >
               New project
             </Button>
           </Space>
@@ -519,7 +529,10 @@ export default function ProjectManagementPage() {
             </Card>
           </div>
 
-          <div ref={tableContainerRef} className="min-h-0 flex-1 overflow-hidden">
+          <div
+            ref={tableContainerRef}
+            className="min-h-0 flex-1 overflow-hidden"
+          >
             <Table
               rowKey="_id"
               columns={columns}
@@ -582,6 +595,7 @@ export default function ProjectManagementPage() {
             typeOptions={projectTypes}
             statusOptions={projectStatuses}
             priorityOptions={projectPriorities}
+            isEditMode={Boolean(editingProject)}
           />
         </Form>
         <ResourceAssignment
