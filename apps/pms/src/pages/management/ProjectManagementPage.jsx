@@ -347,19 +347,21 @@ export default function ProjectManagementPage() {
   const columns = [
     {
       title: <div style={{ paddingLeft: 20 }}>Project</div>,
-      paddingLeft: '20px',
       dataIndex: 'shortName',
       key: 'shortName',
+      width: 400,
+      fixed: 'left',
       render: (_, project) => (
-        <div style={{ paddingLeft: 20 }}>
-          <Space orientation="vertical" size={0}>
+        <div style={{ paddingLeft: 20, width: '100%' }}>
+          <Space orientation="vertical" size={0} style={{ width: '100%' }}>
             <Text strong>{project.shortName}</Text>
 
             <Text
               type="secondary"
               ellipsis={{ tooltip: project.name }}
               style={{
-                fontSize: 12
+                fontSize: 12,
+                maxWidth: 360
               }}
             >
               {project.name}
@@ -372,6 +374,7 @@ export default function ProjectManagementPage() {
       title: 'Contact',
       dataIndex: 'manager',
       key: 'manager',
+      width: 120,
       filters: managerFilters,
       filteredValue: filteredInfo.manager || null,
       onFilter: (value, record) => record.manager?.name === value,
@@ -381,6 +384,7 @@ export default function ProjectManagementPage() {
       title: 'Type',
       dataIndex: 'type',
       key: 'type',
+      width: 120,
       filters: typeFilters,
       filteredValue: filteredInfo.type || null,
       onFilter: (value, record) => record.type === value,
@@ -390,6 +394,7 @@ export default function ProjectManagementPage() {
       title: 'Status',
       dataIndex: 'status',
       key: 'status',
+      width: 120,
       filters: statusFilters,
       filteredValue: filteredInfo.status || null,
       onFilter: (value, record) => record.status === value,
@@ -401,6 +406,7 @@ export default function ProjectManagementPage() {
       title: 'Priority',
       dataIndex: 'priority',
       key: 'priority',
+      width: 120,
       sorter: (a, b) => priorityOrder[a.priority] - priorityOrder[b.priority],
       sortOrder: sortedInfo.columnKey === 'priority' ? sortedInfo.order : null,
       render: priority => (
@@ -411,6 +417,7 @@ export default function ProjectManagementPage() {
       title: 'Progress',
       dataIndex: 'completion',
       key: 'completion',
+      width: 120,
       render: completion => (
         <Progress percent={Math.round(completion * 100)} size="small" />
       )
@@ -419,17 +426,20 @@ export default function ProjectManagementPage() {
       title: 'Planned',
       dataIndex: 'plannedManhours',
       key: 'plannedManhours',
+      width: 120,
       render: value => `${value} h`
     },
     {
       title: 'Actual',
       dataIndex: 'actualManhours',
       key: 'actualManhours',
+      width: 120,
       render: value => `${Math.round(value || 0)} h`
     },
     {
       title: 'Action',
       key: 'action',
+      width: 120,
       render: (_, project) => (
         <Space>
           <Button
