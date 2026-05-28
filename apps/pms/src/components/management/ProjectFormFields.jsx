@@ -149,6 +149,16 @@ export default function ProjectFormFields({
           <Select options={prioritySelectOptions} />
         </Form.Item>
       </Col>
+
+      <Col span={12}>
+        <Form.Item
+          name="number"
+          label="Visma Number"
+          extra="Leave empty if this project is not connected to Visma."
+        >
+          <Input placeholder="Enter Visma project number" allowClear />
+        </Form.Item>
+      </Col>
     </Row>
   );
 }
