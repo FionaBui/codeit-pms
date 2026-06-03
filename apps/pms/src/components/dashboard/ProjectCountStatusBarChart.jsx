@@ -7,16 +7,17 @@ export function ProjectCountStatusBarChart({
   projects,
   selectedType,
   onStatusClick,
-  selectedStatus: inputSelectedStatus,
+  // selectedStatus: inputSelectedStatus,
+  selectedStatus,
   className,
   height = '100%'
 }) {
-  const [selectedStatus, setSelectedStatus] = useState();
+  // const [selectedStatus, setSelectedStatus] = useState();
 
-  useEffect(() => {
-    if (inputSelectedStatus !== selectedStatus)
-      setSelectedStatus(inputSelectedStatus);
-  }, [inputSelectedStatus, selectedStatus]);
+  // useEffect(() => {
+  //   if (inputSelectedStatus !== selectedStatus)
+  //     setSelectedStatus(inputSelectedStatus);
+  // }, [inputSelectedStatus, selectedStatus]);
 
   const option = useMemo(() => {
     const data = Object.values(
@@ -131,9 +132,9 @@ export function ProjectCountStatusBarChart({
   const handleStatusClick = useCallback(
     status => {
       onStatusClick?.(status);
-      setSelectedStatus(selectedStatus === status ? null : status);
+      // setSelectedStatus(selectedStatus === status ? null : status);
     },
-    [selectedStatus, onStatusClick]
+    [onStatusClick]
   );
 
   return (

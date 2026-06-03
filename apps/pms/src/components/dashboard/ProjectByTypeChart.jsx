@@ -2,21 +2,21 @@ import { BaseChart, ChartCard, CHART_COLORS } from '@codeit/ui';
 import { useMemo, useState, useCallback, useEffect } from 'react';
 
 export const ProjectByTypeChart = ({
-  title = 'Projects by Type',
+  title,
   projects = [],
   onTypeClick,
   calcKey,
   labelFormatter,
-  selectedType: inputSelectedType,
+  selectedType,
   selectedStatus,
   className,
   height = '100%'
 }) => {
-  const [selectedType, setSelectedType] = useState(null);
+  // const [selectedType, setSelectedType] = useState(null);
 
-  useEffect(() => {
-    if (inputSelectedType !== selectedType) setSelectedType(inputSelectedType);
-  }, [inputSelectedType, selectedType]);
+  // useEffect(() => {
+  //   if (inputSelectedType !== selectedType) setSelectedType(inputSelectedType);
+  // }, [inputSelectedType, selectedType]);
 
   const option = useMemo(() => {
     const counts = projects.reduce((acc, { type, status, [calcKey]: v }) => {
@@ -66,15 +66,13 @@ export const ProjectByTypeChart = ({
             value,
             data: { filtered, totalValue }
           }) => {
-            const shortName = name.split(':')[0];
-
             if (selectedStatus) {
               value = filtered;
               percent = (filtered / totalValue) * 100;
             }
 
             return (
-              labelFormatter?.({ name: shortName, percent, value }) ||
+              labelFormatter?.({ percent, value }) ||
               `${value?.toLocaleString()} (${percent?.toFixed(2)}%)`
             );
           },
@@ -128,7 +126,7 @@ export const ProjectByTypeChart = ({
 
           const width = api.getWidth();
           const height = api.getHeight();
-          const baseRadius = Math.min(width, height) * 0.5 * 0.5;
+          const baseRadius = Math.min(width, height) * 0.5 * 0.7;
           const outerRadius = baseRadius * (item.filtered / item.total);
 
           return {
@@ -181,9 +179,8 @@ export const ProjectByTypeChart = ({
       },
       legend: {
         orient: 'vertical',
-        // left: 'center',
         top: 'center',
-        left: 400,
+        left: 450,
         textStyle: {
           fontSize: 12,
           width: 280,
@@ -209,10 +206,10 @@ export const ProjectByTypeChart = ({
 
   const handleClick = useCallback(
     params => {
-      const name = params.name;
-
-      setSelectedType(prev => (prev === name ? null : name));
-      onTypeClick?.(name);
+      // const name = params.name;
+      // setSelectedType(prev => (prev === name ? null : name));
+      // onTypeClick?.(name);
+      onTypeClick?.(params.name);
     },
     [onTypeClick]
   );

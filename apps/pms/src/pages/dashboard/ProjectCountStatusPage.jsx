@@ -50,7 +50,7 @@ export default function ProjectCountStatusPage() {
             projects={projects}
             onTypeClick={handleTypeClick}
             calcKey="plannedManhours"
-            labelFormatter={({ name, value, percent }) =>
+            labelFormatter={({ value, percent }) =>
               `${value?.toLocaleString()} h (${percent?.toFixed(2)}%)`
             }
             selectedType={selectedFilter.projectType}
