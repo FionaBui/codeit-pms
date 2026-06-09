@@ -6,6 +6,7 @@ import { connectToDatabase } from '../config/db.js';
 import { Project } from '../models/Project.js';
 import { Resource } from '../models/Resource.js';
 import { ResourceAllocation, normalizeAllocation } from '../models/ResourceAllocation.js';
+import { Menu } from '../models/Menu.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projects = JSON.parse(fs.readFileSync(path.join(__dirname, 'projects.json'), 'utf-8'));
@@ -13,6 +14,7 @@ const resources = JSON.parse(fs.readFileSync(path.join(__dirname, 'resources.jso
 const resourceAllocations = JSON.parse(
   fs.readFileSync(path.join(__dirname, 'resourceAllocations.json'), 'utf-8')
 );
+const menus = JSON.parse(fs.readFileSync(path.join(__dirname, 'menu.json'), 'utf-8'));
 
 dotenv.config({ path: path.resolve(process.cwd(), 'apps/pms-api/.env') });
 
@@ -55,6 +57,16 @@ async function seed() {
     }))
   );
   console.log(`Seeded ${insertedAlloc.length} resource allocation document(s).`);
+
+  console.log(`Seeding ${menus.length} menu item(s)...`);
+  const existingMenus = await Menu.countDocuments();
+  if (existingMenus > 0) {
+    console.log(`Found ${existingMenus} existing menu item(s). Deleting before seed...`);
+    await Menu.deleteMany({});
+  }
+  const insertedMenus = await Menu.insertMany(menus);
+  console.log(`Seeded ${insertedMenus.length} menu item(s).`);
+  insertedMenus.forEach((m) => console.log(`  - ${m._id}: ${m.label} (${m.group})`));
 }
 
 seed()

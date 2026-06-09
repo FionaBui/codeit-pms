@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { MainLayout } from '@codeit/ui';
 import { createBrowserRouter, useNavigate, Navigate } from 'react-router-dom';
 import { Drawer, Segmented } from 'antd';
 import { RequireAuth, useAuth } from '@codeit/auth';
 import { ApiClientInit } from './api/ApiClientInit';
+import { listMenus } from './api/menuApi';
 import ProjectCountStatusPage from './pages/dashboard/ProjectCountStatusPage';
 import ProjectsGanttPage from './pages/dashboard/ProjectsGanttPage';
 import ResourcesAllocationsPage from './pages/dashboard/ResourcesAllocationsPage';
@@ -14,12 +15,9 @@ import ResourceManagementPage from './pages/management/ResourceManagementPage';
 import Settings from './pages/Settings';
 
 import {
-  HomeOutlined,
   DashboardOutlined,
   ProjectOutlined,
-  SettingOutlined,
   ScheduleOutlined,
-  BarChartOutlined,
   TeamOutlined,
   ContactsOutlined,
   DatabaseOutlined
@@ -30,6 +28,15 @@ function PmsLayout() {
   const navigate = useNavigate();
   const [menuMode, setMenuMode] = useState('vertical');
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [apiMenus, setApiMenus] = useState(null);
+
+  useEffect(() => {
+    listMenus()
+      .then(setApiMenus)
+      .catch((err) => {
+        console.error('Failed to load menus', err);
+      });
+  }, []);
 
   // const sectionLabelStyle = {
   //   fontSize: 12,
@@ -38,7 +45,7 @@ function PmsLayout() {
   //   letterSpacing: 0.5
   // };
 
-  const menuItems = [
+  const menuItems = useMemo(() => [
     {
       key: 'project-count-status',
       label: 'Project Count & Status',
@@ -91,13 +98,42 @@ function PmsLayout() {
     //   icon: <SettingOutlined />,
     //   onClick: () => navigate('/settings')
     // }
-  ];
+  ], [navigate]);
+
+  const resolvedMenuItems = useMemo(() => {
+    if (!apiMenus?.length) return menuItems;
+
+    const divider = menuItems.find((item) => item.type === 'divider');
+    const clientByKey = Object.fromEntries(
+      menuItems
+        .filter((item) => item.key && item.type !== 'divider')
+        .map((item) => [item.key, item])
+    );
+
+    const sortedApiMenus = [...apiMenus].sort((a, b) => a.order - b.order);
+    const merged = [];
+    let prevGroup = null;
+
+    for (const menuFromApi of sortedApiMenus) {
+      if (prevGroup && menuFromApi.group !== prevGroup && divider) {
+        merged.push(divider);
+      }
+
+      const menuClient = clientByKey[menuFromApi._id] ?? {};
+      const { _id, ...rest } = menuFromApi;
+      merged.push({ ...menuClient, ...rest, key: _id });
+      prevGroup = menuFromApi.group;
+    }
+
+    return merged;
+  }, [apiMenus, menuItems]);
+
   return (
     <>
       <MainLayout
         title="PMS"
         tagline="by CodeIT"
-        menuItems={menuItems}
+        menuItems={resolvedMenuItems}
         menuMode={menuMode}
         onSettingsClick={() => setSettingsOpen(true)}
         userMenuItems={[

@@ -1,0 +1,58 @@
+[
+  {
+    "_id": "project-count-status",
+    "label": "Project Count & Status",
+    "order": 1,
+    "group": "dashboard",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "projects-gantt",
+    "label": "Projects Gantt",
+    "order": 2,
+    "group": "dashboard",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "resources-allocations",
+    "label": "Resources Allocations",
+    "order": 3,
+    "group": "dashboard",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "headcount",
+    "label": "Headcount",
+    "order": 4,
+    "group": "dashboard",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "raw-data",
+    "label": "Raw Data Table",
+    "order": 5,
+    "group": "dashboard",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "project-management",
+    "label": "Project Management",
+    "order": 6,
+    "group": "management",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  },
+  {
+    "_id": "resource-management",
+    "label": "Resource Management",
+    "order": 7,
+    "group": "management",
+    "createdBy": "seed",
+    "updatedBy": "seed"
+  }
+]
