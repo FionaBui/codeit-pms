@@ -4,11 +4,11 @@ import { dayjs } from '@codeit/utils';
 /**
  * @returns {Promise<Array>}
  */
-export async function getResourceAllocationForNextMonths(months) {
+export async function getResourceAllocationForNextMonths(monthCount) {
   const client = await getApiClient();
   const res = await client.get('/resource-allocations/next-months', {
     params: {
-      months,
+      months: monthCount,
       currentMonth: dayjs().startOf('month').format('YYYY-MM-DD')
     },
     paramsSerializer: { indexes: null }

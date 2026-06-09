@@ -180,10 +180,10 @@ export const ProjectByTypeChart = ({
       legend: {
         orient: 'vertical',
         top: 'center',
-        left: 450,
+        left: 400,
         textStyle: {
           fontSize: 12,
-          width: 280,
+          width: 200,
           overflow: 'truncate',
           ellipsis: '...'
         },

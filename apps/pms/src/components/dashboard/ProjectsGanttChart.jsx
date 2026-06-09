@@ -62,6 +62,7 @@ function ganttChart({ projects }) {
       completion: p.completion || 0
     };
   });
+  const barWidth = chartData.length > 10 ? 10 : 18;
   return {
     tooltip: {
       trigger: 'axis',
@@ -113,17 +114,17 @@ function ganttChart({ projects }) {
       }
     },
     grid: {
-      left: 180,
+      left: 120,
       right: 40,
-      top: 40,
-      bottom: 60
+      top: 50,
+      bottom: 40
     },
     series: [
       {
         name: 'offset',
         type: 'bar',
         stack: 'total',
-        barWidth: 18,
+        barWidth: barWidth,
         data: chartData.map(item => item.start),
         itemStyle: {
           color: 'transparent'
@@ -133,7 +134,7 @@ function ganttChart({ projects }) {
         name: 'progress',
         type: 'bar',
         stack: 'total',
-        barWidth: 18,
+        barWidth: barWidth,
         data: chartData.map(item => item.progressEnd - item.start),
         itemStyle: {
           color: '#d97a00'
@@ -158,7 +159,7 @@ function ganttChart({ projects }) {
         name: 'remaining',
         type: 'bar',
         stack: 'total',
-        barWidth: 18,
+        barWidth: barWidth,
 
         data: chartData.map(item => item.end - item.progressEnd),
         itemStyle: {
@@ -172,9 +173,33 @@ function ganttChart({ projects }) {
 
 export default function ProjectsGanttChart({ projects }) {
   const option = ganttChart({ projects });
+
+  const chartHeight = Math.max(420, projects.length * 24 + 100);
+
   return (
-    <ChartCard title="Timeline view" height="100%">
-      <BaseChart option={option} />
+    <ChartCard title="Timeline view" height="calc(100vh - 180px)">
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          overflow: 'auto'
+        }}
+      >
+        <div
+          style={{
+            width: 'max(100%, 1100px)',
+            height: chartHeight
+          }}
+        >
+          <BaseChart
+            option={option}
+            height={chartHeight}
+            style={{
+              width: '100%'
+            }}
+          />
+        </div>
+      </div>
     </ChartCard>
   );
 }

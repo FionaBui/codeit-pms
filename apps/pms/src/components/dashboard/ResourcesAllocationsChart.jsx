@@ -134,6 +134,15 @@ export default function ResourcesAllocationsChart({
         <BaseChart
           option={option}
           style={{ width: '100%', height: '100%' }}
+          onEvents={{
+            click: params => {
+              if (!params.seriesName || params.value <= 0) {
+                return;
+              }
+
+              onSelectProject?.(params.seriesName);
+            }
+          }}
         />
 
         <div
