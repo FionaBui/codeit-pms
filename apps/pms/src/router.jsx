@@ -35,6 +35,7 @@ function PmsLayout() {
       .then(setApiMenus)
       .catch((err) => {
         console.error('Failed to load menus', err);
+        setApiMenus([]);
       });
   }, []);
 
@@ -101,7 +102,8 @@ function PmsLayout() {
   ], [navigate]);
 
   const resolvedMenuItems = useMemo(() => {
-    if (!apiMenus?.length) return menuItems;
+    if (apiMenus === null) return [];
+    if (!apiMenus.length) return [];
 
     const divider = menuItems.find((item) => item.type === 'divider');
     const clientByKey = Object.fromEntries(

@@ -22,12 +22,20 @@ function buildJwksUri() {
   return `https://login.microsoftonline.com/${tenantId}/discovery/v2.0/keys`;
 }
 
-function buildIssuer() {
+function buildIssuers() {
   const explicit = process.env.AAD_ISSUER;
-  if (explicit) return explicit;
+  if (explicit) {
+    return explicit
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean);
+  }
 
   const tenantId = getTenantId();
-  return `https://login.microsoftonline.com/${tenantId}/v2.0`;
+  return [
+    `https://login.microsoftonline.com/${tenantId}/v2.0`,
+    `https://sts.windows.net/${tenantId}/`,
+  ];
 }
 
 const AAD_ISSUER_PATTERN = /^https:\/\/login\.microsoftonline\.com\/[^/]+\/v2\.0$/;
@@ -77,7 +85,10 @@ export function requireAuth(req, res, next) {
       algorithms: ['RS256'],
       audience: audiences.length === 1 ? audiences[0] : audiences,
     };
-    if (!multiTenant) opts.issuer = buildIssuer();
+    if (!multiTenant) {
+      const issuers = buildIssuers();
+      opts.issuer = issuers.length === 1 ? issuers[0] : issuers;
+    }
 
     jwt.verify(token, getSigningKey, opts, (err, payload) => {
       if (err) {
@@ -101,6 +112,7 @@ export function requireAuth(req, res, next) {
         });
       }
       req.auth = payload;
+      req.accessToken = token;
       next();
     });
   } catch (e) {

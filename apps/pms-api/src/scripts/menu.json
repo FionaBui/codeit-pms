@@ -44,6 +44,12 @@
     "label": "Project Management",
     "order": 6,
     "group": "management",
+    "allowedTitles": [
+      "Project Manager"
+    ],
+    "allowedRoles": [
+      "PmsAdmin"
+    ],
     "createdBy": "seed",
     "updatedBy": "seed"
   },
@@ -52,6 +58,12 @@
     "label": "Resource Management",
     "order": 7,
     "group": "management",
+    "allowedTitles": [
+      "Project Manager"
+    ],
+    "allowedRoles": [
+      "PmsAdmin"
+    ],
     "createdBy": "seed",
     "updatedBy": "seed"
   }

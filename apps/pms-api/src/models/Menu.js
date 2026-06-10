@@ -20,17 +20,18 @@ const MenuSchema = new Schema(
       enum: ['dashboard', 'management'],
       default: 'dashboard'
     },
+    allowedTitles: {
+      type: [String],
+      default: []
+    },
+    allowedRoles: {
+      type: [String],
+      default: []
+    },
     updatedBy: String,
     createdBy: String
   },
   { timestamps: true }
 );
-
-MenuSchema.pre('validate', function (next) {
-  if (this.isNew && !this._id && this.key) {
-    this._id = this.key;
-  }
-  next();
-});
 
 export const Menu = mongoose.models.Menu ?? mongoose.model('Menu', MenuSchema);
