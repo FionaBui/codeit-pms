@@ -3,6 +3,7 @@ import {
   findResourceAllocationsByProject,
   saveResourceAllocationsForProject
 } from '../services/resourceAllocationService.js';
+import { assertCanManageProject } from '../auth/projectPermission.js';
 
 export async function getResourceAllocationForNextMonths(req, res, next) {
   try {
@@ -36,6 +37,13 @@ export async function getResourceAllocationsByProject(req, res, next) {
 export async function saveResourceAllocationsByProject(req, res, next) {
   try {
     const { projectId } = req.params;
+    const access = await assertCanManageProject(req, projectId);
+    if (!access.ok) {
+      return res.status(access.status).json({
+        error: { code: 'forbidden', message: access.message },
+      });
+    }
+
     const { resources } = req.body;
 
     const savedAllocations = await saveResourceAllocationsForProject(

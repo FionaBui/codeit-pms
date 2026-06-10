@@ -201,6 +201,8 @@ export default function ProjectManagementPage() {
   }
 
   async function openEditDrawer(project) {
+    if (!project.canManage) return;
+
     setEditingProject(project);
     setResourceAssignments([]);
     setIsDrawerOpen(true);
@@ -255,6 +257,11 @@ export default function ProjectManagementPage() {
       let savedProject;
 
       if (editingProject) {
+        if (!editingProject.canManage) {
+          message.error('You do not have permission to edit this project', 3);
+          return;
+        }
+
         savedProject = await updateProject(
           editingProject._id,
           formattedProject
@@ -284,7 +291,13 @@ export default function ProjectManagementPage() {
       await fetchAllResourceAllocations();
     } catch (error) {
       console.error('Save project failed:', error);
-      message.error('Failed to save project', 3);
+      const forbidden = error?.response?.status === 403;
+      message.error(
+        forbidden
+          ? 'You do not have permission to edit this project'
+          : 'Failed to save project',
+        3
+      );
     } finally {
       setLoading(false);
     }
@@ -312,8 +325,13 @@ export default function ProjectManagementPage() {
           await fetchProjects();
         } catch (error) {
           console.error('Delete project failed:', error);
-
-          message.error('Failed to delete project', 3);
+          const forbidden = error?.response?.status === 403;
+          message.error(
+            forbidden
+              ? 'You do not have permission to delete this project'
+              : 'Failed to delete project',
+            3
+          );
         } finally {
           setLoading(false);
         }
@@ -450,15 +468,17 @@ export default function ProjectManagementPage() {
             size="small"
             icon={<EditOutlined />}
             color="primary"
+            disabled={!project.canManage}
             onClick={() => openEditDrawer(project)}
-          ></Button>
+          />
 
           <Button
             danger
             size="small"
             icon={<DeleteOutlined />}
+            disabled={!project.canManage}
             onClick={() => handleDeleteProject(project)}
-          ></Button>
+          />
         </Space>
       )
     }

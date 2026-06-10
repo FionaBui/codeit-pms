@@ -5,11 +5,32 @@ import {
   deleteProject as deleteProjectService
 } from '../services/projectService.js';
 import { listProjectsFromSevera, fetchAllProjectsFromSevera } from '../services/severa/severaProjectService.js';
+import {
+  buildPermissionContext,
+  canManageProject,
+  assertCanManageProject,
+} from '../auth/projectPermission.js';
 
 export async function getProjects(req, res, next) {
   try {
-    const projects = await listProjects();
-    res.status(200).json({ data: projects });
+    const [projects, context] = await Promise.all([
+      listProjects(),
+      buildPermissionContext(req),
+    ]);
+
+    const data = projects.map((project) => {
+      const plain = project.toObject();
+      return {
+        ...plain,
+        canManage: canManageProject({
+          roles: context.roles,
+          resourceId: context.resourceId,
+          project: { manager: plain.manager?._id ?? plain.manager },
+        }),
+      };
+    });
+
+    res.status(200).json({ data });
   } catch (err) {
     next(err);
   }
@@ -52,6 +73,13 @@ export async function createProject(req, res, next) {
 
 export async function updateProject(req, res, next) {
   try {
+    const access = await assertCanManageProject(req, req.params.id);
+    if (!access.ok) {
+      return res.status(access.status).json({
+        error: { code: 'forbidden', message: access.message },
+      });
+    }
+
     const project = await updateProjectService(req.params.id, req.body);
 
     if (!project) {
@@ -66,6 +94,13 @@ export async function updateProject(req, res, next) {
 
 export async function deleteProject(req, res, next) {
   try {
+    const access = await assertCanManageProject(req, req.params.id);
+    if (!access.ok) {
+      return res.status(access.status).json({
+        error: { code: 'forbidden', message: access.message },
+      });
+    }
+
     const project = await deleteProjectService(req.params.id);
 
     if (!project) {
